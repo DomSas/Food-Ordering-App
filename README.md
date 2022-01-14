@@ -1,37 +1,10 @@
-# framework7-react-single-view
 
-## Framework7 CLI Options
 
-Framework7 app created with following options:
+# Restaurant Management App
+This app is based on a template found here:
+[framework7-react-single-view](https://github.com/monaca-templates/framework7-react-single-view)
 
-```
-{
-  "cwd": "/Users/asial/Documents/framework7-react-single-view",
-  "type": [
-    "web"
-  ],
-  "name": "framework7-react-single-view",
-  "framework": "react",
-  "template": "single-view",
-  "cssPreProcessor": false,
-  "bundler": "webpack",
-  "webpack": {
-    "developmentSourceMap": true,
-    "productionSourceMap": true,
-    "hashAssets": false,
-    "preserveAssetsPaths": false,
-    "inlineAssets": true
-  },
-  "theming": {
-    "customColor": false,
-    "color": "#007aff",
-    "darkTheme": false,
-    "iconFonts": true,
-    "fillBars": false
-  },
-  "customBuild": false
-}
-```
+
 
 ## NPM Scripts
 
