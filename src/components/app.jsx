@@ -23,6 +23,7 @@ import {
 } from 'framework7-react';
 
 import routes from '../js/routes';
+import HomePage from '../pages/HomePage';
 
 export default class extends React.Component {
   constructor() {
@@ -47,7 +48,7 @@ export default class extends React.Component {
   render() {
     return (
       <App params={ this.state.f7params } >
-        
+        <HomePage/>
       </App>
 
         
