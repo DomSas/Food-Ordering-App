@@ -22,6 +22,7 @@ const HomePage = () => {
           <button className="col button button-raised button-round">
             About Us
           </button>
+          <p>prueba</p>
         </div>
       </div>
     </>
