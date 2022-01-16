@@ -1,0 +1,14 @@
+.p {
+    position: absolute;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+b::after {
+    content: "\a\a";
+    white-space: pre;
+}

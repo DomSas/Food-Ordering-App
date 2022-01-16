@@ -49,13 +49,13 @@ module.exports = {
     open: true,
     compress: true,
     port: port,
-    sockPort: port,
-    contentBase: '/www/',
-    disableHostCheck: true,
+    //sockPort: port, //V5 COMMENT
+    //contentBase: '/www/', //V5 COMMENT
+    //disableHostCheck: true, //V5 COMMENT
     historyApiFallback: true,
-    watchOptions: {
+    /*watchOptions: { //V5 COMMENT
       poll: 1000,
-    },
+    },*/
   },
   optimization: {
     minimize: true,
@@ -186,7 +186,7 @@ module.exports = {
     ] : [
       // Development only plugins
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin(),
+      //new webpack.NamedModulesPlugin(), //V5 COMMENT
     ]),
     new HtmlWebpackPlugin({
       filename: './index.html',

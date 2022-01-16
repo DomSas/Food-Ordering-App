@@ -7,7 +7,7 @@ body {
 
 h1 {
   margin: 0;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 600;
   color: white;
   display: flex;
@@ -34,7 +34,7 @@ p {
 
 .header {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
