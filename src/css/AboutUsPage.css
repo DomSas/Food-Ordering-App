@@ -1,4 +1,4 @@
-.p {
+p {
     position: absolute;
     color: #000000;
     margin: 0;
@@ -8,7 +8,7 @@
     transform: translate(-50%, -50%);
 }
 
-b::after {
+span::after {
     content: "\a\a";
     white-space: pre;
 }
