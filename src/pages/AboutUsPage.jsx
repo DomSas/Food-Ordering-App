@@ -1,10 +1,10 @@
 import "../css/AboutUsPage.css";
 import React from "react";
-import { Icon } from "framework7-react";
+import { Icon, Link, Page } from "framework7-react";
 
 const AboutUsPage = () => {
   return (
-    <>
+    <Page name="about-us">
       <p>
         <span><strong>About:</strong></span>
         <span>We are European based Asian restaurant with over 50 branches in countries like Austria, France, Norway, Belgium...</span>
@@ -20,11 +20,12 @@ const AboutUsPage = () => {
         <span className="bottom">Created by Asial Corporation<br />
           App Version: 1.0.0</span>
 
-        <button className="col button button-fill button-round">
-        Back to Home
-        </button>
+        <Link href="/">
+          <button className="col button button-fill button-round">
+            Back to Home
+          </button></Link>
       </p>
-    </>
+      </Page>
   );
 };
 

@@ -32,7 +32,6 @@ export default () => {
   const f7params = {
     name: 'My App',
     id: 'com.myapp.test',
-    // specify routes for app
     routes: routes
   };
     return (<>
@@ -40,7 +39,6 @@ export default () => {
     
       <App params={ f7params } >
         <View main url="/" />
-
       </App>
 
         

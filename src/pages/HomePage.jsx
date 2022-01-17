@@ -1,10 +1,10 @@
 import "../css/HomePage.css";
 import React from "react";
-import { Link } from "framework7-react";
+import { Link, Page } from "framework7-react";
 
 const HomePage = () => {
   return (
-    <>
+    <Page name="home">
       <div className="container">
         {/* <div className="ramen-img">
           <img src="../static/icons/ramen.jpg" alt="ramen" />
@@ -18,7 +18,9 @@ const HomePage = () => {
         </div>
         <div className="buttons">
           <button className="col button button-fill button-round">Menu</button>
-          <Link href="/about-us/">About Page</Link>
+          <Link href="/about-us/"><button className="col button button-outline  button-round">
+            About Us
+          </button></Link>
 
           {/* <Link to="/about-us">
             <button className="col button button-outline  button-round">
@@ -27,7 +29,7 @@ const HomePage = () => {
           </Link> */}
         </div>
       </div>
-    </>
+      </Page>
   );
 };
 
