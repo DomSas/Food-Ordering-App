@@ -9,13 +9,13 @@ h1 {
   margin: 0;
   font-size: 32px;
   font-weight: 600;
-  color: white;
+  /* color: white; */
   display: flex;
   text-align: center;
 }
 
 p {
-  color: white;
+  /* color: white; */
 }
 
 .ramen-img img {
@@ -33,13 +33,33 @@ p {
 }
 
 .header {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* position: absolute; */
+  /* top: 35%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  margin-top: 35%;
+  margin-bottom: 30px;
+}
+
+.header p {
+  margin: 70px 0 20px 0;
 }
 
 .buttons {
   display: flex;
-  margin: 5px 5px;
+  justify-content: center;
+  margin: 15px 10px;
+}
+
+button {
+  color: #ffffff !important;
+  background-color: #264d32 !important;
+  width: 150px !important;
+  height: 45px !important;
+  margin: 15px 10px 0 !important;
 }

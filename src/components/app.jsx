@@ -25,44 +25,23 @@ import {
 import routes from '../js/routes';
 import HomePage from '../pages/HomePage';
 
-export default class extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      // Framework7 Parameters
-      f7params: {
-        name: 'framework7-react-single-view', // App name
-        theme: 'auto', // Automatic theme detection
 
 
 
-        // App routes
-        routes: routes,
-      },
-      // Login screen demo data
-      username: '',
-      password: '',
-    }
-  }
-  render() {
-    return (
-      <App params={ this.state.f7params } >
-        <HomePage/>
+export default () => {
+  const f7params = {
+    name: 'My App',
+    id: 'com.myapp.test',
+    routes: routes
+  };
+    return (<>
+
+    
+      <App params={ f7params } >
+        <View main url="/" />
       </App>
 
         
+    </>
     )
-  }
-  alertLoginData() {
-    this.$f7.dialog.alert('Username: ' + this.state.username + '<br>Password: ' + this.state.password, () => {
-      this.$f7.loginScreen.close();
-    });
-  }
-  componentDidMount() {
-    this.$f7ready((f7) => {
-
-      // Call F7 APIs here
-    });
-  }
 }
