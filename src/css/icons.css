@@ -8,7 +8,7 @@
        local('MaterialIcons-Regular'),
        url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
        url(../fonts/MaterialIcons-Regular.woff) format('woff'),
-       url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
+       url(../fonts/MaterialIcons-Regular.ttf) format('ttf');
 }
 .material-icons {
   font-family: 'Material Icons';
@@ -33,10 +33,10 @@
   font-family: 'Framework7 Icons';
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/Framework7Icons-Regular.eot");
+  src: url("../fonts/Framework7Icons-Regular.eot") format('eot');;
   src: url("../fonts/Framework7Icons-Regular.woff2") format("woff2"),
        url("../fonts/Framework7Icons-Regular.woff") format("woff"),
-       url("../fonts/Framework7Icons-Regular.ttf") format("truetype");
+       url("../fonts/Framework7Icons-Regular.ttf") format("ttf");
 }
 .f7-icons {
   font-family: 'Framework7 Icons';
