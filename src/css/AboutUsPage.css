@@ -1,4 +1,6 @@
 p {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     color: #000000;
     margin: 0;
@@ -6,6 +8,7 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    align-items: center;
 }
 
 span::after {

@@ -1,8 +1,9 @@
 import "../css/AboutUsPage.css";
 import React from "react";
-import { Icon, Link, Page } from "framework7-react";
+import { Page } from "framework7-react";
 
 const AboutUsPage = () => {
+
   return (
     <Page name="about-us">
       <p>
@@ -20,10 +21,10 @@ const AboutUsPage = () => {
         <span className="bottom">Created by Asial Corporation<br />
           App Version: 1.0.0</span>
 
-        <Link href="/">
+        <a href="/" className="back">
           <button className="col button button-fill button-round">
             Back to Home
-          </button></Link>
+          </button></a>
       </p>
       </Page>
   );

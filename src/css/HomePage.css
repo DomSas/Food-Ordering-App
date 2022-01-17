@@ -46,9 +46,14 @@ p {
   margin-bottom: 30px;
 }
 
+.header p {
+  margin: 70px 0 20px 0;
+}
+
 .buttons {
   display: flex;
-  margin: 5px 5px;
+  justify-content: center;
+  margin: 15px 10px;
 }
 
 button {
@@ -56,4 +61,5 @@ button {
   background-color: #264d32 !important;
   width: 150px !important;
   height: 45px !important;
+  margin: 15px 10px 0 !important;
 }

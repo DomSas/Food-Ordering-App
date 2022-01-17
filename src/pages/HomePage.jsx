@@ -1,6 +1,6 @@
 import "../css/HomePage.css";
 import React from "react";
-import { Link, Page } from "framework7-react";
+import { Page } from "framework7-react";
 
 const HomePage = () => {
   return (
@@ -18,18 +18,14 @@ const HomePage = () => {
         </div>
         <div className="buttons">
           <button className="col button button-fill button-round">Menu</button>
-          <Link href="/about-us/"><button className="col button button-outline  button-round">
-            About Us
-          </button></Link>
-
-          {/* <Link to="/about-us">
-            <button className="col button button-outline  button-round">
+          <a href="/about-us/" data-transition="f7-cover">
+            <button className="col button button-fill  button-round">
               About Us
             </button>
-          </Link> */}
+          </a>
         </div>
       </div>
-      </Page>
+    </Page>
   );
 };
 
