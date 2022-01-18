@@ -17,7 +17,11 @@ const HomePage = () => {
           <p>Explore the taste of Japan with us</p>
         </div>
         <div className="buttons">
-          <button className="col button button-fill button-round">Menu</button>
+          <a href="/food/" data-transition="f7-cover">
+            <button className="col button button-fill button-round">
+              Menu
+            </button>
+          </a>
           <a href="/about-us/" data-transition="f7-cover">
             <button className="col button button-fill  button-round">
               About Us
