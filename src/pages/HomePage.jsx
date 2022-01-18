@@ -1,14 +1,14 @@
 import "../css/HomePage.css";
 import React from "react";
-import { Page } from "framework7-react";
+import { Page, Stepper } from "framework7-react";
 
 const HomePage = () => {
   return (
     <Page name="home">
       <div className="container">
-        {/* <div className="ramen-img">
+        <div className="ramen-img">
           <img src="../static/icons/ramen.jpg" alt="ramen" />
-        </div> */}
+        </div>
         <div className="header">
           <h1>Welcome to Pab-Dom</h1>
           <div className="logo-img">

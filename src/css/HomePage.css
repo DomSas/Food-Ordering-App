@@ -9,18 +9,22 @@ h1 {
   margin: 0;
   font-size: 32px;
   font-weight: 600;
-  /* color: white; */
+  color: white;
   display: flex;
   text-align: center;
 }
 
 p {
-  /* color: white; */
+  color: white!important;
 }
 
 .ramen-img img {
-  top: 0;
-  width: 100%;
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index:-1;
 }
 
 .logo-img img {
@@ -33,13 +37,8 @@ p {
 }
 
 .header {
-  /* position: absolute; */
-  /* top: 35%; */
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%); */
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
   margin-top: 35%;
@@ -53,6 +52,8 @@ p {
 .buttons {
   display: flex;
   justify-content: center;
+  bottom: 0!important;
+  position: relative!important;
   margin: 15px 10px;
 }
 
