@@ -1,5 +1,5 @@
 import "../css/FoodPage.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Page,
   BlockTitle,
@@ -9,11 +9,18 @@ import {
   Icon,
   Stepper,
 } from "framework7-react";
+import { CartContext } from "../js/CartContext";
 
 const FoodPage = () => {
+  const [cartItems, setCartItems] = useContext(CartContext);
+
   const addItemToCart = (foodItem) => {
     //TODO: State logic
+    setCartItems([...cartItems, foodItem]);
+
     console.log("Added item to cart: " + JSON.stringify(foodItem.name));
+
+    console.log(cartItems);
   };
 
   const removeItemFromCart = (foodItem) => {
@@ -54,7 +61,8 @@ const FoodPage = () => {
                 </List>
               </AccordionContent>
             </ListItem>
-
+          </List>
+          <List accordionList inset>
             <ListItem accordionItem title="Main Dish">
               <AccordionContent>
                 <List>
@@ -73,7 +81,8 @@ const FoodPage = () => {
                 </List>
               </AccordionContent>
             </ListItem>
-
+          </List>
+          <List accordionList inset>
             <ListItem accordionItem title="Desserts">
               <AccordionContent>
                 <List>
@@ -92,7 +101,8 @@ const FoodPage = () => {
                 </List>
               </AccordionContent>
             </ListItem>
-
+          </List>
+          <List accordionList inset>
             <ListItem accordionItem title="Beverages">
               <AccordionContent>
                 <List>
