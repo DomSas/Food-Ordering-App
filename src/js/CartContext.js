@@ -14,15 +14,11 @@ export const CartProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    setTotalAmount(0);
+    let newTotal = 0;
     cartItems.forEach((item) => {
-      console.log(item);
-      // let newTotal = +item.price * +item.amount;
-
-      setTotalAmount(totalAmount + item.price * item.amount);
+      newTotal += item.price * item.amount;
     });
-    console.log(totalAmount);
-    console.log(cartItems);
+    setTotalAmount(newTotal);
   }, [cartItems]);
 
   return (

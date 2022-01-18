@@ -36,17 +36,6 @@ const FoodPage = () => {
       return item;
     });
     setCartItems(newCartItems);
-    // //   TODO: Add filter logic
-    // console.log("cartItems");
-    // console.log(cartItems);
-    // let indexOfItemToDelete = cartItems.findIndex(
-    //   (item) => item.name == foodItem.name
-    // );
-
-    // console.log("cartItems.splice(indexOfItemToDelete, 1)");
-    // console.log(cartItems.splice(indexOfItemToDelete, 1));
-
-    // // setCartItems(cartItems.splice(indexOfItemToDelete, 1));
 
     console.log("Removed item from cart: " + JSON.stringify(foodItem.name));
   };
