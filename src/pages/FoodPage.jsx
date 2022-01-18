@@ -1,5 +1,5 @@
 import "../css/FoodPage.css";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import {
   Page,
   BlockTitle,
@@ -7,12 +7,17 @@ import {
   AccordionContent,
   ListItem,
   Icon,
+  Stepper,
 } from "framework7-react";
 
 const FoodPage = () => {
   const addItemToCart = (foodItem) => {
     //TODO: State logic
     console.log("Added item to cart: " + JSON.stringify(foodItem.name));
+  };
+
+  const removeItemFromCart = (foodItem) => {
+    console.log("Removed item from cart: " + JSON.stringify(foodItem.name));
   };
 
   const startersArray = [
@@ -29,30 +34,77 @@ const FoodPage = () => {
             <br /> to eat?
           </h2>
 
-          <BlockTitle>Starters</BlockTitle>
+          <BlockTitle>TODAY'S MENU</BlockTitle>
           <List accordionList inset>
             <ListItem accordionItem title="Starters">
               <AccordionContent>
                 <List>
                   {startersArray.map((foodItem) => (
-                    <ListItem
-                      key={foodItem.id}
-                      className="food"
-                      title={foodItem.name}
-                      onClick={() => addItemToCart(foodItem)}
-                    >
-                      <p
-                        onClick={(e) => {
-                          //TODO: Solve this propagation
-                          e.stopPropagation();
-                          console.log(
-                            "Deleted item from cart: " +
-                              JSON.stringify(foodItem.name)
-                          );
-                        }}
-                      >
-                        DELETE
-                      </p>
+                    <ListItem key={foodItem.name} title={foodItem.name}>
+                      <Stepper
+                        raised
+                        small
+                        round
+                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
+                        onStepperPlusClick={() => addItemToCart(foodItem)}
+                      />
+                      {foodItem.price}
+                    </ListItem>
+                  ))}
+                </List>
+              </AccordionContent>
+            </ListItem>
+
+            <ListItem accordionItem title="Main Dish">
+              <AccordionContent>
+                <List>
+                  {startersArray.map((foodItem) => (
+                    <ListItem key={foodItem.name} title={foodItem.name}>
+                      <Stepper
+                        raised
+                        small
+                        round
+                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
+                        onStepperPlusClick={() => addItemToCart(foodItem)}
+                      />
+                      {foodItem.price}
+                    </ListItem>
+                  ))}
+                </List>
+              </AccordionContent>
+            </ListItem>
+
+            <ListItem accordionItem title="Desserts">
+              <AccordionContent>
+                <List>
+                  {startersArray.map((foodItem) => (
+                    <ListItem key={foodItem.name} title={foodItem.name}>
+                      <Stepper
+                        raised
+                        small
+                        round
+                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
+                        onStepperPlusClick={() => addItemToCart(foodItem)}
+                      />
+                      {foodItem.price}
+                    </ListItem>
+                  ))}
+                </List>
+              </AccordionContent>
+            </ListItem>
+
+            <ListItem accordionItem title="Beverages">
+              <AccordionContent>
+                <List>
+                  {startersArray.map((foodItem) => (
+                    <ListItem key={foodItem.name} title={foodItem.name}>
+                      <Stepper
+                        raised
+                        small
+                        round
+                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
+                        onStepperPlusClick={() => addItemToCart(foodItem)}
+                      />
                       {foodItem.price}
                     </ListItem>
                   ))}
