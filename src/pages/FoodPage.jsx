@@ -1,5 +1,5 @@
 import "../css/FoodPage.css";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Page,
   BlockTitle,
@@ -12,25 +12,44 @@ import {
 import { CartContext } from "../js/CartContext";
 
 const FoodPage = () => {
-  const [cartItems, setCartItems] = useContext(CartContext);
+  const [cartItems, setCartItems, totalAmount] = useContext(CartContext);
 
   const addItemToCart = (foodItem) => {
-    //TODO: State logic
-    setCartItems([...cartItems, foodItem]);
+    const newCartItems = cartItems.map((item) => {
+      if (item.name == foodItem.name) {
+        item.amount++;
+      }
+      return item;
+    });
+    setCartItems(newCartItems);
 
     console.log("Added item to cart: " + JSON.stringify(foodItem.name));
-
-    console.log(cartItems);
   };
 
   const removeItemFromCart = (foodItem) => {
+    const newCartItems = cartItems.map((item) => {
+      if (item.name == foodItem.name) {
+        if (item.amount > 0) {
+          item.amount--;
+        } else return item;
+      }
+      return item;
+    });
+    setCartItems(newCartItems);
+    // //   TODO: Add filter logic
+    // console.log("cartItems");
+    // console.log(cartItems);
+    // let indexOfItemToDelete = cartItems.findIndex(
+    //   (item) => item.name == foodItem.name
+    // );
+
+    // console.log("cartItems.splice(indexOfItemToDelete, 1)");
+    // console.log(cartItems.splice(indexOfItemToDelete, 1));
+
+    // // setCartItems(cartItems.splice(indexOfItemToDelete, 1));
+
     console.log("Removed item from cart: " + JSON.stringify(foodItem.name));
   };
-
-  const startersArray = [
-    { id: 1, name: "pizza", price: "80" },
-    { id: 2, name: "pasta", price: "30" },
-  ];
 
   return (
     <>
@@ -46,12 +65,13 @@ const FoodPage = () => {
             <ListItem accordionItem title="Starters">
               <AccordionContent>
                 <List>
-                  {startersArray.map((foodItem) => (
+                  {cartItems.map((foodItem) => (
                     <ListItem key={foodItem.name} title={foodItem.name}>
                       <Stepper
                         raised
                         small
                         round
+                        buttonsOnly={true}
                         onStepperMinusClick={() => removeItemFromCart(foodItem)}
                         onStepperPlusClick={() => addItemToCart(foodItem)}
                       />
@@ -66,12 +86,13 @@ const FoodPage = () => {
             <ListItem accordionItem title="Main Dish">
               <AccordionContent>
                 <List>
-                  {startersArray.map((foodItem) => (
+                  {cartItems.map((foodItem) => (
                     <ListItem key={foodItem.name} title={foodItem.name}>
                       <Stepper
                         raised
                         small
                         round
+                        buttonsOnly={true}
                         onStepperMinusClick={() => removeItemFromCart(foodItem)}
                         onStepperPlusClick={() => addItemToCart(foodItem)}
                       />
@@ -86,12 +107,13 @@ const FoodPage = () => {
             <ListItem accordionItem title="Desserts">
               <AccordionContent>
                 <List>
-                  {startersArray.map((foodItem) => (
+                  {cartItems.map((foodItem) => (
                     <ListItem key={foodItem.name} title={foodItem.name}>
                       <Stepper
                         raised
                         small
                         round
+                        buttonsOnly={true}
                         onStepperMinusClick={() => removeItemFromCart(foodItem)}
                         onStepperPlusClick={() => addItemToCart(foodItem)}
                       />
@@ -106,12 +128,13 @@ const FoodPage = () => {
             <ListItem accordionItem title="Beverages">
               <AccordionContent>
                 <List>
-                  {startersArray.map((foodItem) => (
+                  {cartItems.map((foodItem) => (
                     <ListItem key={foodItem.name} title={foodItem.name}>
                       <Stepper
                         raised
                         small
                         round
+                        buttonsOnly={true}
                         onStepperMinusClick={() => removeItemFromCart(foodItem)}
                         onStepperPlusClick={() => addItemToCart(foodItem)}
                       />
@@ -122,6 +145,8 @@ const FoodPage = () => {
               </AccordionContent>
             </ListItem>
           </List>
+
+          <h2>To pay: {totalAmount}</h2>
         </div>
       </Page>
     </>
