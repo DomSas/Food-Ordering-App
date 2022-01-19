@@ -14,28 +14,26 @@ import { CartContext } from "../js/CartContext";
 const FoodPage = () => {
   const [cartItems, setCartItems, totalAmount] = useContext(CartContext);
 
-  const addItemToCart = (foodItem) => {
-    const newCartItems = cartItems.map((item) => {
+  const addItemToCart = (foodItem, key) => {
+    const newCartItems = cartItems[key].map((item) => {
       if (item.name == foodItem.name) {
         item.amount++;
       }
       return item;
     });
-    setCartItems(newCartItems);
+    setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
 
     console.log("Added item to cart: " + JSON.stringify(foodItem.name));
   };
 
-  const removeItemFromCart = (foodItem) => {
-    const newCartItems = cartItems.map((item) => {
+  const removeItemFromCart = (foodItem, key) => {
+    const newCartItems = cartItems[key].map((item) => {
       if (item.name == foodItem.name) {
-        if (item.amount > 0) {
-          item.amount--;
-        } else return item;
+        item.amount = item.amount ? item.amount - 1 : 0;
       }
       return item;
     });
-    setCartItems(newCartItems);
+    setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
 
     console.log("Removed item from cart: " + JSON.stringify(foodItem.name));
   };
@@ -50,90 +48,35 @@ const FoodPage = () => {
           </h2>
 
           <BlockTitle>TODAY'S MENU</BlockTitle>
-          <List accordionList inset>
-            <ListItem accordionItem title="Starters">
-              <AccordionContent>
-                <List>
-                  {cartItems.map((foodItem) => (
-                    <ListItem key={foodItem.name} title={foodItem.name}>
-                      <Stepper
-                        raised
-                        small
-                        round
-                        buttonsOnly={true}
-                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
-                        onStepperPlusClick={() => addItemToCart(foodItem)}
-                      />
-                      {foodItem.price}
-                    </ListItem>
-                  ))}
-                </List>
-              </AccordionContent>
-            </ListItem>
-          </List>
-          <List accordionList inset>
-            <ListItem accordionItem title="Main Dish">
-              <AccordionContent>
-                <List>
-                  {cartItems.map((foodItem) => (
-                    <ListItem key={foodItem.name} title={foodItem.name}>
-                      <Stepper
-                        raised
-                        small
-                        round
-                        buttonsOnly={true}
-                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
-                        onStepperPlusClick={() => addItemToCart(foodItem)}
-                      />
-                      {foodItem.price}
-                    </ListItem>
-                  ))}
-                </List>
-              </AccordionContent>
-            </ListItem>
-          </List>
-          <List accordionList inset>
-            <ListItem accordionItem title="Desserts">
-              <AccordionContent>
-                <List>
-                  {cartItems.map((foodItem) => (
-                    <ListItem key={foodItem.name} title={foodItem.name}>
-                      <Stepper
-                        raised
-                        small
-                        round
-                        buttonsOnly={true}
-                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
-                        onStepperPlusClick={() => addItemToCart(foodItem)}
-                      />
-                      {foodItem.price}
-                    </ListItem>
-                  ))}
-                </List>
-              </AccordionContent>
-            </ListItem>
-          </List>
-          <List accordionList inset>
-            <ListItem accordionItem title="Beverages">
-              <AccordionContent>
-                <List>
-                  {cartItems.map((foodItem) => (
-                    <ListItem key={foodItem.name} title={foodItem.name}>
-                      <Stepper
-                        raised
-                        small
-                        round
-                        buttonsOnly={true}
-                        onStepperMinusClick={() => removeItemFromCart(foodItem)}
-                        onStepperPlusClick={() => addItemToCart(foodItem)}
-                      />
-                      {foodItem.price}
-                    </ListItem>
-                  ))}
-                </List>
-              </AccordionContent>
-            </ListItem>
-          </List>
+          {Object.entries(cartItems).map(([key, value]) => {
+            return (
+              <List key={key} accordionList inset>
+                <ListItem accordionItem title={key}>
+                  <AccordionContent>
+                    <List>
+                      {value.map((foodItem) => (
+                        <ListItem key={foodItem.name} title={foodItem.name}>
+                          <Stepper
+                            raised
+                            small
+                            round
+                            buttonsOnly={true}
+                            onStepperMinusClick={() =>
+                              removeItemFromCart(foodItem, key)
+                            }
+                            onStepperPlusClick={() =>
+                              addItemToCart(foodItem, key)
+                            }
+                          />
+                          {foodItem.price}
+                        </ListItem>
+                      ))}
+                    </List>
+                  </AccordionContent>
+                </ListItem>
+              </List>
+            );
+          })}
 
           <h2>To pay: {totalAmount}</h2>
         </div>
