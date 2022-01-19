@@ -88,10 +88,10 @@ const FoodPage = () => {
           </div>
           <FooterButtons
             primaryButtonName="Eat-In"
-            primaryButtonPath="/eat-in/"
+            primaryButtonPath="/date-time/"
             secondaryButtonName="Delivery"
             secondaryButtonPath="/delivery/"
-          />{" "}
+          />
         </div>
       </Page>
     </>
