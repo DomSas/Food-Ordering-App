@@ -1,8 +1,8 @@
-p {
+.about {
     display: flex;
     flex-direction: column;
     position: absolute;
-    color: #000000;
+    color: #000000!important;
     margin: 0;
     text-align: center;
     top: 50%;
@@ -25,7 +25,7 @@ span::after {
     color:#808080;
 }
 
-button{
+.aboutButton{
     background-color: #264D32!important;
     width: 200px!important;
     height: 40px!important;

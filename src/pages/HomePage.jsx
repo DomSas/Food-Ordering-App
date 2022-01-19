@@ -6,13 +6,13 @@ const HomePage = () => {
   return (
     <Page name="home">
       <div className="container">
-        {/* <div className="ramen-img">
+        <div className="ramen-img">
           <img src="../static/icons/ramen.jpg" alt="ramen" />
-        </div> */}
+        </div>
         <div className="header">
           <h1>Welcome to Pab-Dom</h1>
           <div className="logo-img">
-            <img src="../static/icons/logo_ramen-black.png" alt="logo_ramen" />
+            <img src="../static/icons/logo_ramen.png" alt="logo_ramen" />
           </div>
           <p>Explore the taste of Japan with us</p>
         </div>
