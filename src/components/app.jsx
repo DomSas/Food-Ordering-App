@@ -25,7 +25,9 @@ import {
 import routes from "../js/routes";
 import { CartProvider } from "../js/CartContext";
 
+
 export default () => {
+  
   const f7params = {
     name: "My App",
     id: "com.myapp.test",
