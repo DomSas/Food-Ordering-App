@@ -68,7 +68,7 @@ const FoodPage = () => {
                               addItemToCart(foodItem, key)
                             }
                           />
-                          {foodItem.price}
+                          {foodItem.price} ¥
                         </ListItem>
                       ))}
                     </List>
@@ -78,7 +78,7 @@ const FoodPage = () => {
             );
           })}
 
-          <h2>To pay: {totalAmount}</h2>
+          <h2>To pay: {totalAmount} ¥</h2>
         </div>
       </Page>
     </>
