@@ -1,6 +1,7 @@
 import "../css/HomePage.css";
 import React from "react";
 import { Page } from "framework7-react";
+import FooterButtons from "../components/FooterButtons";
 
 const HomePage = () => {
   return (
@@ -16,18 +17,12 @@ const HomePage = () => {
           </div>
           <p>Explore the taste of Japan with us</p>
         </div>
-        <div className="buttons">
-          <a href="/food/" data-transition="f7-cover">
-            <button className="col button button-fill button-round">
-              Menu
-            </button>
-          </a>
-          <a href="/about-us/" data-transition="f7-cover">
-            <button className="col button button-fill  button-round">
-              About Us
-            </button>
-          </a>
-        </div>
+        <FooterButtons
+          primaryButtonName="Menu"
+          primaryButtonPath="/food/"
+          secondaryButtonName="About Us"
+          secondaryButtonPath="/about-us/"
+        />
       </div>
     </Page>
   );

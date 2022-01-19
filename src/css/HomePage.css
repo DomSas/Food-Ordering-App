@@ -52,16 +52,3 @@ p {
 .header p {
   margin: 70px 0 20px 0;
 }
-
-.buttons {
-  display: flex;
-  justify-content: center!important;
-}
-
-button {
-  color: #ffffff !important;
-  background-color: #264d32 !important;
-  width: 150px!important;
-  height: 45px !important;
-  margin: 15px 10px 0 !important;
-}

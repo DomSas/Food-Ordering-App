@@ -1,10 +1,27 @@
 h2 {
-  margin: 55px 0 15px 0;
   color: #264d32;
   font-size: 26px;
   text-align: center;
 }
 
+.food_title {
+  margin: 55px 0 15px 0;
+}
+
 .totalAmount {
-  padding-bottom: 30px;
+  margin: 0 0 10px 0;
+}
+
+.food_pay {
+  margin: auto;
+  width: 150px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #264d32;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
