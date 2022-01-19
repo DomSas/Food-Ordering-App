@@ -57,6 +57,7 @@ const FoodPage = () => {
                       {value.map((foodItem) => (
                         <ListItem key={foodItem.name} title={foodItem.name}>
                           <Stepper
+                            style={{ position: "absolute", right: 100 }}
                             raised
                             small
                             round
@@ -68,6 +69,7 @@ const FoodPage = () => {
                               addItemToCart(foodItem, key)
                             }
                           />
+                          {!foodItem.amount ? "" : foodItem.amount + "x"}{" "}
                           {foodItem.price} ¥
                         </ListItem>
                       ))}
@@ -78,7 +80,7 @@ const FoodPage = () => {
             );
           })}
 
-          <h2>To pay: {totalAmount} ¥</h2>
+          <h2 className="totalAmount">To pay: {totalAmount} ¥</h2>
         </div>
       </Page>
     </>

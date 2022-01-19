@@ -3,5 +3,8 @@ h2 {
   color: #264d32;
   font-size: 26px;
   text-align: center;
+}
+
+.totalAmount {
   padding-bottom: 30px;
 }
