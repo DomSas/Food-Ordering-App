@@ -41,7 +41,7 @@ const FoodPage = () => {
   return (
     <>
       <Page name="food">
-        <div className="container">
+        <div className="food_container">
           <h2>
             What would you like
             <br /> to eat?
