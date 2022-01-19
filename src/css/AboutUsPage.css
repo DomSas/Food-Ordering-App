@@ -1,4 +1,4 @@
-p {
+.about {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -25,7 +25,7 @@ span::after {
     color:#808080;
 }
 
-button{
+.aboutButton{
     background-color: #264D32!important;
     width: 200px!important;
     height: 40px!important;

@@ -6,7 +6,7 @@ const AboutUsPage = () => {
 
   return (
     <Page name="about-us">
-      <p>
+      <p className="about">
         <span><strong>About:</strong></span>
         <span>We are European based Asian restaurant with over 50 branches in countries like Austria, France, Norway, Belgium...</span>
         <span>All our chiefs have long term experience in their field, and we make sure to choose only the best quality ingredients to satisfy our customers.</span>
@@ -22,7 +22,7 @@ const AboutUsPage = () => {
           App Version: 1.0.0</span>
 
         <a href="/" className="back">
-          <button className="col button button-fill button-round">
+          <button className="aboutButton col button button-fill button-round">
             Back to Home
           </button></a>
       </p>

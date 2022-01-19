@@ -1,6 +1,6 @@
 import "../css/HomePage.css";
 import React from "react";
-import { Page, Stepper } from "framework7-react";
+import { Page } from "framework7-react";
 
 const HomePage = () => {
   return (
@@ -12,7 +12,7 @@ const HomePage = () => {
         <div className="header">
           <h1>Welcome to Pab-Dom</h1>
           <div className="logo-img">
-            <img src="../static/icons/logo_ramen-black.png" alt="logo_ramen" />
+            <img src="../static/icons/logo_ramen.png" alt="logo_ramen" />
           </div>
           <p>Explore the taste of Japan with us</p>
         </div>
