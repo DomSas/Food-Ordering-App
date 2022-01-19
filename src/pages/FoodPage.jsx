@@ -10,6 +10,7 @@ import {
   Stepper,
 } from "framework7-react";
 import { CartContext } from "../js/CartContext";
+import FooterButtons from "../components/FooterButtons";
 
 const FoodPage = () => {
   const [cartItems, setCartItems, totalAmount] = useContext(CartContext);
@@ -42,12 +43,11 @@ const FoodPage = () => {
     <>
       <Page name="food">
         <div className="food_container">
-          <h2>
+          <h2 className="food_title">
             What would you like
             <br /> to eat?
           </h2>
-
-          <BlockTitle>TODAY'S MENU</BlockTitle>
+          <BlockTitle style={{ textAlign: "center" }}>TODAY'S MENU</BlockTitle>
           {Object.entries(cartItems).map(([key, value]) => {
             return (
               <List key={key} accordionList inset>
@@ -57,7 +57,10 @@ const FoodPage = () => {
                       {value.map((foodItem) => (
                         <ListItem key={foodItem.name} title={foodItem.name}>
                           <Stepper
-                            style={{ position: "absolute", right: 100 }}
+                            style={{
+                              position: "absolute",
+                              right: 100,
+                            }}
                             raised
                             small
                             round
@@ -69,7 +72,7 @@ const FoodPage = () => {
                               addItemToCart(foodItem, key)
                             }
                           />
-                          {!foodItem.amount ? "" : foodItem.amount + "x"}{" "}
+                          {!foodItem.amount ? "" : foodItem.amount + "x "}
                           {foodItem.price} ¥
                         </ListItem>
                       ))}
@@ -79,8 +82,16 @@ const FoodPage = () => {
               </List>
             );
           })}
-
-          <h2 className="totalAmount">To pay: {totalAmount} ¥</h2>
+          <div className="price">
+            <h2 className="food_pay">To pay: </h2>
+            <h2 className="totalAmount"> {totalAmount} ¥</h2>
+          </div>
+          <FooterButtons
+            primaryButtonName="Eat-In"
+            primaryButtonPath="/eat-in/"
+            secondaryButtonName="Delivery"
+            secondaryButtonPath="/delivery/"
+          />{" "}
         </div>
       </Page>
     </>
