@@ -21,6 +21,13 @@ h2 {
   font-size: 22px;
 }
 
-.location_container p {
-  color: #333333;
+.location_paragraph {
+  max-width: 80%;
+  margin: auto;
+  text-align: center;
+  color: #808080;
+}
+
+.location_btn {
+  cursor: pointer;
 }
