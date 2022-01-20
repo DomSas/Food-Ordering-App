@@ -19,7 +19,7 @@ const HomePage = () => {
         </div>
         <FooterButtons
           primaryButtonName="Menu"
-          primaryButtonPath="/food/"
+          primaryButtonPath="/delivery/"
           secondaryButtonName="About Us"
           secondaryButtonPath="/about-us/"
         />

@@ -91,7 +91,7 @@ const FoodPage = () => {
             primaryButtonPath="/eat-in/"
             secondaryButtonName="Delivery"
             secondaryButtonPath="/delivery/"
-          />{" "}
+          />
         </div>
       </Page>
     </>
