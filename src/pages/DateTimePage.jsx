@@ -36,13 +36,13 @@ const DateTimePage = () => {
                 <Input
                     label="Default setup"
                     type="datepicker"
-                    placeholder="Your birth date"
+                    placeholder="Select your date"
                     readonly
                     calendarParams={{
                         timePicker: true, minDate: Date(dateTime), 
                         disabled: function (date) {
                             console.log(date.getMinutes());
-                            if (date.getMonth() === 1) {
+                            if (date.getMinutes() === 0) {
                                 return false;
                             }
                             else {
