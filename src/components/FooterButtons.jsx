@@ -4,20 +4,30 @@ import React from "react";
 const FooterButtons = (props) => {
   return (
     <div className="buttons">
-      <a href={props.primaryButtonPath} data-transition="f7-cover">
+      <a href={props.leftButtonPath} data-transition="f7-cover">
         <button
-          id="primaryButton"
-          className="col button button-fill button-raised button-round"
+          id={props.leftButtonId}
+          className={
+            "col button button-raised button-round " +
+            (props.leftButtonId == "primaryButton"
+              ? "button-fill"
+              : "button-outline")
+          }
         >
-          {props.primaryButtonName}
+          {props.leftButtonName}
         </button>
       </a>
-      <a href={props.secondaryButtonPath} data-transition="f7-cover">
+      <a href={props.rightButtonPath} data-transition="f7-cover">
         <button
-          id="secondaryButton"
-          className="col button button-outline button-raised button-round secondary"
+          id={props.rightButtonId}
+          className={
+            "col button button-raised button-round " +
+            (props.rightButtonId == "primaryButton"
+              ? "button-fill"
+              : "button-outline")
+          }
         >
-          {props.secondaryButtonName}
+          {props.rightButtonName}
         </button>
       </a>
     </div>
