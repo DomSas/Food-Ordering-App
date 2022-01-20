@@ -18,10 +18,12 @@ const HomePage = () => {
           <p>Explore the taste of Japan with us</p>
         </div>
         <FooterButtons
-          primaryButtonName="Menu"
-          primaryButtonPath="/food/"
-          secondaryButtonName="About Us"
-          secondaryButtonPath="/about-us/"
+          leftButtonName="Menu"
+          leftButtonPath="/food/"
+          leftButtonId="primaryButton"
+          rightButtonName="About Us"
+          rightButtonPath="/about-us/"
+          rightButtonId="secondaryButton"
         />
       </div>
     </Page>
