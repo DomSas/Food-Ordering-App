@@ -9,9 +9,9 @@ const FooterButtons = (props) => {
           id={props.leftButtonId}
           className={
             "col button button-raised button-round " +
-            (props.leftButtonId == "primaryButton"
-              ? "button-fill"
-              : "button-outline")
+            (props.leftButtonId == "secondaryButton"
+              ? "button-outline"
+              : "button-fill")
           }
         >
           {props.leftButtonName}
@@ -22,9 +22,9 @@ const FooterButtons = (props) => {
           id={props.rightButtonId}
           className={
             "col button button-raised button-round " +
-            (props.rightButtonId == "primaryButton"
-              ? "button-fill"
-              : "button-outline")
+            (props.rightButtonId == "secondaryButton"
+              ? "button-outline"
+              : "button-fill")
           }
         >
           {props.rightButtonName}

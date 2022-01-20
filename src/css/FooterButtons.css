@@ -15,6 +15,12 @@ button {
   border-color: #264d32 !important ;
 }
 
+#disabledButton {
+  color: #ffffff !important;
+  background-color: #264d32 !important;
+  opacity: 0.5;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
