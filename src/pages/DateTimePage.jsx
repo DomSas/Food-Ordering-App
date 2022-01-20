@@ -6,25 +6,17 @@ import FooterButtons from "../components/FooterButtons";
 const DateTimePage = () => {
 
     const today = new Date();
-    let monthNumber = today.getMonth() + 1;
-    let month;
-    if (monthNumber < 10) {
-        month = '0' + monthNumber;
-    }
-    let hours = today.getHours();
+
     let minutes = today.getMinutes();
     if (minutes < 30) {
-        minutes = '30';
+        today.setMinutes = 30;
     }
     else if (minutes >= 30) {
-        minutes = '00';
-        hours++;
+        today.setMinutes = 0;
+        today.setHours = today.getHours + 1;
     }
-    const date = today.getFullYear() + '-' + month + '-' + today.getDate();
-    const date_future = today.getFullYear() + 1 + '-' + month + '-' + today.getDate();
-    const time = hours + ":" + minutes;
-    const dateTime = date + 'T' + time;
-    const dateTime_future = date_future + 'T' + time;
+
+    console.log(document.getElementsByClassName("date_time_container"));
 
     return (
         <Page name="date-time">
@@ -34,30 +26,32 @@ const DateTimePage = () => {
                     <br /> to come?
                 </h2>
                 <Input
-                    label="Default setup"
+                    label="Select your date"
                     type="datepicker"
                     placeholder="Select your date"
-                    readonly
-                    calendarParams={{
-                        timePicker: true, minDate: Date(dateTime), 
-                        disabled: function (date) {
-                            console.log(date.getMinutes());
-                            if (date.getMinutes() === 0) {
-                                return false;
-                            }
-                            else {
-                                return true;
-                            }
-                        }
-                    }}
+                    validate
+                    required
+                    calendarParams={{ minDate: today }}
+                />
+                <Input
+                    label="Select your time"
+                    type="time"
+                    step="3600"
+                    validate
+                    required
+                    min="11:00"
+                    max="22:30"
+                    placeholder="Select your time"
                 />
 
                 <FooterButtons
-                    primaryButtonName="Back"
-                    primaryButtonPath="/food/"
-                    secondaryButtonName="Next"
-                    secondaryButtonPath="/table/"
-                />
+                    leftButtonName="Back"
+                    leftButtonPath="/food/"
+                    leftButtonId="secondaryButton"
+                    rightButtonName="Next"
+                    rightButtonPath="/table/"
+                    rightButtonId="primaryButton"
+                />{" "}
             </div>
         </Page>
     );

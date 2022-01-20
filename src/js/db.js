@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getFirestore, collection, getDocs, doc, setDoc } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
@@ -56,5 +56,13 @@ const createMenuDict = () => {
     Beverage: beverage,
   };
 };
+
+const addReservation = (date, time, table) =>{
+  setDoc(doc(db, "reservations", date), {
+    times_available: "Los Angeles",
+    times_: "CA",
+    country: "USA"
+  });
+}
 
 export default createMenuDict;
