@@ -87,11 +87,13 @@ const FoodPage = () => {
             <h2 className="totalAmount"> {totalAmount} ¥</h2>
           </div>
           <FooterButtons
-            primaryButtonName="Eat-In"
-            primaryButtonPath="/date-time/"
-            secondaryButtonName="Delivery"
-            secondaryButtonPath="/delivery/"
-          />
+            leftButtonName="Eat-In"
+            leftButtonPath="/eat-in/"
+            leftButtonId="primaryButton"
+            rightButtonName="Delivery"
+            rightButtonPath="/delivery/"
+            rightButtonId="secondaryButton"
+          />{" "}
         </div>
       </Page>
     </>
