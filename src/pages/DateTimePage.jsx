@@ -8,20 +8,20 @@ const DateTimePage = () => {
     const today = new Date();
     let monthNumber = today.getMonth() + 1;
     let month;
-    if(monthNumber<10){
+    if (monthNumber < 10) {
         month = '0' + monthNumber;
     }
     let hours = today.getHours();
     let minutes = today.getMinutes();
-    if(minutes<30){
+    if (minutes < 30) {
         minutes = '30';
     }
-    else if(minutes>=30){
+    else if (minutes >= 30) {
         minutes = '00';
         hours++;
     }
     const date = today.getFullYear() + '-' + month + '-' + today.getDate();
-    const date_future = today.getFullYear()+1 + '-' + month + '-' + today.getDate();
+    const date_future = today.getFullYear() + 1 + '-' + month + '-' + today.getDate();
     const time = hours + ":" + minutes;
     const dateTime = date + 'T' + time;
     const dateTime_future = date_future + 'T' + time;
@@ -34,10 +34,22 @@ const DateTimePage = () => {
                     <br /> to come?
                 </h2>
                 <Input
-                    type="datetime-local"
-                    min={dateTime}
-                    max={dateTime_future}
-                    step="3600"
+                    label="Default setup"
+                    type="datepicker"
+                    placeholder="Your birth date"
+                    readonly
+                    calendarParams={{
+                        timePicker: true, minDate: Date(dateTime), 
+                        disabled: function (date) {
+                            console.log(date.getMinutes());
+                            if (date.getMonth() === 1) {
+                                return false;
+                            }
+                            else {
+                                return true;
+                            }
+                        }
+                    }}
                 />
 
                 <FooterButtons
