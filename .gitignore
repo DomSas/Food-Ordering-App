@@ -45,3 +45,4 @@ www/hot/*
 .vscode/
 typings/
 package-lock.json
+/plugins
