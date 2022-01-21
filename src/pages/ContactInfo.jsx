@@ -1,5 +1,5 @@
 import "../css/ContactInfo.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon, f7, List, ListInput, Page } from "framework7-react";
 import "framework7-icons";
 
@@ -9,23 +9,25 @@ const ContactInfo = () => {
   const [customerEmail, setCustomerEmail] = useState();
   const [customerPhone, setCustomerPhone] = useState();
   const [customerCity, setCustomerCity] = useState();
+  // Need all three separately to not overwrite validity
+  const [nameValid, setNameValid] = useState(true);
+  const [emailValid, setEmailValid] = useState(true);
+  const [phoneValid, setPhoneValid] = useState(true);
+
+  useEffect(() => {
+    if (customerCity) {
+      f7.dialog.alert("Nearby city: " + customerCity, "GPS Location Acquired");
+    }
+  }, [customerCity]);
 
   const getGPSPosition = () => {
     navigator.geolocation.getCurrentPosition(
-      async (position) => {
+      (position) => {
+        f7.dialog.preloader("Acquiring GPS Location");
+
         getCityFromGPSCoord(
           String(position.coords.latitude),
           String(position.coords.longitude)
-        );
-
-        // Waiting so the API call finishes before alert - IMPROVE
-        const wait = (timeToDelay) =>
-          new Promise((resolve) => setTimeout(resolve, timeToDelay));
-        await wait(1000);
-
-        f7.dialog.alert(
-          "Nearby city: " + customerCity,
-          "GPS Location Acquired"
         );
       },
       (error) => {
@@ -34,10 +36,10 @@ const ContactInfo = () => {
       }
     );
 
-    const getCityFromGPSCoord = (latitude, longitude) => {
+    const getCityFromGPSCoord = async (latitude, longitude) => {
       // Conversion to use the correct URL
       longitude = longitude.charAt(0) === "-" ? longitude : "+" + longitude;
-      fetch(
+      await fetch(
         "http://geodb-free-service.wirefreethought.com/v1/geo/locations/" +
           latitude +
           longitude +
@@ -46,6 +48,8 @@ const ContactInfo = () => {
         .then((res) => res.json())
         .then(
           (result) => {
+            setCustomerCity();
+            f7.dialog.close();
             setCustomerCity(result.data[0].city);
           },
           (error) => {
@@ -73,6 +77,7 @@ const ContactInfo = () => {
               validate
               value={customerName || ""}
               onChange={(e) => setCustomerName(e.target.value)}
+              onValidate={(isValid) => setNameValid(isValid)}
             />
             <ListInput
               type="email"
@@ -81,6 +86,7 @@ const ContactInfo = () => {
               validate
               value={customerEmail || ""}
               onChange={(e) => setCustomerEmail(e.target.value)}
+              onValidate={(isValid) => setEmailValid(isValid)}
             />
             <ListInput
               tyle="number"
@@ -90,6 +96,7 @@ const ContactInfo = () => {
               pattern="[0-9]*"
               value={customerPhone || ""}
               onChange={(e) => setCustomerPhone(e.target.value)}
+              onValidate={(isValid) => setPhoneValid(isValid)}
             />
           </List>
 
@@ -117,7 +124,17 @@ const ContactInfo = () => {
             leftButtonId="secondaryButton"
             rightButtonName="Next"
             rightButtonPath="/delivery/"
-            rightButtonId="primaryButton"
+            rightButtonId={
+              customerName &&
+              customerPhone &&
+              customerEmail &&
+              customerCity &&
+              nameValid &&
+              emailValid &&
+              phoneValid
+                ? "primaryButton"
+                : "disabledButton"
+            }
           />
         </div>
       </Page>
