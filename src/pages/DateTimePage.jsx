@@ -25,57 +25,15 @@ const DateTimePage = () => {
         today.setHours = today.getHours + 1;
     }
 
-    let dateInputValid = false;
-    let timeInputValid = false;
-    let formValid = false;
-
     useEffect(() => {
-        console.log("before if")
         if (selectedDate && selectedTime && validTime) {
-            console.log("after if")
-            console.log(selectedDate + " " + selectedTime)
-            console.log(checkDateTime(selectedDate, selectedTime))
             const dateSplit = selectedDate.split("/");
             setSelectedDate(Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toString());
-            console.log(selectedDate + " " + selectedTime)
             if (checkDateTime(Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toString(), selectedTime)) {
                 setDateTime({ date: selectedDate, time: selectedTime });
             }
         }
     }, [validTime]);
-
-
-    function checkValidityDate(isValid) {
-        console.log("checking date")
-        if (isValid) {
-            dateInputValid = true;
-            if (timeInputValid === true) {
-                formValid = true;
-                console.log("form valid")
-            }
-        }
-        else {
-            dateInputValid = false;
-            formValid = false;
-        }
-    }
-
-    function checkValidityTime(isValid) {
-        console.log("checking time")
-        if (isValid) {
-            timeInputValid = true;
-            if (dateInputValid === true) {
-                formValid = true;
-                console.log("form valid")
-
-            }
-        }
-        else {
-            timeInputValid = false;
-            formValid = false;
-        }
-    }
-
 
     return (
         <Page name="date-time">
@@ -93,7 +51,7 @@ const DateTimePage = () => {
                         validate
                         required
                         calendarParams={{ minDate: today }}
-                        onInputNotEmpty={(e)=>setSelectedDate(e.target.value)}
+                        onInputNotEmpty={(e) => setSelectedDate(e.target.value)}
                     />
                     <Input
                         label="Select your time"
@@ -105,7 +63,7 @@ const DateTimePage = () => {
                         max="22:30"
                         placeholder="Select your time"
                         validate
-                        onInputNotEmpty={(e)=>setSelectedTime(e.target.value)}
+                        onInputNotEmpty={(e) => setSelectedTime(e.target.value)}
                         onValidate={(isValid) => setValidTime(isValid)}
                     />
                 </form>

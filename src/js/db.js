@@ -62,7 +62,6 @@ const createMenuDict = () => {
 
 
 const createDate = (date) => {
-  console.log("create date")
   setDoc(doc(db, "reservations", date), {
     times_available: {
       11: [1, 2, 3, 4, 5, 6],
@@ -97,8 +96,6 @@ const checkDateTime = (date, time) => {
   getDoc(docRef).then(docSnap => {
 
     if (docSnap.exists()) {
-      console.log("in")
-
       checkTimeValidForDate(date, docSnap, time);
     } else {
       createDate(date);
@@ -114,4 +111,4 @@ const addReservation = (date, time, table) => {
 
 export default createMenuDict;
 
-export {checkDateTime};
+export { checkDateTime };
