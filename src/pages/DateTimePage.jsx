@@ -1,11 +1,20 @@
 import "../css/DateTimePage.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
+import { CartContext } from "../js/CartContext";
+import { useContext } from "react";
+import { checkDateTime } from "../js/db";
+
 
 const DateTimePage = () => {
 
+    const [setDateTime] = useContext(CartContext);
     const today = new Date();
+
+    const [selectedDate, setSelectedDate] = useState();
+    const [selectedTime, setSelectedTime] = useState();
+    const [validTime, setValidTime] = useState(false);
 
     let minutes = today.getMinutes();
     if (minutes < 30) {
@@ -16,7 +25,57 @@ const DateTimePage = () => {
         today.setHours = today.getHours + 1;
     }
 
-    console.log(document.getElementsByClassName("date_time_container"));
+    let dateInputValid = false;
+    let timeInputValid = false;
+    let formValid = false;
+
+    useEffect(() => {
+        console.log("before if")
+        if (selectedDate && selectedTime && validTime) {
+            console.log("after if")
+            console.log(selectedDate + " " + selectedTime)
+            console.log(checkDateTime(selectedDate, selectedTime))
+            const dateSplit = selectedDate.split("/");
+            setSelectedDate(Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toString());
+            console.log(selectedDate + " " + selectedTime)
+            if (checkDateTime(Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toString(), selectedTime)) {
+                setDateTime({ date: selectedDate, time: selectedTime });
+            }
+        }
+    }, [validTime]);
+
+
+    function checkValidityDate(isValid) {
+        console.log("checking date")
+        if (isValid) {
+            dateInputValid = true;
+            if (timeInputValid === true) {
+                formValid = true;
+                console.log("form valid")
+            }
+        }
+        else {
+            dateInputValid = false;
+            formValid = false;
+        }
+    }
+
+    function checkValidityTime(isValid) {
+        console.log("checking time")
+        if (isValid) {
+            timeInputValid = true;
+            if (dateInputValid === true) {
+                formValid = true;
+                console.log("form valid")
+
+            }
+        }
+        else {
+            timeInputValid = false;
+            formValid = false;
+        }
+    }
+
 
     return (
         <Page name="date-time">
@@ -25,24 +84,31 @@ const DateTimePage = () => {
                     When would you like
                     <br /> to come?
                 </h2>
-                <Input
-                    label="Select your date"
-                    type="datepicker"
-                    placeholder="Select your date"
-                    validate
-                    required
-                    calendarParams={{ minDate: today }}
-                />
-                <Input
-                    label="Select your time"
-                    type="time"
-                    step="3600"
-                    validate
-                    required
-                    min="11:00"
-                    max="22:30"
-                    placeholder="Select your time"
-                />
+                <form>
+                    <Input
+                        label="Select your date"
+                        type="datepicker"
+                        placeholder="Select your date"
+                        id="dateInput"
+                        validate
+                        required
+                        calendarParams={{ minDate: today }}
+                        onInputNotEmpty={(e)=>setSelectedDate(e.target.value)}
+                    />
+                    <Input
+                        label="Select your time"
+                        type="time"
+                        step="3600"
+                        id="timeInput"
+                        required
+                        min="11:00"
+                        max="22:30"
+                        placeholder="Select your time"
+                        validate
+                        onInputNotEmpty={(e)=>setSelectedTime(e.target.value)}
+                        onValidate={(isValid) => setValidTime(isValid)}
+                    />
+                </form>
 
                 <FooterButtons
                     leftButtonName="Back"
@@ -50,7 +116,7 @@ const DateTimePage = () => {
                     leftButtonId="secondaryButton"
                     rightButtonName="Next"
                     rightButtonPath="/table/"
-                    rightButtonId="primaryButton"
+                    rightButtonId={selectedDate && selectedTime && validTime ? "primaryButton" : "disabledButton"}
                 />{" "}
             </div>
         </Page>

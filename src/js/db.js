@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore/lite";
 
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
   authDomain: "restaurant-management-pab-dom.firebaseapp.com",
@@ -17,6 +19,7 @@ const starter = [];
 const main = [];
 const dessert = [];
 const beverage = [];
+
 
 async function getMenu(db) {
   const menuCol = collection(db, "menu");
@@ -49,8 +52,6 @@ const getDatabase = () => {
 const createMenuDict = () => {
   getDatabase();
 
-  checkDateTime(new Date().toDateString(), 11);
-
   return {
     Starter: starter,
     Main: main,
@@ -59,34 +60,21 @@ const createMenuDict = () => {
   };
 };
 
-const times_available = {
-  11: [1, 2, 3, 4, 5, 6], 
-  12: [1, 2, 3, 4, 5, 6], 
-  13: [1, 2, 3, 4, 5, 6], 
-  14: [1, 2, 3, 4, 5, 6], 
-  15: [1, 2, 3, 4, 5, 6], 
-  16: [1, 2, 3, 4, 5, 6], 
-  17: [1, 2, 3, 4, 5, 6], 
-  18: [1, 2, 3, 4, 5, 6], 
-  19: [1, 2, 3, 4, 5, 6],
-  20: [1, 2, 3, 4, 5, 6], 
-  21: [1, 2, 3, 4, 5, 6],
-  22: [1, 2, 3, 4, 5, 6]
-};
 
 const createDate = (date) => {
+  console.log("create date")
   setDoc(doc(db, "reservations", date), {
     times_available: {
-      11: [1, 2, 3, 4, 5, 6], 
-      12: [1, 2, 3, 4, 5, 6], 
-      13: [1, 2, 3, 4, 5, 6], 
-      14: [1, 2, 3, 4, 5, 6], 
-      15: [1, 2, 3, 4, 5, 6], 
-      16: [1, 2, 3, 4, 5, 6], 
-      17: [1, 2, 3, 4, 5, 6], 
-      18: [1, 2, 3, 4, 5, 6], 
+      11: [1, 2, 3, 4, 5, 6],
+      12: [1, 2, 3, 4, 5, 6],
+      13: [1, 2, 3, 4, 5, 6],
+      14: [1, 2, 3, 4, 5, 6],
+      15: [1, 2, 3, 4, 5, 6],
+      16: [1, 2, 3, 4, 5, 6],
+      17: [1, 2, 3, 4, 5, 6],
+      18: [1, 2, 3, 4, 5, 6],
       19: [1, 2, 3, 4, 5, 6],
-      20: [1, 2, 3, 4, 5, 6], 
+      20: [1, 2, 3, 4, 5, 6],
       21: [1, 2, 3, 4, 5, 6],
       22: [1, 2, 3, 4, 5, 6]
     },
@@ -94,38 +82,27 @@ const createDate = (date) => {
   });
 }
 
-const checkTimeValidForDate = (docSnap, time) => {
-  if(docSnap.data().times_available[time] != null){
-    //Hora libre
-    console.log("hora libre")
-    
-  }
-  else{
-    //Hora no disponible
-    console.log("hora no disponible")
-    
-  }
-}
 
-const showToastBottom = () => {
-  // Create toast
-  if (!toastBottom) {
-    toastBottom = $f7.toast.create({
-      text: 'This is default bottom positioned toast',
-      closeTimeout: 2000,
-    });
+const checkTimeValidForDate = (date, docSnap, time) => {
+  if (docSnap.data().times_available[time] != null) {
+    return true;
   }
-  // Open it
-  toastBottom.open();
+  else {
+    return false;
+  }
 }
 
 const checkDateTime = (date, time) => {
   const docRef = doc(db, "reservations", date);
-  getDoc(docRef).then(docSnap=>{
+  getDoc(docRef).then(docSnap => {
+
     if (docSnap.exists()) {
-      checkTimeValidForDate(docSnap, time);
+      console.log("in")
+
+      checkTimeValidForDate(date, docSnap, time);
     } else {
       createDate(date);
+      return true;
     }
   })
 
@@ -136,3 +113,5 @@ const addReservation = (date, time, table) => {
 }
 
 export default createMenuDict;
+
+export {checkDateTime};
