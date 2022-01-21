@@ -72,7 +72,6 @@ const ContactInfo = () => {
             <ListInput
               type="text"
               placeholder="Name"
-              requiredvalidate
               required
               validate
               value={customerName || ""}
