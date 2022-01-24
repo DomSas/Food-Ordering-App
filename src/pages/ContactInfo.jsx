@@ -1,7 +1,7 @@
 import "../css/ContactInfo.css";
 import React, { useState, useEffect } from "react";
-import { Icon, f7, List, ListInput, Page } from "framework7-react";
-import "framework7-icons";
+import { f7, List, ListInput, Page } from "framework7-react";
+import { LocationFill } from "framework7-icons/react";
 
 import FooterButtons from "../components/FooterButtons";
 const ContactInfo = () => {
@@ -14,11 +14,34 @@ const ContactInfo = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
 
+  // Listen to customerCity change to show alert dialog
   useEffect(() => {
     if (customerCity) {
       f7.dialog.alert("Nearby city: " + customerCity, "GPS Location Acquired");
     }
   }, [customerCity]);
+
+  // Send Contact information to DB if input form is valid
+  useEffect(() => () => validateInputForm() && sendContactInfoToDB());
+
+  const validateInputForm = () => {
+    if (
+      customerName &&
+      customerPhone &&
+      customerEmail &&
+      customerCity &&
+      nameValid &&
+      emailValid &&
+      phoneValid
+    ) {
+      return true;
+    } else return false;
+  };
+
+  const sendContactInfoToDB = () => {
+    console.log("Sending info to DB");
+    // DATABASE
+  };
 
   const getGPSPosition = () => {
     navigator.geolocation.getCurrentPosition(
@@ -48,6 +71,7 @@ const ContactInfo = () => {
         .then((res) => res.json())
         .then(
           (result) => {
+            // Reset of customerCity in case the user clicks it second time
             setCustomerCity();
             f7.dialog.close();
             setCustomerCity(result.data[0].city);
@@ -104,12 +128,9 @@ const ContactInfo = () => {
               Share a location
               <br />
             </h2>
-            {/*  Default back icon */}
             <div className="location_btn" onClick={getGPSPosition}>
-              <Icon icon="icon-back"></Icon>
+              <LocationFill style={{ fontSize: 38 }} />
             </div>
-            {/*  Some custom icon */}
-            <Icon icon="icon-home"></Icon>
 
             <p className="location_paragraph">
               Click the arrow to share your current location. This location will
@@ -122,17 +143,9 @@ const ContactInfo = () => {
             leftButtonPath="/food/"
             leftButtonId="secondaryButton"
             rightButtonName="Next"
-            rightButtonPath="/delivery/"
+            rightButtonPath="/payment/"
             rightButtonId={
-              customerName &&
-              customerPhone &&
-              customerEmail &&
-              customerCity &&
-              nameValid &&
-              emailValid &&
-              phoneValid
-                ? "primaryButton"
-                : "disabledButton"
+              validateInputForm() ? "primaryButton" : "disabledButton"
             }
           />
         </div>

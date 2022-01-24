@@ -16,18 +16,17 @@ h2 {
   justify-content: center;
 }
 
-.location_container i {
-  margin: 5px;
-  font-size: 22px;
+.location_container .location_title {
+  margin-bottom: 10px;
 }
 
-.location_paragraph {
+.location_container .location_btn {
+  cursor: pointer;
+}
+
+.location_container .location_paragraph {
   max-width: 80%;
   margin: auto;
   text-align: center;
   color: #808080;
-}
-
-.location_btn {
-  cursor: pointer;
 }
