@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore/lite";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  getDoc,
+} from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
@@ -70,38 +77,45 @@ const createDate = (date) => {
       19: [1, 2, 3, 4, 5, 6],
       20: [1, 2, 3, 4, 5, 6],
       21: [1, 2, 3, 4, 5, 6],
-      22: [1, 2, 3, 4, 5, 6]
+      22: [1, 2, 3, 4, 5, 6],
     },
     times_booked: [],
   });
-}
+};
 
 const checkTimeValidForDate = (date, docSnap, time) => {
   if (docSnap.data().times_available[time] != null) {
     return true;
-  }
-  else {
+  } else {
     return false;
   }
-}
+};
 
 const checkDateTime = (date, time) => {
   const docRef = doc(db, "reservations", date);
-  getDoc(docRef).then(docSnap => {
-
+  getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       checkTimeValidForDate(date, docSnap, time);
     } else {
       createDate(date);
       return true;
     }
-  })
-}
+  });
+};
 
 const addReservation = (date, time, table) => {
   setDoc(doc(db, "reservations", date));
-}
+};
+
+const addCustomerInfo = ({ name, email, phone, location }) => {
+  setDoc(doc(db, "customer_info", email), {
+    name: name,
+    email: email,
+    phone: phone,
+    location: location,
+  });
+};
 
 export default createMenuDict;
 
-export { checkDateTime };
+export { checkDateTime, addCustomerInfo };

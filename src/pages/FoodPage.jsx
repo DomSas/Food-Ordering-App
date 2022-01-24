@@ -92,7 +92,7 @@ const FoodPage = () => {
             rightButtonName="Delivery"
             rightButtonPath="/delivery/"
             rightButtonId="secondaryButton"
-          />{" "}
+          />
         </div>
       </Page>
     </>

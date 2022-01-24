@@ -22,7 +22,8 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-whitelist": {},
             "cordova-plugin-statusbar": {},
-            "monaca-plugin-monaca-core": {}
+            "monaca-plugin-monaca-core": {},
+            "cordova-plugin-geolocation": {}
         }
     },
     "browserslist": [
@@ -59,6 +60,7 @@
         "chalk": "^4.1.0",
         "copy-webpack-plugin": "^9.0.0",
         "cordova": "^11.0.0",
+        "cordova-plugin-geolocation": "^4.1.0",
         "cpy-cli": "^3.1.1",
         "cross-env": "^7.0.2",
         "css-loader": "^6.5.1",

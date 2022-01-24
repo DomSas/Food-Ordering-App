@@ -82,6 +82,9 @@
         <string>en</string>
       </array>
     </config-file>
+    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+      <string>need location access to deliver food</string>
+    </edit-config>
     <preference name="scheme" value="monaca-app"/>
     <preference name="hostname" value="localhost"/>
   </platform>
