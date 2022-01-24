@@ -79,22 +79,22 @@ const PaymentPage = () => {
     <>
       <Page name="payment">
         <h2 className="food_title">Ordered items</h2>
-        <div class="data-table card">
+        <div className="data-table card">
           <table>
             <thead>
               <tr>
-                <th class="label-cell">Ordered Items</th>
-                <th class="numeric-cell">Amount</th>
-                <th class="numeric-cell">Price</th>
+                <th className="label-cell">Ordered Items</th>
+                <th className="numeric-cell">Amount</th>
+                <th className="numeric-cell">Price</th>
               </tr>
             </thead>
             <tbody>
               {showOrderedItems.map((item) => {
                 return (
                   <tr>
-                    <td class="label-cell">{item.name}</td>
-                    <td class="numeric-cell">{item.amount}</td>
-                    <td class="numeric-cell">{item.price} ¥</td>
+                    <td className="label-cell">{item.name}</td>
+                    <td className="numeric-cell">{item.amount}</td>
+                    <td className="numeric-cell">{item.price} ¥</td>
                   </tr>
                 );
               })}

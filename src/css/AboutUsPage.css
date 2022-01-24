@@ -17,7 +17,7 @@ span::after {
 }
 
 .second::before, .bottom::before{
-    content: "\a\a";
+    content: "\a";
     white-space: pre;
 }
 

@@ -25,21 +25,19 @@ import {
 import routes from "../js/routes";
 import { CartProvider } from "../js/CartContext";
 
-
 export default () => {
-  
   const f7params = {
+    routes,
     name: "My App",
     id: "com.myapp.test",
-    routes: routes,
   };
   return (
     <>
-      <CartProvider>
-        <App params={f7params}>
+      <App {...f7params}>
+        <CartProvider>
           <View main url="/" />
-        </App>
-      </CartProvider>
+        </CartProvider>
+      </App>
     </>
   );
 };

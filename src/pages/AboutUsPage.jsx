@@ -14,8 +14,11 @@ const AboutUsPage = () => {
         <span className="second"><strong>Contact - Main Branch:</strong></span>
         <span>Pab-Dom Restaurant<br />
           46 Rue Bonneterie<br />
-          75009 Paris<br />
-          France<br />
+          75009 Paris, France
+        </span>
+        <span className="second"><strong>Opening hours:</strong></span>
+         <span> 
+          11:00 - 23:00 - Every day
         </span>
 
         <span className="bottom">Created by Asial Corporation<br />
