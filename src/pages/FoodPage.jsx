@@ -6,7 +6,6 @@ import {
   List,
   AccordionContent,
   ListItem,
-  Icon,
   Stepper,
 } from "framework7-react";
 import { CartContext } from "../js/CartContext";
@@ -88,7 +87,7 @@ const FoodPage = () => {
           </div>
           <FooterButtons
             leftButtonName="Eat-In"
-            leftButtonPath="/eat-in/"
+            leftButtonPath="/date-time/"
             leftButtonId="primaryButton"
             rightButtonName="Delivery"
             rightButtonPath="/delivery/"

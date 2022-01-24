@@ -5,6 +5,7 @@ export const CartContext = createContext();
 export const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [totalAmount, setTotalAmount] = useState(0);
+  const [date_time, setDateTime] = useState({});
 
   useEffect(() => {
     setCartItems(createMenuDict());

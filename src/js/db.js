@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore/lite";
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
@@ -17,6 +19,7 @@ const starter = [];
 const main = [];
 const dessert = [];
 const beverage = [];
+
 
 async function getMenu(db) {
   const menuCol = collection(db, "menu");
@@ -57,4 +60,55 @@ const createMenuDict = () => {
   };
 };
 
+
+const createDate = (date) => {
+  setDoc(doc(db, "reservations", date), {
+    times_available: {
+      11: [1, 2, 3, 4, 5, 6],
+      12: [1, 2, 3, 4, 5, 6],
+      13: [1, 2, 3, 4, 5, 6],
+      14: [1, 2, 3, 4, 5, 6],
+      15: [1, 2, 3, 4, 5, 6],
+      16: [1, 2, 3, 4, 5, 6],
+      17: [1, 2, 3, 4, 5, 6],
+      18: [1, 2, 3, 4, 5, 6],
+      19: [1, 2, 3, 4, 5, 6],
+      20: [1, 2, 3, 4, 5, 6],
+      21: [1, 2, 3, 4, 5, 6],
+      22: [1, 2, 3, 4, 5, 6]
+    },
+    times_booked: [],
+  });
+}
+
+
+const checkTimeValidForDate = (date, docSnap, time) => {
+  if (docSnap.data().times_available[time] != null) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+const checkDateTime = (date, time) => {
+  const docRef = doc(db, "reservations", date);
+  getDoc(docRef).then(docSnap => {
+
+    if (docSnap.exists()) {
+      checkTimeValidForDate(date, docSnap, time);
+    } else {
+      createDate(date);
+      return true;
+    }
+  })
+
+}
+
+const addReservation = (date, time, table) => {
+  setDoc(doc(db, "reservations", date));
+}
+
 export default createMenuDict;
+
+export { checkDateTime };
