@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const path = require("path");
@@ -178,7 +178,7 @@ module.exports = {
 
     ...(env === "production"
       ? [
-          new OptimizeCSSPlugin({
+          new CssMinimizerPlugin({
             cssProcessorOptions: {
               safe: true,
               map: { inline: false },
