@@ -91,7 +91,7 @@ const FoodPage = () => {
             leftButtonPath="/eat-in/"
             leftButtonId="primaryButton"
             rightButtonName="Delivery"
-            rightButtonPath="/delivery/"
+            rightButtonPath="/payment/"
             rightButtonId="secondaryButton"
           />{" "}
         </div>

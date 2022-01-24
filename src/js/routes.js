@@ -1,6 +1,7 @@
 import HomePage from "../pages/HomePage.jsx";
 import AboutUsPage from "../pages/AboutUsPage.jsx";
 import FoodPage from "../pages/FoodPage.jsx";
+import PaymentPage from "../pages/PaymentPage.jsx";
 
 var routes = [
   {
@@ -14,6 +15,10 @@ var routes = [
   {
     path: "/food",
     component: FoodPage,
+  },
+  {
+    path: "/payment",
+    component: PaymentPage,
   },
 ];
 

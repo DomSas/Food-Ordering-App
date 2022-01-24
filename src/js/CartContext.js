@@ -18,6 +18,7 @@ export const CartProvider = (props) => {
         newTotal += item.price * item.amount;
       });
     });
+    console.log(cartItems);
 
     setTotalAmount(newTotal);
   }, [cartItems]);
