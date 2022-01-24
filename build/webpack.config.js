@@ -178,12 +178,14 @@ module.exports = {
 
     ...(env === "production"
       ? [
-          new CssMinimizerPlugin({
-            cssProcessorOptions: {
-              safe: true,
-              map: { inline: false },
-            },
-          }),
+          new CssMinimizerPlugin(),
+          // Commented out due to change from optimize-css-assets-webpack-plugin
+          //   {
+          //   cssProcessorOptions: {
+          //     safe: true,
+          //     map: { inline: false },
+          //   },
+          // }
           new webpack.optimize.ModuleConcatenationPlugin(),
         ]
       : [

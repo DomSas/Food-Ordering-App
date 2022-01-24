@@ -1,6 +1,7 @@
 import HomePage from "../pages/HomePage.jsx";
 import AboutUsPage from "../pages/AboutUsPage.jsx";
 import FoodPage from "../pages/FoodPage.jsx";
+import ContactInfo from "../pages/ContactInfo.jsx";
 import DateTimePage from "../pages/DateTimePage.jsx";
 
 var routes = [
@@ -15,6 +16,10 @@ var routes = [
   {
     path: "/food",
     component: FoodPage,
+  },
+  {
+    path: "/delivery",
+    component: ContactInfo,
   },
   {
     path: "/date-time",
