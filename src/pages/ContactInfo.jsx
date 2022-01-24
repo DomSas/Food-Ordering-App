@@ -2,8 +2,9 @@ import "../css/ContactInfo.css";
 import React, { useState, useEffect } from "react";
 import { f7, List, ListInput, Page } from "framework7-react";
 import { LocationFill } from "framework7-icons/react";
-
 import FooterButtons from "../components/FooterButtons";
+import { addCustomerInfo } from "../js/db";
+
 const ContactInfo = () => {
   const [customerName, setCustomerName] = useState();
   const [customerEmail, setCustomerEmail] = useState();
@@ -39,8 +40,12 @@ const ContactInfo = () => {
   };
 
   const sendContactInfoToDB = () => {
-    console.log("Sending info to DB");
-    // DATABASE
+    addCustomerInfo({
+      name: customerName,
+      email: customerEmail,
+      phone: customerPhone,
+      location: customerCity,
+    });
   };
 
   const getGPSPosition = () => {
