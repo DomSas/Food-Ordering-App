@@ -2,6 +2,7 @@ import HomePage from "../pages/HomePage.jsx";
 import AboutUsPage from "../pages/AboutUsPage.jsx";
 import FoodPage from "../pages/FoodPage.jsx";
 import DateTimePage from "../pages/DateTimePage.jsx";
+import TablePickerPage from "../pages/TablePickerPage.jsx";
 
 var routes = [
   {
@@ -19,6 +20,10 @@ var routes = [
   {
     path: "/date-time",
     component: DateTimePage,
+  },
+  {
+    path: "/table",
+    component: TablePickerPage,
   },
 ];
 

@@ -1,0 +1,17 @@
+#img_table {
+    width: 100%;
+}
+
+#div_table {
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+#p_table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

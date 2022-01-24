@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore/lite";
 
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
   authDomain: "restaurant-management-pab-dom.firebaseapp.com",
@@ -14,12 +12,10 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const starter = [];
 const main = [];
 const dessert = [];
 const beverage = [];
-
 
 async function getMenu(db) {
   const menuCol = collection(db, "menu");
@@ -60,7 +56,6 @@ const createMenuDict = () => {
   };
 };
 
-
 const createDate = (date) => {
   setDoc(doc(db, "reservations", date), {
     times_available: {
@@ -80,7 +75,6 @@ const createDate = (date) => {
     times_booked: [],
   });
 }
-
 
 const checkTimeValidForDate = (date, docSnap, time) => {
   if (docSnap.data().times_available[time] != null) {
@@ -102,7 +96,6 @@ const checkDateTime = (date, time) => {
       return true;
     }
   })
-
 }
 
 const addReservation = (date, time, table) => {

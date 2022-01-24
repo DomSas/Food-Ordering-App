@@ -1,0 +1,17 @@
+.table_picker_title {
+    color: #264d32;
+    font-size: 26px;
+    text-align: center;
+}
+
+.table_picker_title {
+    margin: 55px 0 15px 0;
+}
+
+#tables {
+    text-align: center;
+}
+
+.table{
+    width: 30%;
+}
