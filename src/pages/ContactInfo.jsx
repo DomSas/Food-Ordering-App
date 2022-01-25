@@ -60,7 +60,6 @@ const ContactInfo = () => {
       },
       (error) => {
         f7.dialog.alert("Try again please!", "Acquiring Location Failed");
-        console.log(error);
       }
     );
 
@@ -83,7 +82,6 @@ const ContactInfo = () => {
           },
           (error) => {
             f7.dialog.alert("Try again please!", "Acquiring Location Failed");
-            console.log(error);
           }
         );
     };

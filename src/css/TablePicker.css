@@ -8,10 +8,11 @@
     margin: 55px 0 15px 0;
 }
 
-#tables {
-    text-align: center;
-}
-
-.table{
-    width: 30%;
+.center {
+    margin: 0;
+    margin-top: 5%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

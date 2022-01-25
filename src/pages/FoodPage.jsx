@@ -23,7 +23,6 @@ const FoodPage = () => {
     });
     setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
 
-    console.log("Added item to cart: " + JSON.stringify(foodItem.name));
   };
 
   const removeItemFromCart = (foodItem, key) => {
@@ -35,7 +34,6 @@ const FoodPage = () => {
     });
     setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
 
-    console.log("Removed item from cart: " + JSON.stringify(foodItem.name));
   };
 
   return (

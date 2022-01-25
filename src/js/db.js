@@ -8,6 +8,8 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 
+import{ getStorage } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
   authDomain: "restaurant-management-pab-dom.firebaseapp.com",
@@ -19,6 +21,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 const starter = [];
 const main = [];
 const dessert = [];
@@ -119,3 +122,5 @@ const addCustomerInfo = ({ name, email, phone, location }) => {
 export default createMenuDict;
 
 export { checkDateTime, addCustomerInfo };
+
+export {storage};
