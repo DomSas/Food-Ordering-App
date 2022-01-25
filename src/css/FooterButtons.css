@@ -1,4 +1,4 @@
-button {
+.buttons_container a {
   width: 150px !important;
   height: 45px !important;
   margin: 15px 10px 0 !important;
@@ -21,7 +21,7 @@ button {
   opacity: 0.5;
 }
 
-.buttons {
+.buttons_container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;

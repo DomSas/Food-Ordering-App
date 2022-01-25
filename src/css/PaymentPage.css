@@ -1,0 +1,17 @@
+.totalAmount {
+  margin: 0 0 10px 0;
+}
+
+.food_pay {
+  margin: auto;
+  width: 150px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #264d32;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

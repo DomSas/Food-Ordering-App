@@ -6,7 +6,7 @@ import FooterButtons from "../components/FooterButtons";
 const HomePage = () => {
   return (
     <Page name="home">
-      <div className="container">
+      <div className="home_container">
         <div className="ramen-img">
           <img src="../static/icons/ramen.jpg" alt="ramen" />
         </div>
@@ -18,12 +18,16 @@ const HomePage = () => {
           <p>Explore the taste of Japan with us</p>
         </div>
         <FooterButtons
-          leftButtonName="Menu"
-          leftButtonPath="/food/"
-          leftButtonId="primaryButton"
-          rightButtonName="About Us"
-          rightButtonPath="/about-us/"
-          rightButtonId="secondaryButton"
+          leftButton={{
+            label: "Menu",
+            href: "/food/",
+            id: "primaryButton",
+          }}
+          rightButton={{
+            label: "About Us",
+            href: "/about-us/",
+            id: "secondaryButton",
+          }}
         />
       </div>
     </Page>
