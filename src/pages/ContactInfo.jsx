@@ -22,23 +22,6 @@ const ContactInfo = () => {
     }
   }, [customerCity]);
 
-  // Send Contact information to DB if input form is valid
-  useEffect(() => () => validateInputForm() && sendContactInfoToDB());
-
-  const validateInputForm = () => {
-    if (
-      customerName &&
-      customerPhone &&
-      customerEmail &&
-      customerCity &&
-      nameValid &&
-      emailValid &&
-      phoneValid
-    ) {
-      return true;
-    } else return false;
-  };
-
   const sendContactInfoToDB = () => {
     addCustomerInfo({
       name: customerName,
@@ -142,14 +125,37 @@ const ContactInfo = () => {
           </div>
 
           <FooterButtons
-            leftButtonName="Back"
-            leftButtonPath="/food/"
-            leftButtonId="secondaryButton"
-            rightButtonName="Next"
-            rightButtonPath="/payment/"
-            rightButtonId={
-              validateInputForm() ? "primaryButton" : "disabledButton"
-            }
+            leftButton={{
+              label: "Back",
+              href: "/food/",
+              id: "secondaryButton",
+              className: "back",
+            }}
+            rightButton={{
+              label: "Next",
+              onClick: sendContactInfoToDB,
+              id:
+                customerName &&
+                customerPhone &&
+                customerEmail &&
+                customerCity &&
+                nameValid &&
+                emailValid &&
+                phoneValid
+                  ? "primaryButton"
+                  : "disabledButton",
+
+              href:
+                customerName &&
+                customerPhone &&
+                customerEmail &&
+                customerCity &&
+                nameValid &&
+                emailValid &&
+                phoneValid
+                  ? "/payment/"
+                  : "",
+            }}
           />
         </div>
       </Page>

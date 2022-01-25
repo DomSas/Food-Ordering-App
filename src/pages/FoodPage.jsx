@@ -22,7 +22,6 @@ const FoodPage = () => {
       return item;
     });
     setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
-
   };
 
   const removeItemFromCart = (foodItem, key) => {
@@ -33,7 +32,6 @@ const FoodPage = () => {
       return item;
     });
     setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
-
   };
 
   return (
@@ -80,16 +78,20 @@ const FoodPage = () => {
             );
           })}
           <div className="price">
-            <h2 className="food_pay">To pay: </h2>
+            <h2 className="food_pay">Total: </h2>
             <h2 className="totalAmount"> {totalAmount} ¥</h2>
           </div>
           <FooterButtons
-            leftButtonName="Eat-In"
-            leftButtonPath="/date-time/"
-            leftButtonId="primaryButton"
-            rightButtonName="Delivery"
-            rightButtonPath="/delivery/"
-            rightButtonId="secondaryButton"
+            leftButton={{
+              label: "Eat-In",
+              href: "/date-time/",
+              id: "primaryButton",
+            }}
+            rightButton={{
+              label: "Delivery",
+              href: "/delivery/",
+              id: "secondaryButton",
+            }}
           />
         </div>
       </Page>

@@ -2,33 +2,27 @@ import "../css/FooterButtons.css";
 import React from "react";
 
 const FooterButtons = (props) => {
+  const getClassName = (id) =>
+    " col button button-raised button-round " +
+    (id == "secondaryButton" ? "button-outline" : "button-fill");
+
   return (
-    <div className="buttons">
-      <a href={props.leftButtonPath} data-transition="f7-cover">
-        <button
-          id={props.leftButtonId}
-          className={
-            "col button button-raised button-round " +
-            (props.leftButtonId == "secondaryButton"
-              ? "button-outline"
-              : "button-fill")
-          }
-        >
-          {props.leftButtonName}
-        </button>
+    <div className="buttons_container">
+      <a
+        {...props.leftButton}
+        className={
+          props.leftButton.className + getClassName(props.leftButton.id)
+        }
+        data-transition="f7-cover"
+      >
+        {props.leftButton.label}
       </a>
-      <a href={props.rightButtonPath} data-transition="f7-cover">
-        <button
-          id={props.rightButtonId}
-          className={
-            "col button button-raised button-round " +
-            (props.rightButtonId == "secondaryButton"
-              ? "button-outline"
-              : "button-fill")
-          }
-        >
-          {props.rightButtonName}
-        </button>
+      <a
+        {...props.rightButton}
+        className={getClassName(props.rightButton.id)}
+        data-transition="f7-cover"
+      >
+        {props.rightButton.label}
       </a>
     </div>
   );
