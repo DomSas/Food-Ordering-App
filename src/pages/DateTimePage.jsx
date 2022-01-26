@@ -5,9 +5,11 @@ import FooterButtons from "../components/FooterButtons";
 import { AppContext } from "../js/AppContext";
 import { useContext } from "react";
 import { checkDateTime } from "../js/db";
+import NavbarBack from "../components/NavbarBack";
 
 const DateTimePage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+    useContext(AppContext);
   const today = new Date();
 
   const [selectedDate, setSelectedDate] = useState();
@@ -25,7 +27,9 @@ const DateTimePage = () => {
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
       const dateSplit = selectedDate.split("/");
-      const date = new Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toDateString()
+      const date = new Date(
+        dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
+      ).toDateString();
       setSelectedDate(date);
       if (checkDateTime(date, selectedTime)) {
         setDateTime({ date: selectedDate, time: selectedTime });
@@ -35,6 +39,7 @@ const DateTimePage = () => {
 
   return (
     <Page name="date-time">
+      <NavbarBack />
       <div className="date_time_container">
         <h2 className="date_time_title">
           When would you like
@@ -78,7 +83,7 @@ const DateTimePage = () => {
             id:
               selectedDate && selectedTime && validTime
                 ? "primaryButton"
-                : "disabledButton",
+                : "disabledPrimaryButton",
             href: selectedDate && selectedTime && validTime ? "/table/" : "",
           }}
         />

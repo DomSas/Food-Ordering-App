@@ -1,15 +1,21 @@
-.order_table {
-  margin: 25px 0;
+.payment_container h2 {
+  color: #264d32;
+  font-size: 26px;
+  text-align: center;
 }
 
-.price {
+.payment_title {
+  margin: 30px 0 15px 0;
+}
+
+.payment_container .price {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 }
 
-.food_pay {
+.total_text {
   margin: auto;
   width: 150px;
   margin-bottom: 5px;
@@ -17,8 +23,41 @@
   border-bottom: 3px solid #264d32;
 }
 
-.totalAmount {
-  margin-bottom: 10px;
+.total_amount {
+  margin: 5px 0 10px 0;
+}
+
+.payment_option_container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px 160px 15px;
+}
+
+.payment_option {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 16px;
+  padding: 0 0 11px 15px;
+
+  background: #eaeaea;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  margin: 10px 0;
+  transition: 0.3s;
+}
+
+.payment_option.selected {
+  background: #591303;
+  color: white;
+}
+
+.payment_option_container .payment_info_paragraph {
+  max-width: 80%;
+  margin: auto;
+  text-align: center;
+  color: #808080;
 }
 
 .bottom_buttons {
@@ -52,11 +91,25 @@
   box-shadow: none !important;
 }
 
-#cashButton {
-  background: #591303;
+.bottom_buttons button:disabled {
   height: 45px;
-  border-radius: 30px !important;
+  background: #264d32 !important;
+
   margin: 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.12) !important;
+  border-radius: 30px !important;
+  opacity: 0.5;
+}
+
+.bottom_buttons button:disabled span {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  color: white !important;
+
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0.5;
 }
 
 #menuButton {

@@ -25,8 +25,15 @@
   border-color: #264d32 !important ;
 }
 
-#disabledButton {
+#disabledPrimaryButton {
   color: #ffffff !important;
   background-color: #264d32 !important;
+  opacity: 0.5;
+}
+
+#disabledSecondaryButton {
+  background-color: white !important;
+  color: #264d32 !important;
+  border-color: #264d32 !important ;
   opacity: 0.5;
 }

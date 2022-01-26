@@ -11,7 +11,10 @@ const HomePage = () => {
           <img src="../static/icons/ramen.jpg" alt="ramen" />
         </div>
         <div className="header">
-          <h1>Welcome to Pab-Dom</h1>
+          <h1>
+            Welcome to <br />
+            Pab-Dom
+          </h1>
           <div className="logo-img">
             <img src="../static/icons/logo_ramen.png" alt="logo_ramen" />
           </div>
