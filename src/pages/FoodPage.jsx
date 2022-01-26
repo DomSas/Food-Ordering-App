@@ -81,19 +81,19 @@ const FoodPage = () => {
             );
           })}
           <div className="price">
-            <h2 className="food_pay">Total: </h2>
-            <h2 className="totalAmount"> {totalAmount} ¥</h2>
+            <h2 className="total_text">Total: </h2>
+            <h2 className="total_amount"> {totalAmount} ¥</h2>
           </div>
           <FooterButtons
             leftButton={{
               label: "Eat-In",
-              href: "/date-time/",
-              id: "primaryButton",
+              href: totalAmount ? "/date-time" : "",
+              id: totalAmount ? "primaryButton" : "disabledPrimaryButton",
             }}
             rightButton={{
               label: "Delivery",
-              href: "/delivery/",
-              id: "secondaryButton",
+              href: totalAmount ? "/payment" : "",
+              id: totalAmount ? "secondaryButton" : "disabledSecondaryButton",
             }}
           />
         </div>

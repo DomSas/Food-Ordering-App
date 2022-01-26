@@ -83,7 +83,7 @@ const TablePickerPage = () => {
           }}
           rightButton={{
             label: "Next",
-            id: selectedTable ? "primaryButton" : "disabledButton",
+            id: selectedTable ? "primaryButton" : "disabledPrimaryButton",
             href: selectedTable ? "/payment/" : "",
           }}
         />

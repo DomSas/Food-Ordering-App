@@ -120,7 +120,7 @@ const ContactInfo = () => {
               <LocationFill style={{ fontSize: 38 }} />
             </div>
 
-            <p className="location_paragraph">
+            <p className="location_info_paragraph">
               Click the arrow to share your current location. This location will
               be used as delivery address.
             </p>
@@ -145,7 +145,7 @@ const ContactInfo = () => {
                 emailValid &&
                 phoneValid
                   ? "primaryButton"
-                  : "disabledButton",
+                  : "disabledPrimaryButton",
 
               href:
                 customerName &&

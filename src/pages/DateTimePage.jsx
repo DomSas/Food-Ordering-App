@@ -83,7 +83,7 @@ const DateTimePage = () => {
             id:
               selectedDate && selectedTime && validTime
                 ? "primaryButton"
-                : "disabledButton",
+                : "disabledPrimaryButton",
             href: selectedDate && selectedTime && validTime ? "/table/" : "",
           }}
         />

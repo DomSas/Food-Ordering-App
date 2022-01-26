@@ -5,17 +5,17 @@
 }
 
 .food_title {
-  margin: 55px 0 15px 0;
+  margin-top: 30px;
 }
 
-.price {
+.food_container .price {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 100px;
 }
 
-.food_pay {
+.total_text {
   margin: auto;
   width: 150px;
   margin-bottom: 5px;
@@ -23,6 +23,6 @@
   border-bottom: 3px solid #264d32;
 }
 
-.totalAmount {
-  margin-bottom: 10px;
+.total_amount {
+  margin: 5px 0 10px 0;
 }

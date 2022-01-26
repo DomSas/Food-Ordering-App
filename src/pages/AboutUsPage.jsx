@@ -2,6 +2,7 @@ import "../css/AboutUsPage.css";
 import React from "react";
 import { Page } from "framework7-react";
 import NavbarBack from "../components/NavbarBack";
+import { HouseFill } from "framework7-icons/react";
 
 const AboutUsPage = () => {
   return (
@@ -44,6 +45,7 @@ const AboutUsPage = () => {
 
         <a href="/" className="back">
           <button className="aboutButton col button button-fill button-round">
+            <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
             Back to Home
           </button>
         </a>
