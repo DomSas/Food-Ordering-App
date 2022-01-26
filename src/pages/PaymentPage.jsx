@@ -3,6 +3,7 @@ import { f7, Page } from "framework7-react";
 import StripeCheckout from "react-stripe-checkout";
 import "../css/PaymentPage.css";
 import { AppContext } from "../js/AppContext";
+import NavbarBack from "../components/NavbarBack";
 
 const PaymentPage = () => {
   const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
@@ -103,6 +104,7 @@ const PaymentPage = () => {
   return (
     <>
       <Page name="payment">
+        <NavbarBack />
         <div className="payment_container">
           <h2 className="food_title">Ordered items</h2>
           <div className="order_table">

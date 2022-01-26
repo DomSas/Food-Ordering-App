@@ -10,9 +10,11 @@ import {
 } from "framework7-react";
 import { AppContext } from "../js/AppContext";
 import FooterButtons from "../components/FooterButtons";
+import NavbarBack from "../components/NavbarBack";
 
 const FoodPage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+    useContext(AppContext);
 
   const addItemToCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {
@@ -37,6 +39,7 @@ const FoodPage = () => {
   return (
     <>
       <Page name="food">
+        <NavbarBack />
         <div className="food_container">
           <h2 className="food_title">
             What would you like

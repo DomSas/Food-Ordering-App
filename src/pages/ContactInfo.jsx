@@ -4,6 +4,7 @@ import { f7, List, ListInput, Page } from "framework7-react";
 import { LocationFill } from "framework7-icons/react";
 import FooterButtons from "../components/FooterButtons";
 import { addCustomerInfo } from "../js/db";
+import NavbarBack from "../components/NavbarBack";
 
 const ContactInfo = () => {
   const [customerName, setCustomerName] = useState();
@@ -73,6 +74,7 @@ const ContactInfo = () => {
   return (
     <>
       <Page name="contact">
+        <NavbarBack />
         <div className="contact_container">
           <h2 className="contact_title">
             Where should we
