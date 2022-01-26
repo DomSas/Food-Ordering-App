@@ -8,6 +8,8 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 
+import { getStorage } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
   authDomain: "restaurant-management-pab-dom.firebaseapp.com",
@@ -19,7 +21,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const storage = getStorage(app);
 const starter = [];
 const main = [];
 const dessert = [];
@@ -84,19 +86,27 @@ const createDate = (date) => {
   });
 };
 
-const checkTimeValidForDate = (date, docSnap, time) => {
-  if (docSnap.data().times_available[time] != null) {
+const checkTimeValidForDate = (docSnap, time) => {
+  const timeShort = time.split(':')[0];
+  if (docSnap.data().times_available[timeShort] != null) {
     return true;
   } else {
     return false;
   }
 };
 
-const checkDateTime = (date, time) => {
-  const docRef = doc(db, "reservations", date);
+const getTableAvailability = (date_time) => {
+  const docRef = doc(db, "reservations", date_time.date);
   getDoc(docRef).then((docSnap) => {
+    return docSnap.data().times_available[date_time.time];
+  })
+}
+
+const checkDateTime = async (date, time) => {
+  const docRef = doc(db, "reservations", date);
+  await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
-      checkTimeValidForDate(date, docSnap, time);
+      return checkTimeValidForDate(docSnap, time);
     } else {
       createDate(date);
       return true;
@@ -119,4 +129,6 @@ const addCustomerInfo = ({ name, email, phone, location }) => {
 
 export default createMenuDict;
 
-export { checkDateTime, addCustomerInfo };
+export { checkDateTime, addCustomerInfo, getTableAvailability };
+
+export { storage };

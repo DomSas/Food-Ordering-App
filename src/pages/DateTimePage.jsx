@@ -2,12 +2,12 @@ import "../css/DateTimePage.css";
 import React, { useEffect, useState } from "react";
 import { Input, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
-import { CartContext } from "../js/CartContext";
+import { AppContext } from "../js/AppContext";
 import { useContext } from "react";
 import { checkDateTime } from "../js/db";
 
 const DateTimePage = () => {
-  const [setDateTime] = useContext(CartContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
   const today = new Date();
 
   const [selectedDate, setSelectedDate] = useState();
@@ -25,17 +25,9 @@ const DateTimePage = () => {
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
       const dateSplit = selectedDate.split("/");
-      setSelectedDate(
-        Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toString()
-      );
-      if (
-        checkDateTime(
-          Date(
-            dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
-          ).toString(),
-          selectedTime
-        )
-      ) {
+      const date = new Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toDateString()
+      setSelectedDate(date);
+      if (checkDateTime(date, selectedTime)) {
         setDateTime({ date: selectedDate, time: selectedTime });
       }
     }

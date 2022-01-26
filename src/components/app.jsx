@@ -23,7 +23,7 @@ import {
 } from "framework7-react";
 
 import routes from "../js/routes";
-import { CartProvider } from "../js/CartContext";
+import { AppProvider } from "../js/AppContext";
 
 export default () => {
   const f7params = {
@@ -34,9 +34,9 @@ export default () => {
   return (
     <>
       <App {...f7params}>
-        <CartProvider>
+        <AppProvider>
           <View main url="/" />
-        </CartProvider>
+        </AppProvider>
       </App>
     </>
   );
