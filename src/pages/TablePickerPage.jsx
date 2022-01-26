@@ -1,16 +1,26 @@
 import "../css/TablePicker.css";
-import React from "react";
+import React, { useContext } from "react";
 import { Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
 import Table from "../components/table";
 import { Camera } from "framework7-icons/react";
 import { storage } from "../js/db";
 import { ref, uploadString } from "firebase/storage";
+import { getTableAvailability } from '../js/db'
+import { AppContext } from "../js/AppContext";
+
 
 
 const TablePickerPage = () => {
 
+    let selectedTable;
+    
+    
+    const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
+    
+
     function takePhoto() {
+
         navigator.camera.getPicture(onSuccess, onFail, {
             quality: 100,
             destinationType: 0
@@ -18,27 +28,21 @@ const TablePickerPage = () => {
     }
 
     async function onSuccess(imageURI) {
-        var viewport = document.getElementById('viewport');
-        viewport.style.display = "";
-        viewport.style.position = "absolute";
-        viewport.style.top = "10px";
-        viewport.style.left = "10px";
-        document.getElementById("test_img").src = "data:image/jpeg;base64," + imageURI;
 
         const metadata = {
             contentType: 'image/jpeg',
         };
 
-        uploadString(ref(storage, "photos/image3.jpg"), imageURI, 'base64',metadata).then(() => {
+        uploadString(ref(storage, "photos/order_number.jpg"), imageURI, 'base64', metadata).then(() => {
         })
 
 
     }
 
-
     function onFail(message) {
         alert('Failed because: ' + message);
     }
+
 
     return (
         <Page name="table-picker">
@@ -49,7 +53,9 @@ const TablePickerPage = () => {
                 </h2>
                 <div id="tables">
                     <div className="row">
-                        <Table className="table col-33" number="1"></Table>
+                        <Table className="table col-33" number="1" 
+                        //onClick={setSelectedTable(1)}
+                        ></Table>
                         <Table className="table col-33" number="2"></Table>
                         <Table className="table col-33" number="3"></Table>
                     </div>
@@ -68,13 +74,21 @@ const TablePickerPage = () => {
                 <Camera onClick={takePhoto} className="center" style={{ fontSize: 50 }} />
 
                 <FooterButtons
-                    leftButtonName="Back"
-                    leftButtonPath="/food/"
-                    leftButtonId="secondaryButton"
-                    rightButtonName="Next"
-                    rightButtonPath="/table/"
-                    rightButtonId="disabledButton"
-                />{" "}
+                    leftButton={{
+                        label: "Back",
+                        href: "/date-time/",
+                        id: "secondaryButton",
+                        className: "back",
+                    }}
+                    rightButton={{
+                        label: "Next",
+                        id:
+                            selectedTable
+                                ? "primaryButton"
+                                : "disabledButton",
+                        href: selectedTable ? "/payment/" : "",
+                    }}
+                />
             </div>
         </Page>
     );

@@ -1,5 +1,5 @@
 import "../css/FoodPage.css";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   Page,
   BlockTitle,
@@ -8,11 +8,11 @@ import {
   ListItem,
   Stepper,
 } from "framework7-react";
-import { CartContext } from "../js/CartContext";
+import { AppContext } from "../js/AppContext";
 import FooterButtons from "../components/FooterButtons";
 
 const FoodPage = () => {
-  const [cartItems, setCartItems, totalAmount] = useContext(CartContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
 
   const addItemToCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {

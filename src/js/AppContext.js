@@ -1,11 +1,11 @@
 import React, { useState, createContext, useEffect } from "react";
 import createMenuDict from "./db";
-export const CartContext = createContext();
+export const AppContext = createContext();
 
-export const CartProvider = (props) => {
-  const [cartItems, setCartItems] = useState({});
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [date_time, setDateTime] = useState({});
+export const AppProvider = (props) => {
+  const [cartItems, setCartItems] = useState({}); //Cart items
+  const [totalAmount, setTotalAmount] = useState(0); //Total amount
+  const [date_time, setDateTime] = useState({}); //Date and time selected
 
   useEffect(() => {
     setCartItems(createMenuDict());
@@ -25,9 +25,9 @@ export const CartProvider = (props) => {
 
   return (
     <>
-      <CartContext.Provider value={[cartItems, setCartItems, totalAmount]}>
+      <AppContext.Provider value={[cartItems, setCartItems, totalAmount, date_time, setDateTime]}>
         {props.children}
-      </CartContext.Provider>
+      </AppContext.Provider>
     </>
   );
 };

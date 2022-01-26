@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { f7, Page } from "framework7-react";
 import StripeCheckout from "react-stripe-checkout";
-import { CartContext } from "../js/CartContext";
+import { AppContext } from "../js/AppContext";
 
 const PaymentPage = () => {
-  const [cartItems, setCartItems, totalAmount] = useContext(CartContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
 
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
