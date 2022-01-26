@@ -1,32 +1,33 @@
 .about {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    color: #000000!important;
-    margin: 0;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  color: #000000 !important;
+  margin: 0;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
 }
 
 span::after {
-    content: "\a\a";
-    white-space: pre;
+  content: "\a\a";
+  white-space: pre;
 }
 
-.second::before, .bottom::before{
-    content: "\a\a";
-    white-space: pre;
+.second::before,
+.bottom::before {
+  content: "\a\a";
+  white-space: pre;
 }
 
-.bottom{
-    color:#808080;
+.bottom {
+  color: #808080;
 }
 
-.aboutButton{
-    background-color: #264D32!important;
-    width: 200px!important;
-    height: 40px!important;
+.aboutButton {
+  background-color: #264d32 !important;
+  width: 200px !important;
+  height: 40px !important;
 }

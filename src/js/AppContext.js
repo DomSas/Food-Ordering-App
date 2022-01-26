@@ -25,7 +25,9 @@ export const AppProvider = (props) => {
 
   return (
     <>
-      <AppContext.Provider value={[cartItems, setCartItems, totalAmount, date_time, setDateTime]}>
+      <AppContext.Provider
+        value={[cartItems, setCartItems, totalAmount, date_time, setDateTime]}
+      >
         {props.children}
       </AppContext.Provider>
     </>

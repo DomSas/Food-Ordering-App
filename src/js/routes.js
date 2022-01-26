@@ -33,7 +33,7 @@ var routes = [
   },
   {
     path: "/payment",
-    component: PaymentPage
+    component: PaymentPage,
   },
 ];
 

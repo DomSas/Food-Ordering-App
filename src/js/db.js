@@ -87,7 +87,7 @@ const createDate = (date) => {
 };
 
 const checkTimeValidForDate = (docSnap, time) => {
-  const timeShort = time.split(':')[0];
+  const timeShort = time.split(":")[0];
   if (docSnap.data().times_available[timeShort] != null) {
     return true;
   } else {
@@ -95,16 +95,20 @@ const checkTimeValidForDate = (docSnap, time) => {
   }
 };
 
-const getTableAvailability = (date_time) => {
+const getTableAvailability = async (date_time) => {
   const docRef = doc(db, "reservations", date_time.date);
-  getDoc(docRef).then((docSnap) => {
-    return docSnap.data().times_available[date_time.time];
-  })
-}
+  let tables = await getDoc(docRef).then( async (docSnap) => {
+    const timeShort = date_time.time.split(":")[0];
+    let availableTables = await docSnap.data().times_available[timeShort];
+    console.log(availableTables);
+    return availableTables;
+  });
+  return tables;
+};
 
 const checkDateTime = async (date, time) => {
   const docRef = doc(db, "reservations", date);
-  await getDoc(docRef).then((docSnap) => {
+  let check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return checkTimeValidForDate(docSnap, time);
     } else {
@@ -112,10 +116,11 @@ const checkDateTime = async (date, time) => {
       return true;
     }
   });
+  return check;
 };
 
-const addReservation = (date, time, table) => {
-  setDoc(doc(db, "reservations", date));
+const addReservation = (date, time, table, food, userInfo) => {
+  setDoc(doc(db, "reservations", date)); //add time and table, make changes
 };
 
 const addCustomerInfo = ({ name, email, phone, location }) => {

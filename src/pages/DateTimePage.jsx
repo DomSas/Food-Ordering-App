@@ -7,7 +7,8 @@ import { useContext } from "react";
 import { checkDateTime } from "../js/db";
 
 const DateTimePage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+    useContext(AppContext);
   const today = new Date();
 
   const [selectedDate, setSelectedDate] = useState();
@@ -25,10 +26,12 @@ const DateTimePage = () => {
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
       const dateSplit = selectedDate.split("/");
-      const date = new Date(dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]).toDateString()
+      const date = new Date(
+        dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
+      ).toDateString();
       setSelectedDate(date);
       if (checkDateTime(date, selectedTime)) {
-        setDateTime({ date: selectedDate, time: selectedTime });
+        setDateTime({ date: date, time: selectedTime });
       }
     }
   }, [validTime]);

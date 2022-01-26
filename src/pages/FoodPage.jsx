@@ -12,7 +12,8 @@ import { AppContext } from "../js/AppContext";
 import FooterButtons from "../components/FooterButtons";
 
 const FoodPage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+    useContext(AppContext);
 
   const addItemToCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {
