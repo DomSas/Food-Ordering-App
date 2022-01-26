@@ -3,10 +3,13 @@ import { f7, Page } from "framework7-react";
 import StripeCheckout from "react-stripe-checkout";
 import "../css/PaymentPage.css";
 import { AppContext } from "../js/AppContext";
+import NavbarBack from "../components/NavbarBack";
+import { CreditcardFill, WalletFill } from "framework7-icons/react";
 
 const PaymentPage = () => {
   const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
     useContext(AppContext);
+  const [selectedPayment, setSelectedPayment] = useState("");
 
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
@@ -103,8 +106,9 @@ const PaymentPage = () => {
   return (
     <>
       <Page name="payment">
+        <NavbarBack />
         <div className="payment_container">
-          <h2 className="food_title">Ordered items</h2>
+          <h2 className="payment_title">Ordered items</h2>
           <div className="order_table">
             <div className="data-table card">
               <table>
@@ -131,26 +135,50 @@ const PaymentPage = () => {
           </div>
 
           <div className="price">
-            <h2 className="food_pay">Total: </h2>
-            <h2 className="totalAmount"> {totalAmount} ¥</h2>
+            <h2 className="total_text">Total: </h2>
+            <h2 className="total_amount"> {totalAmount} ¥</h2>
+          </div>
+
+          <div className="payment_option_container">
+            <p className="payment_info_paragraph">
+              Please choose your preffered way of payment.
+            </p>
+            <div
+              className={
+                "payment_option" +
+                (selectedPayment === "card" ? " selected" : "")
+              }
+              onClick={() => setSelectedPayment("card")}
+            >
+              <p>Pay with Card</p>
+              <CreditcardFill
+                style={{ fontSize: "28px", padding: "12px 14px 0 0" }}
+              />
+            </div>
+            <div
+              className={
+                "payment_option" +
+                (selectedPayment === "cash" ? " selected" : "")
+              }
+              onClick={() => setSelectedPayment("cash")}
+            >
+              <p>Pay with Cash</p>
+              <WalletFill
+                style={{ fontSize: "28px", padding: "12px 14px 0 0" }}
+              />
+            </div>
           </div>
 
           <div className="bottom_buttons">
             <StripeCheckout
+              label={"Pay " + totalAmount + " ¥"}
+              disabled={!selectedPayment}
               stripeKey={publicKey}
               token={handleTokenWithBackend}
               amount={totalAmount}
               name="PabDom Order"
               currency="JPY"
             />
-            <a
-              href="/summary"
-              id="cashButton"
-              className="col button button-raised button-round button-fill"
-              onClick={submitOrderToDB}
-            >
-              Pay with Cash
-            </a>
             <a
               href="/food"
               className="col button button-raised button-round button-outline"

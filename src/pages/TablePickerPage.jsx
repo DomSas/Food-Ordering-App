@@ -8,6 +8,7 @@ import { storage } from "../js/db";
 import { ref, uploadString } from "firebase/storage";
 import { getTableAvailability } from "../js/db";
 import { AppContext } from "../js/AppContext";
+<<<<<<< HEAD
 
 const TablePickerPage = () => {
   const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
@@ -23,6 +24,17 @@ const TablePickerPage = () => {
   function takePhoto() {
 
     console.log(selectedTable);
+=======
+import NavbarBack from "../components/NavbarBack";
+
+const TablePickerPage = () => {
+  let selectedTable;
+
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+    useContext(AppContext);
+
+  function takePhoto() {
+>>>>>>> main
     navigator.camera.getPicture(onSuccess, onFail, {
       quality: 100,
       destinationType: 0,
@@ -46,9 +58,15 @@ const TablePickerPage = () => {
     alert("Failed because: " + message);
   }
 
+<<<<<<< HEAD
 
   return (
     <Page name="table-picker">
+=======
+  return (
+    <Page name="table-picker">
+      <NavbarBack />
+>>>>>>> main
       <div className="table_picker_container">
         <h2 className="table_picker_title">
           Where would you
@@ -108,7 +126,11 @@ const TablePickerPage = () => {
           }}
           rightButton={{
             label: "Next",
+<<<<<<< HEAD
             id: selectedTable ? "primaryButton" : "disabledButton",
+=======
+            id: selectedTable ? "primaryButton" : "disabledPrimaryButton",
+>>>>>>> main
             href: selectedTable ? "/payment/" : "",
           }}
         />

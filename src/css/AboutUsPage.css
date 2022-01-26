@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-span::after {
+.about span::after {
   content: "\a\a";
   white-space: pre;
 }

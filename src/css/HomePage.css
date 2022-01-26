@@ -1,21 +1,10 @@
-body {
-  /* background-image: url("../static/icons/ramen.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover; */
-}
-
-h1 {
-  margin: 0;
-  font-size: 32px;
+.home_container h1 {
+  margin: 35px 0 10px 0;
+  font-size: 48px;
   font-weight: 600;
   color: white;
   display: flex;
   text-align: center;
-}
-
-.header p {
-  color: white !important;
 }
 
 .ramen-img img {
@@ -28,7 +17,7 @@ h1 {
 }
 
 .logo-img img {
-  width: 130px;
+  width: 150px;
 }
 
 .home_container {
@@ -39,7 +28,7 @@ h1 {
   overflow: hidden;
 }
 
-.header {
+.home_container .header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,6 +38,9 @@ h1 {
   height: 30%;
 }
 
-.header p {
+.home_container .header p {
+  color: white;
   margin: 70px 0 20px 0;
+  font-size: 18px;
+  font-weight: 400;
 }
