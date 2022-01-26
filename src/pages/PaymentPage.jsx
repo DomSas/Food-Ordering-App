@@ -1,10 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { f7, Page } from "framework7-react";
 import StripeCheckout from "react-stripe-checkout";
+import "../css/PaymentPage.css";
 import { AppContext } from "../js/AppContext";
 
 const PaymentPage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] = useContext(AppContext);
+  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+    useContext(AppContext);
 
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
@@ -13,13 +15,18 @@ const PaymentPage = () => {
   const secretKey = "";
   const publicKey =
     "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv";
+  let orderNumber = Math.floor(Math.random() * 10001);
 
   // const stripePromise = loadStripe(
   //   "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv"
   // );
 
+  const submitOrderToDB = () => {
+    // Send data to DB
+    console.log("Sending data to DB. Order number: " + orderNumber);
+  };
+
   const handleTokenWithBackend = async (token) => {
-    let orderNumber = Math.floor(Math.random() * 10001);
     let order = { orderNumber: orderNumber, price: totalAmount };
 
     f7.dialog.preloader("Processing your payment");
@@ -39,10 +46,9 @@ const PaymentPage = () => {
     });
 
     if (response.status === "success") {
-      // Database create order
-
+      submitOrderToDB();
       f7.dialog.alert("Click OK to continue!", "Payment sucessfull", () => {
-        window.location.pathname = "/about-us";
+        window.location.pathname = "/summary";
       });
     } else {
       f7.dialog.alert("Try it again!", "Payment unsucessfull");
@@ -97,43 +103,63 @@ const PaymentPage = () => {
   return (
     <>
       <Page name="payment">
-        <h2 className="food_title">Ordered items</h2>
-        <div className="data-table card">
-          <table>
-            <thead>
-              <tr>
-                <th className="label-cell">Ordered Items</th>
-                <th className="numeric-cell">Amount</th>
-                <th className="numeric-cell">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {showOrderedItems.map((item) => {
-                return (
-                  <tr key={item.name}>
-                    <td className="label-cell">{item.name}</td>
-                    <td className="numeric-cell">{item.amount}</td>
-                    <td className="numeric-cell">{item.price} ¥</td>
+        <div className="payment_container">
+          <h2 className="food_title">Ordered items</h2>
+          <div className="order_table">
+            <div className="data-table card">
+              <table>
+                <thead>
+                  <tr>
+                    <th className="label-cell">Ordered Items</th>
+                    <th className="numeric-cell">Amount</th>
+                    <th className="numeric-cell">Price</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                  {showOrderedItems.map((item) => {
+                    return (
+                      <tr key={item.name}>
+                        <td className="label-cell">{item.name}</td>
+                        <td className="numeric-cell">{item.amount}</td>
+                        <td className="numeric-cell">{item.price} ¥</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-        <div className="price">
-          <h2 className="food_pay">Total: </h2>
-          <h2 className="totalAmount"> {totalAmount} ¥</h2>
-        </div>
+          <div className="price">
+            <h2 className="food_pay">Total: </h2>
+            <h2 className="totalAmount"> {totalAmount} ¥</h2>
+          </div>
 
-        <StripeCheckout
-          stripeKey={publicKey}
-          token={handleTokenWithBackend}
-          amount={totalAmount}
-          name="PabDom Order"
-          currency="JPY"
-          disabled={totalAmount == 0}
-        />
+          <div className="bottom_buttons">
+            <StripeCheckout
+              stripeKey={publicKey}
+              token={handleTokenWithBackend}
+              amount={totalAmount}
+              name="PabDom Order"
+              currency="JPY"
+            />
+            <a
+              href="/summary"
+              id="cashButton"
+              className="col button button-raised button-round button-fill"
+              onClick={submitOrderToDB}
+            >
+              Pay with Cash
+            </a>
+            <a
+              href="/food"
+              className="col button button-raised button-round button-outline"
+              id="menuButton"
+            >
+              Back to Menu
+            </a>
+          </div>
+        </div>
       </Page>
     </>
   );

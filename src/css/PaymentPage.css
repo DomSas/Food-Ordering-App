@@ -1,5 +1,12 @@
-.totalAmount {
-  margin: 0 0 10px 0;
+.order_table {
+  margin: 25px 0;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 100px;
 }
 
 .food_pay {
@@ -10,8 +17,53 @@
   border-bottom: 3px solid #264d32;
 }
 
-.price {
+.totalAmount {
+  margin-bottom: 10px;
+}
+
+.bottom_buttons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  width: 180px;
+
+  position: fixed;
+  bottom: 40px;
+
+  left: 50%;
+  margin-left: -90px;
+}
+
+.StripeCheckout {
+  height: 45px;
+  background: #264d32 !important;
+
+  margin: 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.12) !important;
+  border-radius: 30px !important;
+}
+
+.StripeCheckout span {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  text-transform: uppercase !important;
+
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#cashButton {
+  background: #591303;
+  height: 45px;
+  border-radius: 30px !important;
+  margin: 5px 0;
+}
+
+#menuButton {
+  height: 45px;
+  border-color: #264d32 !important;
+  border-radius: 30px !important;
+  margin: 5px 0;
+  color: #264d32;
+  font-weight: 600;
 }
