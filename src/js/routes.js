@@ -4,6 +4,7 @@ import FoodPage from "../pages/FoodPage.jsx";
 import PaymentPage from "../pages/PaymentPage.jsx";
 import ContactInfo from "../pages/ContactInfo.jsx";
 import DateTimePage from "../pages/DateTimePage.jsx";
+import TablePickerPage from "../pages/TablePickerPage.jsx";
 
 var routes = [
   {
@@ -25,6 +26,10 @@ var routes = [
   {
     path: "/date-time",
     component: DateTimePage,
+  },
+  {
+    path: "/table",
+    component: TablePickerPage,
   },
   {
     path: "/payment",
