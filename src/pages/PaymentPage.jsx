@@ -170,15 +170,27 @@ const PaymentPage = () => {
           </div>
 
           <div className="bottom_buttons">
-            <StripeCheckout
-              label={"Pay " + totalAmount + " ¥"}
-              disabled={!selectedPayment}
-              stripeKey={publicKey}
-              token={handleTokenWithBackend}
-              amount={totalAmount}
-              name="PabDom Order"
-              currency="JPY"
-            />
+            <a
+              href={selectedPayment === "cash" ? "/summary" : ""}
+              onClick={(e) => {
+                if (selectedPayment === "cash") {
+                  // console.log("tu");
+                  e.stopPropagation();
+                  return false;
+                }
+              }}
+            >
+              <StripeCheckout
+                label={"Pay " + totalAmount + " ¥"}
+                disabled={!selectedPayment}
+                stripeKey={publicKey}
+                token={handleTokenWithBackend}
+                amount={totalAmount}
+                name={"PabDom Order n. " + orderNumber}
+                currency="JPY"
+                triggerEvent="onClick"
+              />
+            </a>
             <a
               href="/food"
               className="col button button-raised button-round button-outline"

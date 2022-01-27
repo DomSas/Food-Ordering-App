@@ -5,8 +5,9 @@ import PaymentPage from "../pages/PaymentPage.jsx";
 import ContactInfo from "../pages/ContactInfo.jsx";
 import DateTimePage from "../pages/DateTimePage.jsx";
 import TablePickerPage from "../pages/TablePickerPage.jsx";
+import OrderSummary from "../pages/OrderSummary.jsx";
 
-var routes = [
+let routes = [
   {
     path: "/",
     component: HomePage,
@@ -33,7 +34,11 @@ var routes = [
   },
   {
     path: "/payment",
-    component: PaymentPage
+    component: PaymentPage,
+  },
+  {
+    path: "/summary",
+    component: OrderSummary,
   },
 ];
 
