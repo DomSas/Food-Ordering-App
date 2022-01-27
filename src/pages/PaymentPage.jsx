@@ -5,11 +5,15 @@ import "../css/PaymentPage.css";
 import { AppContext } from "../js/AppContext";
 import NavbarBack from "../components/NavbarBack";
 import { CreditcardFill, WalletFill } from "framework7-icons/react";
+import { addReservation } from "../js/db";
 
 const PaymentPage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
+  const [cartItems, totalAmount, date_time, table, userInfo, photo, location] =
     useContext(AppContext);
   const [selectedPayment, setSelectedPayment] = useState("");
+
+  addReservation(date_time, table, showOrderedItems, userInfo, orderNumber, photo, location)
+
 
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
@@ -175,7 +179,7 @@ const PaymentPage = () => {
               disabled={!selectedPayment}
               stripeKey={publicKey}
               token={handleTokenWithBackend}
-              amount={totalAmount}
+              amount={0}
               name="PabDom Order"
               currency="JPY"
             />

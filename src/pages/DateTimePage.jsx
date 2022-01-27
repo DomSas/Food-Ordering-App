@@ -1,6 +1,6 @@
 import "../css/DateTimePage.css";
 import React, { useEffect, useState } from "react";
-import { Input, Page } from "framework7-react";
+import { Input, List, ListInput, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
 import { AppContext } from "../js/AppContext";
 import { useContext } from "react";
@@ -45,8 +45,9 @@ const DateTimePage = () => {
           When would you like
           <br /> to come?
         </h2>
-        <form>
-          <Input
+        <List inset>
+          <ListInput
+            className="input_datetime"
             label="Select your date"
             type="datepicker"
             placeholder="Select your date"
@@ -56,7 +57,8 @@ const DateTimePage = () => {
             calendarParams={{ minDate: today }}
             onInputNotEmpty={(e) => setSelectedDate(e.target.value)}
           />
-          <Input
+          <ListInput
+            className="input_datetime"
             label="Select your time"
             type="time"
             step="3600"
@@ -69,7 +71,7 @@ const DateTimePage = () => {
             onInputNotEmpty={(e) => setSelectedTime(e.target.value)}
             onValidate={(isValid) => setValidTime(isValid)}
           />
-        </form>
+        </List>
 
         <FooterButtons
           leftButton={{

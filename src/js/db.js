@@ -97,10 +97,9 @@ const checkTimeValidForDate = (docSnap, time) => {
 
 const getTableAvailability = async (date_time) => {
   const docRef = doc(db, "reservations", date_time.date);
-  let tables = await getDoc(docRef).then( async (docSnap) => {
+  let tables = await getDoc(docRef).then(async (docSnap) => {
     const timeShort = date_time.time.split(":")[0];
     let availableTables = await docSnap.data().times_available[timeShort];
-    console.log(availableTables);
     return availableTables;
   });
   return tables;
@@ -119,8 +118,17 @@ const checkDateTime = async (date, time) => {
   return check;
 };
 
-const addReservation = (date, time, table, food, userInfo) => {
-  setDoc(doc(db, "reservations", date)); //add time and table, make changes
+const addReservation = async (
+  date_time,
+  table,
+  food,
+  userInfo,
+  orderNumber,
+  photo,
+  location
+) => {
+  
+
 };
 
 const addCustomerInfo = ({ name, email, phone, location }) => {
@@ -134,6 +142,6 @@ const addCustomerInfo = ({ name, email, phone, location }) => {
 
 export default createMenuDict;
 
-export { checkDateTime, addCustomerInfo, getTableAvailability };
+export { checkDateTime, addCustomerInfo, getTableAvailability, addReservation };
 
 export { storage };

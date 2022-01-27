@@ -1,8 +1,6 @@
 {
   "cwd": "/Users/asial/Documents/framework7-react-single-view",
-  "type": [
-    "web"
-  ],
+  "type": ["web"],
   "name": "framework7-react-single-view",
   "framework": "react",
   "template": "single-view",
