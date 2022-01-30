@@ -13,8 +13,19 @@ import FooterButtons from "../components/FooterButtons";
 import NavbarBack from "../components/NavbarBack";
 
 const FoodPage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
-    useContext(AppContext);
+  const [
+    cartItems,
+    setCartItems,
+    totalAmount,
+    date_time,
+    setDateTime,
+    table,
+    setTable,
+    userInfo,
+    setUserInfo,
+    photo,
+    setPhoto,
+  ] = useContext(AppContext);
 
   const addItemToCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {

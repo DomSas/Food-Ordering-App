@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Navbar, Block, List, ListItem } from 'framework7-react';
+import React from "react";
+import { Page, Navbar, Block, List, ListItem } from "framework7-react";
 
 export default class extends React.Component {
   constructor(props) {
@@ -8,16 +8,13 @@ export default class extends React.Component {
     this.state = {
       user: props.f7route.context.user,
     };
-
   }
   render() {
     const user = this.state.user;
     return (
       <Page>
         <Navbar title={`${user.firstName} ${user.lastName}`} backLink="Back" />
-        <Block strong>
-          {user.about}
-        </Block>
+        <Block strong>{user.about}</Block>
         <List>
           {user.links.map((link, index) => (
             <ListItem

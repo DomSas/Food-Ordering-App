@@ -6,6 +6,9 @@ export const AppProvider = (props) => {
   const [cartItems, setCartItems] = useState({}); //Cart items
   const [totalAmount, setTotalAmount] = useState(0); //Total amount
   const [date_time, setDateTime] = useState({}); //Date and time selected
+  const [table, setTable] = useState(); //Table selected
+  const [photo, setPhoto] = useState(); //Photo
+  const [userInfo, setUserInfo] = useState(); //User info
 
   useEffect(() => {
     setCartItems(createMenuDict());
@@ -25,7 +28,21 @@ export const AppProvider = (props) => {
 
   return (
     <>
-      <AppContext.Provider value={[cartItems, setCartItems, totalAmount, date_time, setDateTime]}>
+      <AppContext.Provider
+        value={[
+          cartItems,
+          setCartItems,
+          totalAmount,
+          date_time,
+          setDateTime,
+          table,
+          setTable,
+          userInfo,
+          setUserInfo,
+          photo,
+          setPhoto,
+        ]}
+      >
         {props.children}
       </AppContext.Provider>
     </>

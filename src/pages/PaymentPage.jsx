@@ -5,12 +5,23 @@ import "../css/PaymentPage.css";
 import { AppContext } from "../js/AppContext";
 import NavbarBack from "../components/NavbarBack";
 import { CreditcardFill, WalletFill } from "framework7-icons/react";
+import { addReservation, checkOrderNumber } from "../js/db";
 
 const PaymentPage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
-    useContext(AppContext);
+  const [
+    cartItems,
+    setCartItems,
+    totalAmount,
+    date_time,
+    setDateTime,
+    table,
+    setTable,
+    userInfo,
+    setUserInfo,
+    photo,
+    setPhoto,
+  ] = useContext(AppContext);
   const [selectedPayment, setSelectedPayment] = useState("");
-
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);
@@ -18,10 +29,19 @@ const PaymentPage = () => {
   const publicKey =
     "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv";
   let orderNumber = Math.floor(Math.random() * 10001);
+  //review if two are repeated
 
   const submitOrderToDB = () => {
     // Send data to DB
     console.log("Sending data to DB. Order number: " + orderNumber);
+    addReservation(
+      date_time,
+      table,
+      showOrderedItems,
+      userInfo,
+      orderNumber,
+      photo
+    );
   };
 
   const handleTokenWithBackend = async (token) => {

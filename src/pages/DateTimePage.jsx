@@ -1,6 +1,6 @@
 import "../css/DateTimePage.css";
 import React, { useEffect, useState } from "react";
-import { Input, Page } from "framework7-react";
+import { f7, Input, List, ListInput, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
 import { AppContext } from "../js/AppContext";
 import { useContext } from "react";
@@ -8,13 +8,29 @@ import { checkDateTime } from "../js/db";
 import NavbarBack from "../components/NavbarBack";
 
 const DateTimePage = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
-    useContext(AppContext);
+  const [
+    cartItems,
+    setCartItems,
+    totalAmount,
+    date_time,
+    setDateTime,
+    table,
+    setTable,
+    userInfo,
+    setUserInfo,
+    photo,
+    setPhoto,
+  ] = useContext(AppContext);
   const today = new Date();
 
   const [selectedDate, setSelectedDate] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const [validTime, setValidTime] = useState(false);
+
+  const [customerName, setCustomerName] = useState();
+  const [customerEmail, setCustomerEmail] = useState();
+  const [nameValid, setNameValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
 
   let minutes = today.getMinutes();
   if (minutes < 30) {
@@ -31,11 +47,41 @@ const DateTimePage = () => {
         dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
       ).toDateString();
       setSelectedDate(date);
-      if (checkDateTime(date, selectedTime)) {
-        setDateTime({ date: selectedDate, time: selectedTime });
-      }
+      checkDateTime(date, selectedTime).then((result) => {
+        if (result) {
+          setDateTime({ date: date, time: selectedTime });
+        } else {
+          let toastCenter = f7.toast.create({
+            text: "Sorry! There are not empty tables in selected date and time. Please choose another one.",
+            closeTimeout: 3000,
+          });
+          toastCenter.open();
+          setValidTime(false);
+        }
+      });
     }
   }, [validTime]);
+
+  useEffect(() => {
+    if (nameValid && emailValid) {
+      sendContactInfoToContext();
+    }
+  }, [emailValid]);
+
+  useEffect(() => {
+    if (nameValid && emailValid) {
+      sendContactInfoToContext();
+    }
+  }, [nameValid]);
+
+  const sendContactInfoToContext = () => {
+    setUserInfo({
+      name: customerName,
+      email: customerEmail,
+      phone: "",
+      location: "",
+    });
+  };
 
   return (
     <Page name="date-time">
@@ -45,8 +91,9 @@ const DateTimePage = () => {
           When would you like
           <br /> to come?
         </h2>
-        <form>
-          <Input
+        <List inset>
+          <ListInput
+            className="input_datetime"
             label="Select your date"
             type="datepicker"
             placeholder="Select your date"
@@ -56,7 +103,8 @@ const DateTimePage = () => {
             calendarParams={{ minDate: today }}
             onInputNotEmpty={(e) => setSelectedDate(e.target.value)}
           />
-          <Input
+          <ListInput
+            className="input_datetime"
             label="Select your time"
             type="time"
             step="3600"
@@ -69,7 +117,31 @@ const DateTimePage = () => {
             onInputNotEmpty={(e) => setSelectedTime(e.target.value)}
             onValidate={(isValid) => setValidTime(isValid)}
           />
-        </form>
+        </List>
+        <h2 className="contact_title">
+          Please tell us your
+          <br /> name and email
+        </h2>
+        <List inset>
+          <ListInput
+            type="text"
+            placeholder="Name"
+            required
+            validate
+            value={customerName || ""}
+            onChange={(e) => setCustomerName(e.target.value)}
+            onValidate={(isValid) => setNameValid(isValid)}
+          />
+          <ListInput
+            type="email"
+            placeholder="E-mail"
+            required
+            validate
+            value={customerEmail || ""}
+            onChange={(e) => setCustomerEmail(e.target.value)}
+            onValidate={(isValid) => setEmailValid(isValid)}
+          />
+        </List>
 
         <FooterButtons
           leftButton={{
@@ -81,10 +153,21 @@ const DateTimePage = () => {
           rightButton={{
             label: "Next",
             id:
-              selectedDate && selectedTime && validTime
+              selectedDate &&
+              selectedTime &&
+              validTime &&
+              nameValid &&
+              emailValid
                 ? "primaryButton"
                 : "disabledPrimaryButton",
-            href: selectedDate && selectedTime && validTime ? "/table/" : "",
+            href:
+              selectedDate &&
+              selectedTime &&
+              validTime &&
+              nameValid &&
+              emailValid
+                ? "/table/"
+                : "",
           }}
         />
       </div>

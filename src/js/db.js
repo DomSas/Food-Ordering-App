@@ -6,9 +6,10 @@ import {
   doc,
   setDoc,
   getDoc,
+  updateDoc,
 } from "firebase/firestore/lite";
 
-import { getStorage } from "firebase/storage";
+import { getStorage, uploadString } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
@@ -82,29 +83,45 @@ const createDate = (date) => {
       21: [1, 2, 3, 4, 5, 6],
       22: [1, 2, 3, 4, 5, 6],
     },
-    times_booked: [],
+    times_booked: {
+      11: [],
+      12: [],
+      13: [],
+      14: [],
+      15: [],
+      16: [],
+      17: [],
+      18: [],
+      19: [],
+      20: [],
+      21: [],
+      22: [],
+    },
   });
 };
 
 const checkTimeValidForDate = (docSnap, time) => {
-  const timeShort = time.split(':')[0];
-  if (docSnap.data().times_available[timeShort] != null) {
+  const timeShort = time.split(":")[0];
+  if (docSnap.data().times_available[timeShort].length != 0) {
     return true;
   } else {
     return false;
   }
 };
 
-const getTableAvailability = (date_time) => {
+const getTableAvailability = async (date_time) => {
   const docRef = doc(db, "reservations", date_time.date);
-  getDoc(docRef).then((docSnap) => {
-    return docSnap.data().times_available[date_time.time];
-  })
-}
+  let tables = await getDoc(docRef).then(async (docSnap) => {
+    const timeShort = date_time.time.split(":")[0];
+    let availableTables = await docSnap.data().times_available[timeShort];
+    return availableTables;
+  });
+  return tables;
+};
 
 const checkDateTime = async (date, time) => {
   const docRef = doc(db, "reservations", date);
-  await getDoc(docRef).then((docSnap) => {
+  let check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return checkTimeValidForDate(docSnap, time);
     } else {
@@ -112,23 +129,100 @@ const checkDateTime = async (date, time) => {
       return true;
     }
   });
+  return check;
 };
 
-const addReservation = (date, time, table) => {
-  setDoc(doc(db, "reservations", date));
-};
+const addReservation = async (
+  date_time,
+  table,
+  food,
+  userInfo,
+  orderNumber,
+  photo
+) => {
+  if (userInfo.location === "") {
+    const getDate = doc(db, "reservations", date_time.date);
 
-const addCustomerInfo = ({ name, email, phone, location }) => {
-  setDoc(doc(db, "customer_info", email), {
-    name: name,
-    email: email,
-    phone: phone,
-    location: location,
+    //get the available times and change the time
+    let info = await getDoc(getDate).then((docSnap) => {
+      return docSnap;
+    });
+    let times_available = await info.data().times_available;
+    let times_booked = await info.data().times_booked;
+
+    const timeShort = date_time.time.split(":")[0];
+
+    times_booked[timeShort] = times_available[timeShort].splice(
+      times_available[timeShort].indexOf(table),
+      1
+    );
+
+    //date and time done
+
+    //set everywhere
+
+    updateDoc(getDate, {
+      times_available: times_available,
+      times_booked: times_booked,
+    });
+  }
+
+  addCustomerInfo(userInfo);
+
+  let photoBD;
+
+  const metadata = {
+    contentType: "image/jpeg",
+  };
+
+  if (photo != undefined) {
+    photoBD = true;
+    uploadString(
+      ref(storage, "photos/" + orderNumber + ".jpg"),
+      photo,
+      "base64",
+      metadata
+    ).then(() => {});
+  } else {
+    photoBD = false;
+  }
+
+  setDoc(doc(db, "orders", orderNumber.toString()), {
+    food: food,
+    user: userInfo.email,
+    photo: photoBD,
   });
+};
+
+const addCustomerInfo = (userInfo) => {
+  setDoc(doc(db, "customer_info", userInfo.email), {
+    name: userInfo.name,
+    email: userInfo.email,
+    phone: userInfo.phone,
+    location: userInfo.location,
+  });
+};
+
+const checkOrderNumber = async (orderNumber) => {
+  const docRef = doc(db, "orders", orderNumber);
+  let check = await getDoc(docRef).then((docSnap) => {
+    if (docSnap.exists()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return check;
 };
 
 export default createMenuDict;
 
-export { checkDateTime, addCustomerInfo, getTableAvailability };
+export {
+  checkDateTime,
+  addCustomerInfo,
+  getTableAvailability,
+  addReservation,
+  checkOrderNumber,
+};
 
 export { storage };
