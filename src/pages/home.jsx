@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Page,
   Navbar,
@@ -14,19 +14,29 @@ import {
   ListItem,
   Row,
   Col,
-  Button
-} from 'framework7-react';
+  Button,
+} from "framework7-react";
 
 export default () => (
   <Page name="home">
     {/* Top Navbar */}
     <Navbar large sliding={false}>
       <NavLeft>
-        <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="left" />
+        <Link
+          iconIos="f7:menu"
+          iconAurora="f7:menu"
+          iconMd="material:menu"
+          panelOpen="left"
+        />
       </NavLeft>
       <NavTitle sliding>framework7-react-single-view</NavTitle>
       <NavRight>
-        <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="right" />
+        <Link
+          iconIos="f7:menu"
+          iconAurora="f7:menu"
+          iconMd="material:menu"
+          panelOpen="right"
+        />
       </NavRight>
       <NavTitleLarge>framework7-react-single-view</NavTitleLarge>
     </Navbar>
@@ -41,18 +51,22 @@ export default () => (
     </Block>
     <BlockTitle>Navigation</BlockTitle>
     <List>
-      <ListItem link="/about/" title="About"/>
-      <ListItem link="/form/" title="Form"/>
+      <ListItem link="/about/" title="About" />
+      <ListItem link="/form/" title="Form" />
     </List>
 
     <BlockTitle>Modals</BlockTitle>
     <Block strong>
       <Row>
         <Col width="50">
-          <Button fill raised popupOpen="#my-popup">Popup</Button>
+          <Button fill raised popupOpen="#my-popup">
+            Popup
+          </Button>
         </Col>
         <Col width="50">
-          <Button fill raised loginScreenOpen="#my-login-screen">Login Screen</Button>
+          <Button fill raised loginScreenOpen="#my-login-screen">
+            Login Screen
+          </Button>
         </Col>
       </Row>
     </Block>
@@ -61,10 +75,14 @@ export default () => (
     <Block strong>
       <Row>
         <Col width="50">
-          <Button fill raised panelOpen="left">Left Panel</Button>
+          <Button fill raised panelOpen="left">
+            Left Panel
+          </Button>
         </Col>
         <Col width="50">
-          <Button fill raised panelOpen="right">Right Panel</Button>
+          <Button fill raised panelOpen="right">
+            Right Panel
+          </Button>
         </Col>
       </Row>
     </Block>

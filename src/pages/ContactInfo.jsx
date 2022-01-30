@@ -1,12 +1,25 @@
 import "../css/ContactInfo.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { f7, List, ListInput, Page } from "framework7-react";
 import { LocationFill } from "framework7-icons/react";
 import FooterButtons from "../components/FooterButtons";
-import { addCustomerInfo } from "../js/db";
 import NavbarBack from "../components/NavbarBack";
+import { AppContext } from "../js/AppContext";
 
 const ContactInfo = () => {
+  const [
+    cartItems,
+    setCartItems,
+    totalAmount,
+    date_time,
+    setDateTime,
+    table,
+    setTable,
+    userInfo,
+    setUserInfo,
+    photo,
+    setPhoto,
+  ] = useContext(AppContext);
   const [customerName, setCustomerName] = useState();
   const [customerEmail, setCustomerEmail] = useState();
   const [customerPhone, setCustomerPhone] = useState();
@@ -23,8 +36,8 @@ const ContactInfo = () => {
     }
   }, [customerCity]);
 
-  const sendContactInfoToDB = () => {
-    addCustomerInfo({
+  const sendContactInfoToContext = () => {
+    setUserInfo({
       name: customerName,
       email: customerEmail,
       phone: customerPhone,
@@ -135,7 +148,7 @@ const ContactInfo = () => {
             }}
             rightButton={{
               label: "Next",
-              onClick: sendContactInfoToDB,
+              onClick: sendContactInfoToContext,
               id:
                 customerName &&
                 customerPhone &&
