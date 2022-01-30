@@ -13,7 +13,7 @@ const HomePage = () => {
         <div className="header">
           <h1>
             Welcome to <br />
-            Pab-Dom 2222
+            Pab-Dom
           </h1>
           <div className="logo-img">
             <img src="../static/icons/logo_ramen.png" alt="logo_ramen" />

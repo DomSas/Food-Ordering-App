@@ -8,7 +8,6 @@ export const AppProvider = (props) => {
   const [date_time, setDateTime] = useState({}); //Date and time selected
   const [table, setTable] = useState(); //Table selected
   const [photo, setPhoto] = useState(); //Photo
-  const [location, setLocation] = useState(); //Location
   const [userInfo, setUserInfo] = useState(); //User info
 
   useEffect(() => {
@@ -42,8 +41,6 @@ export const AppProvider = (props) => {
           setUserInfo,
           photo,
           setPhoto,
-          location,
-          setLocation
         ]}
       >
         {props.children}

@@ -19,6 +19,10 @@ const TablePickerPage = () => {
     setDateTime,
     table,
     setTable,
+    userInfo,
+    setUserInfo,
+    photo,
+    setPhoto,
   ] = useContext(AppContext);
 
   const [tablesAvailable, setTablesAvailable] = useState([]);
@@ -44,16 +48,7 @@ const TablePickerPage = () => {
   }
 
   async function onSuccess(imageURI) {
-    const metadata = {
-      contentType: "image/jpeg",
-    };
-
-    uploadString(
-      ref(storage, "photos/order_number.jpg"),
-      imageURI,
-      "base64",
-      metadata
-    ).then(() => {});
+    setPhoto(imageURI);
   }
 
   function onFail(message) {
