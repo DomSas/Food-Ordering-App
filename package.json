@@ -24,7 +24,9 @@
       "cordova-plugin-statusbar": {},
       "monaca-plugin-monaca-core": {},
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova.plugins.diagnostic": {},
+      "cordova-plugin-file-transfer": {}
     }
   },
   "browserslist": [
@@ -65,7 +67,9 @@
     "copy-webpack-plugin": "^9.0.0",
     "cordova": "^11.0.0",
     "cordova-plugin-camera": "^6.0.0",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.1.0",
+    "cordova.plugins.diagnostic": "^6.1.1",
     "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.2",
     "css-loader": "^6.5.1",

@@ -22,6 +22,7 @@ const PaymentPage = () => {
     setPhoto,
   ] = useContext(AppContext);
   const [selectedPayment, setSelectedPayment] = useState("");
+  
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);
@@ -32,7 +33,7 @@ const PaymentPage = () => {
   let orderNumber = Math.floor(Math.random() * 10001);
   //review if two are repeated
 
-  console.log(checkOrder)
+  
 
   // const stripePromise = loadStripe(
   //   "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv"

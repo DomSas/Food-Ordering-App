@@ -204,7 +204,7 @@ const addCustomerInfo = (userInfo) => {
 };
 
 const checkOrderNumber = async (orderNumber) => {
-  const docRef = doc(db, "orders", orderNumber);
+  const docRef = doc(db, "orders", orderNumber.toString());
   let check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return true;
