@@ -20,21 +20,22 @@ const ContactInfo = () => {
     photo,
     setPhoto,
   ] = useContext(AppContext);
-  const [customerName, setCustomerName] = useState();
-  const [customerEmail, setCustomerEmail] = useState();
-  const [customerPhone, setCustomerPhone] = useState();
-  const [customerCity, setCustomerCity] = useState();
+  const [customerName, setCustomerName] = useState(
+    userInfo ? userInfo.name : ""
+  );
+  const [customerEmail, setCustomerEmail] = useState(
+    userInfo ? userInfo.email : ""
+  );
+  const [customerPhone, setCustomerPhone] = useState(
+    userInfo ? userInfo.phone : ""
+  );
+  const [customerCity, setCustomerCity] = useState(
+    userInfo ? userInfo.location : ""
+  );
   // Need all three separately to not overwrite validity
   const [nameValid, setNameValid] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
-
-  // Listen to customerCity change to show alert dialog
-  useEffect(() => {
-    if (customerCity) {
-      f7.dialog.alert("Nearby city: " + customerCity, "GPS Location Acquired");
-    }
-  }, [customerCity]);
 
   const sendContactInfoToContext = () => {
     setUserInfo({
@@ -76,6 +77,10 @@ const ContactInfo = () => {
             setCustomerCity();
             f7.dialog.close();
             setCustomerCity(result.data[0].city);
+            f7.dialog.alert(
+              "Nearby city: " + result.data[0].city,
+              "GPS Location Acquired"
+            );
           },
           (error) => {
             f7.dialog.alert("Try again please!", "Acquiring Location Failed");

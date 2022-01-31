@@ -1,6 +1,6 @@
 import React from "react";
 
-import {
+import Framework7React, {
   App,
   Panel,
   Views,
@@ -10,7 +10,6 @@ import {
   Navbar,
   Toolbar,
   NavRight,
-  Link,
   Block,
   BlockTitle,
   LoginScreen,
@@ -27,13 +26,13 @@ import { AppProvider } from "../js/AppContext";
 
 export default () => {
   const f7params = {
-    routes,
+    routes: routes,
     name: "My App",
     id: "com.myapp.test",
   };
   return (
     <>
-      <App {...f7params}>
+      <App {...f7params} pushState="true">
         <AppProvider>
           <View main url="/" />
         </AppProvider>

@@ -112,11 +112,21 @@
   opacity: 0.5;
 }
 
-#menuButton {
+#menu_button {
   height: 45px;
   border-color: #264d32 !important;
   border-radius: 30px !important;
   margin: 5px 0;
   color: #264d32;
   font-weight: 600;
+}
+
+#pay_button {
+  height: 45px;
+  border-radius: 30px !important;
+  border-color: #264d32 !important;
+  color: #ffffff !important;
+  background-color: #264d32 !important;
+  font-weight: 600;
+  margin: 5px 0;
 }
