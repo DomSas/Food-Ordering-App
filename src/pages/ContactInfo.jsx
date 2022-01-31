@@ -1,5 +1,5 @@
 import "../css/ContactInfo.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { f7, List, ListInput, Page } from "framework7-react";
 import { LocationFill } from "framework7-icons/react";
 import FooterButtons from "../components/FooterButtons";

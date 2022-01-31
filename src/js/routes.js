@@ -11,9 +11,6 @@ let routes = [
   {
     path: "/",
     component: HomePage,
-    options: {
-      clearPreviousHistory: true,
-    },
   },
   {
     path: "/about-us",
