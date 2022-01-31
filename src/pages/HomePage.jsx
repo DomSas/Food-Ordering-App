@@ -1,11 +1,16 @@
 import "../css/HomePage.css";
 import React from "react";
-import { Page } from "framework7-react";
+import { Button, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
+import Settings from "../components/Settings";
 
 const HomePage = () => {
   return (
     <Page name="home">
+      <Settings></Settings>
+      <Button fill sheetOpen=".settings-sheet">
+            Open Sheet
+          </Button>
       <div className="home_container">
         <div className="ramen-img">
           <img src="../static/icons/ramen.jpg" alt="ramen" />
