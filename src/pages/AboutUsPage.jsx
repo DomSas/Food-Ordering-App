@@ -43,11 +43,12 @@ const AboutUsPage = () => {
           App Version: 1.0.0
         </span>
 
-        <a href="/" className="back">
-          <button className="aboutButton col button button-fill button-round">
-            <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
-            Back to Home
-          </button>
+        <a
+          href="/"
+          className="aboutButton col button button-fill button-round back"
+        >
+          <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
+          Back to Home
         </a>
       </p>
     </Page>
