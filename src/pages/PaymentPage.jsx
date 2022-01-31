@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { f7, Page } from "framework7-react";
 import StripeCheckout from "react-stripe-checkout";
 import "../css/PaymentPage.css";
 import { AppContext } from "../js/AppContext";
 import NavbarBack from "../components/NavbarBack";
 import { CreditcardFill, WalletFill } from "framework7-icons/react";
-import { addReservation, checkOrderNumber } from "../js/db";
+import { addReservation, getOrderNumber } from "../js/db";
 
 const PaymentPage = () => {
   const [
@@ -20,6 +20,8 @@ const PaymentPage = () => {
     setUserInfo,
     photo,
     setPhoto,
+    orderNumber,
+    setOrderNumber,
   ] = useContext(AppContext);
   const [selectedPayment, setSelectedPayment] = useState("");
   const showOrderedItems = Object.values(cartItems)
@@ -28,12 +30,12 @@ const PaymentPage = () => {
 
   const publicKey =
     "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv";
-  let orderNumber = Math.floor(Math.random() * 10001);
-  //review if two are repeated
+
+  useEffect(async () => {
+    setOrderNumber(await getOrderNumber());
+  }, []);
 
   const submitOrderToDB = () => {
-    // Send data to DB
-    console.log("Sending data to DB. Order number: " + orderNumber);
     addReservation(
       date_time,
       table,
@@ -145,6 +147,7 @@ const PaymentPage = () => {
                 href="/summary"
                 className="col button button-raised button-round button-outline"
                 id="pay_button"
+                onClick={submitOrderToDB}
               >
                 Pay {totalAmount} ¥
               </a>

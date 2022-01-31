@@ -203,8 +203,15 @@ const addCustomerInfo = (userInfo) => {
   });
 };
 
+const getOrderNumber = async () => {
+  do {
+    var orderNumber = Math.floor(Math.random() * 10001);
+  } while (await checkOrderNumber(orderNumber));
+  return orderNumber;
+};
+
 const checkOrderNumber = async (orderNumber) => {
-  const docRef = doc(db, "orders", orderNumber);
+  const docRef = doc(db, "orders", orderNumber.toString());
   let check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return true;
@@ -222,7 +229,7 @@ export {
   addCustomerInfo,
   getTableAvailability,
   addReservation,
-  checkOrderNumber,
+  getOrderNumber,
 };
 
 export { storage };

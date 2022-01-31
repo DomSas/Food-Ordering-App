@@ -12,6 +12,10 @@
   text-align: center;
 }
 
+.order_summary_container .thanks {
+  margin: 40px 0 100px 0;
+}
+
 .order_summary_container .aboutButton {
   background-color: #264d32 !important;
   width: 200px !important;

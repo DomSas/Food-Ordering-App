@@ -5,8 +5,20 @@ import { AppContext } from "../js/AppContext";
 import { HouseFill } from "framework7-icons/react";
 
 const OrderSummary = () => {
-  const [cartItems, setCartItems, totalAmount, date_time, setDateTime] =
-    useContext(AppContext);
+  const [
+    cartItems,
+    setCartItems,
+    totalAmount,
+    date_time,
+    setDateTime,
+    table,
+    setTable,
+    userInfo,
+    setUserInfo,
+    photo,
+    setPhoto,
+    orderNumber,
+  ] = useContext(AppContext);
 
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
@@ -16,7 +28,7 @@ const OrderSummary = () => {
     <Page name="order-summary">
       <div className="order_summary_container">
         <h2 className="summary_title">Thank you for your order!</h2>
-        <h3 className="order_number">Order n. 8455</h3>
+        <h3 className="order_number">Order n. {orderNumber}</h3>
         <div className="order_table">
           <div className="data-table card">
             <table>
@@ -41,11 +53,17 @@ const OrderSummary = () => {
             </table>
           </div>
         </div>
-        <h2>
+        <h2 className="thanks">
           We are glad that you <br />
           chose Pab-Dom!
         </h2>
-        <a href="/" className="aboutButton col button button-fill button-round">
+        <a
+          className="aboutButton col button button-fill button-round"
+          onClick={() => {
+            // Whole app will reload - context will be cleared
+            window.location.replace("/");
+          }}
+        >
           <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
           Back to Home
         </a>
