@@ -23,12 +23,12 @@ const HomePage = () => {
         <FooterButtons
           leftButton={{
             label: "Menu",
-            href: "/food/",
+            href: "/food",
             id: "primaryButton",
           }}
           rightButton={{
             label: "About Us",
-            href: "/about-us/",
+            href: "/about-us",
             id: "secondaryButton",
           }}
         />

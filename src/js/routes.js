@@ -5,11 +5,15 @@ import PaymentPage from "../pages/PaymentPage.jsx";
 import ContactInfo from "../pages/ContactInfo.jsx";
 import DateTimePage from "../pages/DateTimePage.jsx";
 import TablePickerPage from "../pages/TablePickerPage.jsx";
+import OrderSummary from "../pages/OrderSummary.jsx";
 
-var routes = [
+let routes = [
   {
     path: "/",
     component: HomePage,
+    options: {
+      clearPreviousHistory: true,
+    },
   },
   {
     path: "/about-us",
@@ -34,6 +38,13 @@ var routes = [
   {
     path: "/payment",
     component: PaymentPage,
+  },
+  {
+    path: "/summary",
+    component: OrderSummary,
+    options: {
+      clearPreviousHistory: true,
+    },
   },
 ];
 
