@@ -7,7 +7,7 @@ const FooterButtons = (props) => {
     (id == "secondaryButton" ? "button-outline" : "button-fill");
 
   return (
-    <Fragment className="buttons_container">
+    <div className="buttons_container">
       <a
         {...props.leftButton}
         className={
@@ -24,7 +24,7 @@ const FooterButtons = (props) => {
       >
         {props.rightButton.label}
       </a>
-    </Fragment>
+    </div>
   );
 };
 

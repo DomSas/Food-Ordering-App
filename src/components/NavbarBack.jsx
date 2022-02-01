@@ -3,7 +3,7 @@ import "../css/NavbarBack.css";
 
 const NavbarBack = () => {
   return (
-    <Fragment className="navbar_back_container">
+    <div className="navbar_back_container">
       <div className="navbar navbar-transparent">
         <div className="navbar-bg"></div>
         <div className="left">
@@ -13,7 +13,7 @@ const NavbarBack = () => {
           </a>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
