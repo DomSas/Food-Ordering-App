@@ -1,5 +1,5 @@
 import "../css/ContactInfo.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { f7, List, ListInput, Page } from "framework7-react";
 import { LocationFill } from "framework7-icons/react";
 import FooterButtons from "../components/FooterButtons";
@@ -17,9 +17,8 @@ const ContactInfo = () => {
     setTable,
     userInfo,
     setUserInfo,
-    photo,
-    setPhoto,
   ] = useContext(AppContext);
+
   const [customerName, setCustomerName] = useState(
     userInfo ? userInfo.name : ""
   );
@@ -90,96 +89,94 @@ const ContactInfo = () => {
   };
 
   return (
-    <>
-      <Page name="contact">
-        <NavbarBack />
-        <div className="contact_container">
-          <h2 className="contact_title">
-            Where should we
-            <br /> deliver your order?
+    <Page name="contact">
+      <NavbarBack />
+      <div className="contact_container">
+        <h2 className="contact_title">
+          Where should we
+          <br /> deliver your order?
+        </h2>
+        <List inset>
+          <ListInput
+            type="text"
+            placeholder="Name"
+            required
+            validate
+            value={customerName || ""}
+            onChange={(e) => setCustomerName(e.target.value)}
+            onValidate={(isValid) => setNameValid(isValid)}
+          />
+          <ListInput
+            type="email"
+            placeholder="E-mail"
+            required
+            validate
+            value={customerEmail || ""}
+            onChange={(e) => setCustomerEmail(e.target.value)}
+            onValidate={(isValid) => setEmailValid(isValid)}
+          />
+          <ListInput
+            tyle="number"
+            placeholder="Phone Number"
+            required
+            validate
+            pattern="[0-9]*"
+            value={customerPhone || ""}
+            onChange={(e) => setCustomerPhone(e.target.value)}
+            onValidate={(isValid) => setPhoneValid(isValid)}
+          />
+        </List>
+
+        <div className="location_container">
+          <h2 className="location_title">
+            Share a location
+            <br />
           </h2>
-          <List inset>
-            <ListInput
-              type="text"
-              placeholder="Name"
-              required
-              validate
-              value={customerName || ""}
-              onChange={(e) => setCustomerName(e.target.value)}
-              onValidate={(isValid) => setNameValid(isValid)}
-            />
-            <ListInput
-              type="email"
-              placeholder="E-mail"
-              required
-              validate
-              value={customerEmail || ""}
-              onChange={(e) => setCustomerEmail(e.target.value)}
-              onValidate={(isValid) => setEmailValid(isValid)}
-            />
-            <ListInput
-              tyle="number"
-              placeholder="Phone Number"
-              required
-              validate
-              pattern="[0-9]*"
-              value={customerPhone || ""}
-              onChange={(e) => setCustomerPhone(e.target.value)}
-              onValidate={(isValid) => setPhoneValid(isValid)}
-            />
-          </List>
-
-          <div className="location_container">
-            <h2 className="location_title">
-              Share a location
-              <br />
-            </h2>
-            <div className="location_btn" onClick={getGPSPosition}>
-              <LocationFill style={{ fontSize: 38 }} />
-            </div>
-
-            <p className="location_info_paragraph">
-              Click the arrow to share your current location. This location will
-              be used as delivery address.
-            </p>
+          <div className="location_btn" onClick={getGPSPosition}>
+            <LocationFill style={{ fontSize: 38 }} />
           </div>
 
-          <FooterButtons
-            leftButton={{
-              label: "Back",
-              href: "/food/",
-              id: "secondaryButton",
-              className: "back",
-            }}
-            rightButton={{
-              label: "Next",
-              onClick: sendContactInfoToContext,
-              id:
-                customerName &&
-                customerPhone &&
-                customerEmail &&
-                customerCity &&
-                nameValid &&
-                emailValid &&
-                phoneValid
-                  ? "primaryButton"
-                  : "disabledPrimaryButton",
-
-              href:
-                customerName &&
-                customerPhone &&
-                customerEmail &&
-                customerCity &&
-                nameValid &&
-                emailValid &&
-                phoneValid
-                  ? "/payment/"
-                  : "",
-            }}
-          />
+          <p className="location_info_paragraph">
+            Click the arrow to share your current location. This location will
+            be used as delivery address.
+          </p>
         </div>
-      </Page>
-    </>
+
+        <FooterButtons
+          leftButton={{
+            label: "Back",
+            href: "/food/",
+            id: "secondaryButton",
+            className: "back",
+          }}
+          rightButton={{
+            label: "Next",
+            onClick: sendContactInfoToContext,
+            id:
+              customerName &&
+              customerPhone &&
+              customerEmail &&
+              customerCity &&
+              nameValid &&
+              emailValid &&
+              phoneValid
+                ? "primaryButton"
+                : "disabledPrimaryButton",
+
+            href:
+              customerName &&
+              customerPhone &&
+              customerEmail &&
+              customerCity &&
+              nameValid &&
+              emailValid &&
+              phoneValid
+                ? "/payment/"
+                : "",
+          }}
+        />
+      </div>
+    </Page>
   );
 };
 

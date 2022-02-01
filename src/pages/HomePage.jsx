@@ -9,8 +9,8 @@ const HomePage = () => {
     <Page name="home">
       <Settings></Settings>
       <Button fill sheetOpen=".settings-sheet">
-            Open Sheet
-          </Button>
+        Open Sheet
+      </Button>
       <div className="home_container">
         <div className="ramen-img">
           <img src="../static/icons/ramen.jpg" alt="ramen" />

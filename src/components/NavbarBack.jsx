@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../css/NavbarBack.css";
 
 const NavbarBack = () => {
   return (
-    <div className="navbar_back_container">
+    <Fragment className="navbar_back_container">
       <div className="navbar navbar-transparent">
         <div className="navbar-bg"></div>
         <div className="left">
@@ -13,7 +13,7 @@ const NavbarBack = () => {
           </a>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

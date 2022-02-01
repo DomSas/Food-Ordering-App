@@ -1,5 +1,5 @@
 import "../css/FooterButtons.css";
-import React from "react";
+import React, { Fragment } from "react";
 
 const FooterButtons = (props) => {
   const getClassName = (id) =>
@@ -7,7 +7,7 @@ const FooterButtons = (props) => {
     (id == "secondaryButton" ? "button-outline" : "button-fill");
 
   return (
-    <div className="buttons_container">
+    <Fragment className="buttons_container">
       <a
         {...props.leftButton}
         className={
@@ -24,7 +24,7 @@ const FooterButtons = (props) => {
       >
         {props.rightButton.label}
       </a>
-    </div>
+    </Fragment>
   );
 };
 

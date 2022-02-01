@@ -1,6 +1,6 @@
 import "../css/DateTimePage.css";
 import React, { useEffect, useState } from "react";
-import { f7, Input, List, ListInput, Page } from "framework7-react";
+import { f7, List, ListInput, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
 import { AppContext } from "../js/AppContext";
 import { useContext } from "react";
@@ -8,6 +8,7 @@ import { checkDateTime } from "../js/db";
 import NavbarBack from "../components/NavbarBack";
 
 const DateTimePage = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -18,21 +19,22 @@ const DateTimePage = () => {
     setTable,
     userInfo,
     setUserInfo,
-    photo,
-    setPhoto,
   ] = useContext(AppContext);
-  const today = new Date();
 
+  //Variable definition
+  let today = new Date();
+  let minutes = today.getMinutes();
+
+  //State variables definition
   const [selectedDate, setSelectedDate] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const [validTime, setValidTime] = useState(false);
-
   const [customerName, setCustomerName] = useState();
   const [customerEmail, setCustomerEmail] = useState();
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
 
-  let minutes = today.getMinutes();
+  //Round the time to o'clock function
   if (minutes < 30) {
     today.setMinutes = 30;
   } else if (minutes >= 30) {
@@ -40,6 +42,7 @@ const DateTimePage = () => {
     today.setHours = today.getHours + 1;
   }
 
+  //UseEffect for checking if the date and time are valid
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
       const dateSplit = selectedDate.split("/");
@@ -62,18 +65,21 @@ const DateTimePage = () => {
     }
   }, [validTime]);
 
+  //UseEffect for sending the contact info to the context when the email changes
   useEffect(() => {
     if (nameValid && emailValid) {
       sendContactInfoToContext();
     }
   }, [emailValid]);
 
+  //UseEffect for sending the contact info to the context when the name changes
   useEffect(() => {
     if (nameValid && emailValid) {
       sendContactInfoToContext();
     }
   }, [nameValid]);
 
+  //Function for sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
