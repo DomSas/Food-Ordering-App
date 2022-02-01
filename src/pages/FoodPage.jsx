@@ -13,8 +13,10 @@ import FooterButtons from "../components/FooterButtons";
 import NavbarBack from "../components/NavbarBack";
 
 const FoodPage = () => {
+  //Context variables definition
   const [cartItems, setCartItems, totalAmount] = useContext(AppContext);
 
+  //Function for adding items to the cart
   const addItemToCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {
       if (item.name == foodItem.name) {
@@ -25,6 +27,7 @@ const FoodPage = () => {
     setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
   };
 
+  //Function for removing items to the cart
   const removeItemFromCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {
       if (item.name == foodItem.name) {

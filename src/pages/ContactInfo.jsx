@@ -7,6 +7,7 @@ import NavbarBack from "../components/NavbarBack";
 import { AppContext } from "../js/AppContext";
 
 const ContactInfo = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -19,6 +20,7 @@ const ContactInfo = () => {
     setUserInfo,
   ] = useContext(AppContext);
 
+  //State variables definition
   const [customerName, setCustomerName] = useState(
     userInfo ? userInfo.name : ""
   );
@@ -36,6 +38,7 @@ const ContactInfo = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
 
+  //Function for sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
@@ -45,6 +48,7 @@ const ContactInfo = () => {
     });
   };
 
+  //Function for getting the GPS position using the cordova plugin
   const getGPSPosition = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -60,6 +64,7 @@ const ContactInfo = () => {
       }
     );
 
+    //Function for getting the city name from a given GPS coordinate
     const getCityFromGPSCoord = async (latitude, longitude) => {
       // Conversion to use the correct URL
       longitude = longitude.charAt(0) === "-" ? longitude : "+" + longitude;
