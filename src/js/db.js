@@ -175,8 +175,8 @@ const addReservation = async (
     contentType: "image/jpeg",
   };
 
-  console.log("photo")
-  console.log(photo)
+  console.log("photo");
+  console.log(photo);
 
   if (photo != undefined) {
     photoBD = true;
