@@ -106,6 +106,7 @@ const DateTimePage = () => {
             id="dateInput"
             validate
             required
+            //value={ date_time ? new Date(date_time.date) : new Date() }
             calendarParams={{ minDate: today }}
             onInputNotEmpty={(e) => setSelectedDate(e.target.value)}
           />
@@ -118,6 +119,7 @@ const DateTimePage = () => {
             required
             min="11:00"
             max="22:30"
+            value={ date_time ? date_time.time : '11:00' }
             placeholder="Select your time"
             validate
             onInputNotEmpty={(e) => setSelectedTime(e.target.value)}
@@ -134,7 +136,7 @@ const DateTimePage = () => {
             placeholder="Name"
             required
             validate
-            value={customerName || ""}
+            value={userInfo ? userInfo.name : ""}
             onChange={(e) => setCustomerName(e.target.value)}
             onValidate={(isValid) => setNameValid(isValid)}
           />
@@ -143,7 +145,7 @@ const DateTimePage = () => {
             placeholder="E-mail"
             required
             validate
-            value={customerEmail || ""}
+            value={userInfo ? userInfo.email : ""}
             onChange={(e) => setCustomerEmail(e.target.value)}
             onValidate={(isValid) => setEmailValid(isValid)}
           />

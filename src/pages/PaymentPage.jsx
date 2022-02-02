@@ -73,7 +73,7 @@ const PaymentPage = () => {
     if (response.status === "success") {
       submitOrderToDB();
       f7.dialog.alert("Click OK to continue!", "Payment sucessfull", () => {
-        f7.views[0].router.navigate("/summary");
+        f7.views.current.router.navigate("/summary");
       });
     } else {
       f7.dialog.alert("Try it again!", "Payment unsucessfull");
