@@ -63,7 +63,8 @@ const OrderSummary = () => {
           className="aboutButton col button button-fill button-round"
           onClick={() => {
             // Whole app will reload - context will be cleared
-            window.location.replace("/");
+            //document.location.href="/";
+            window.location.replace("/"); //check how it works
           }}
         >
           <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />

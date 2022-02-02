@@ -43,7 +43,7 @@ const Settings = () => {
           <Toggle
             onChange={cameraChange}
             checked={{ checkCameraAccess }}
-            color="green"
+            color="gray"
           ></Toggle>
         </ListItem>
         <ListItem>
@@ -51,7 +51,7 @@ const Settings = () => {
           <Toggle
             onChange={locationChange}
             checked={{ checkLocationAccess }}
-            color="green"
+            color="gray"
           ></Toggle>
         </ListItem>
       </List>
