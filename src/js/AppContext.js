@@ -9,7 +9,7 @@ export const AppProvider = (props) => {
   const [table, setTable] = useState(); //Table selected
   const [photo, setPhoto] = useState(); //Photo
   const [userInfo, setUserInfo] = useState(); //User info
-  const [orderNumber, setOrderNumber] = useState();
+  const [orderNumber, setOrderNumber] = useState(); //Order number
 
   useEffect(() => {
     setCartItems(createMenuDict());
