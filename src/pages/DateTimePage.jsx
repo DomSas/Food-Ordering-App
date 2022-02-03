@@ -42,6 +42,14 @@ const DateTimePage = () => {
     today.setHours = today.getHours + 1;
   }
 
+  //Set the userInfo from context if necessary
+  if (userInfo) {
+    if (userInfo.name != customerName) {
+      setCustomerName(userInfo.name);
+      setCustomerEmail(userInfo.email);
+    }
+  }
+
   //UseEffect for checking if the date and time are valid
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
@@ -137,8 +145,7 @@ const DateTimePage = () => {
             placeholder="Name"
             required
             validate
-            //value={userInfo ? userInfo.name : ""}
-            //SET THE VALUE IF DEFINED - NEEDS TO BE DONE
+            value={customerName ? customerName : ""}
             onChange={(e) => setCustomerName(e.target.value)}
             onValidate={(isValid) => setNameValid(isValid)}
           />
@@ -147,8 +154,7 @@ const DateTimePage = () => {
             placeholder="E-mail"
             required
             validate
-            //value={userInfo ? userInfo.email : ""}
-            //SET THE VALUE IF DEFINED - NEEDS TO BE DONE
+            value={customerEmail ? customerEmail : ""}
             onChange={(e) => setCustomerEmail(e.target.value)}
             onValidate={(isValid) => setEmailValid(isValid)}
           />
