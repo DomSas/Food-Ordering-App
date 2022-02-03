@@ -52,7 +52,7 @@ const TablePickerPage = () => {
   }
 
   //Photo took successfully
-  async function onSuccess(imageURI) {
+  function onSuccess(imageURI) {
     setPhoto(imageURI);
   }
   //Error while taking the photo

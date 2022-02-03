@@ -7,10 +7,13 @@ import {
   AccordionContent,
   ListItem,
   Stepper,
+  Button,
 } from "framework7-react";
 import { AppContext } from "../js/AppContext";
 import FooterButtons from "../components/FooterButtons";
 import NavbarBack from "../components/NavbarBack";
+import Settings from "../components/Settings";
+import Gear from "framework7-icons/react/cjs/Gear";
 
 const FoodPage = () => {
   //Context variables definition
@@ -41,6 +44,7 @@ const FoodPage = () => {
   return (
     <Page name="food">
       <NavbarBack />
+
       <div className="food_container">
         <h2 className="food_title">
           What would you like
