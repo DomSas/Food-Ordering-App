@@ -49,6 +49,7 @@ const TablePickerPage = () => {
 
   async function onSuccess(imageURI) {
     setPhoto(imageURI);
+    console.log("ab")
   }
 
   function onFail(message) {

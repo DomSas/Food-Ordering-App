@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "../css/OrderSummary.css";
-import { Page } from "framework7-react";
+import { f7, Link, Page } from "framework7-react";
 import { AppContext } from "../js/AppContext";
 import { HouseFill } from "framework7-icons/react";
 
@@ -57,11 +57,31 @@ const OrderSummary = () => {
           We are glad that you <br />
           chose Pab-Dom!
         </h2>
+        <Link
+          reloadAll="true"
+          text="Home"
+          color="red"
+          href="/"
+          preventRouter="true"
+        ></Link>
+
         <a
+          // href="/"
+          // data-animate="false"
+          // data-reload-all="true"
           className="aboutButton col button button-fill button-round"
           onClick={() => {
             // Whole app will reload - context will be cleared
-            window.location.replace("/");
+            // setTimeout(() => { f7.views.main.router.refreshPage() }, 1000)
+            // f7.views.current.router.refreshPage();
+            // f7.views.current.router.navigate("/", {
+            //   reloadAll: true,
+            //   browserHistory: false,
+            //   ignoreCache: true,
+            // });
+
+            f7.views.main.router.refreshPage();
+            // window.location.replace("/");
           }}
         >
           <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
