@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from "firebase/firestore/lite";
 
-import { getStorage, uploadString } from "firebase/storage";
+import { getStorage, ref, uploadString } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",

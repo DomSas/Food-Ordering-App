@@ -42,7 +42,6 @@ const TablePickerPage = () => {
 
   function takePhoto() {
     navigator.camera.getPicture(onSuccess, onFail, {
-      quality: 100,
       destinationType: 0,
     });
   }
