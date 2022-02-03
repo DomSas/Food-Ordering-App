@@ -174,6 +174,7 @@ const addReservation = async (
 
   addCustomerInfo(userInfo);
 
+  const currentDate = new Date().toString().split(" ").splice(1, 3).join(" ");
   let photoBD;
 
   const metadata = {
@@ -192,7 +193,7 @@ const addReservation = async (
     photoBD = false;
   }
 
-  setDoc(doc(db, "orders", orderNumber.toString()), {
+  setDoc(doc(db, "orders", currentDate + " " + orderNumber.toString()), {
     food: food,
     user: userInfo.email,
     photo: photoBD,
