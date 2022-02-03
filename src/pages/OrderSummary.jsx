@@ -3,6 +3,7 @@ import "../css/OrderSummary.css";
 import { f7, Link, Page } from "framework7-react";
 import { AppContext } from "../js/AppContext";
 import { HouseFill } from "framework7-icons/react";
+import createMenuDict from "../js/db";
 
 const OrderSummary = () => {
   const [
@@ -23,6 +24,17 @@ const OrderSummary = () => {
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);
+
+  const clearContext = () => {
+    setUserInfo({});
+    setCartItems(createMenuDict());
+
+    f7.views.current.router.navigate("/", {
+      reloadAll: true,
+      browserHistory: false,
+      ignoreCache: true,
+    });
+  };
 
   return (
     <Page name="order-summary">
@@ -57,32 +69,10 @@ const OrderSummary = () => {
           We are glad that you <br />
           chose Pab-Dom!
         </h2>
-        <Link
-          reloadAll="true"
-          text="Home"
-          color="red"
-          href="/"
-          preventRouter="true"
-        ></Link>
 
         <a
-          // href="/"
-          // data-animate="false"
-          // data-reload-all="true"
           className="aboutButton col button button-fill button-round"
-          onClick={() => {
-            // Whole app will reload - context will be cleared
-            // setTimeout(() => { f7.views.main.router.refreshPage() }, 1000)
-            // f7.views.current.router.refreshPage();
-            // f7.views.current.router.navigate("/", {
-            //   reloadAll: true,
-            //   browserHistory: false,
-            //   ignoreCache: true,
-            // });
-
-            f7.views.main.router.refreshPage();
-            // window.location.replace("/");
-          }}
+          onClick={clearContext}
         >
           <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
           Back to Home

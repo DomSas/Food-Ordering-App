@@ -23,10 +23,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
-const starter = [];
-const main = [];
-const dessert = [];
-const beverage = [];
+let starter = [];
+let main = [];
+let dessert = [];
+let beverage = [];
 
 async function getMenu(db) {
   const menuCol = collection(db, "menu");
@@ -36,6 +36,11 @@ async function getMenu(db) {
 }
 
 const getDatabase = () => {
+  starter = [];
+  main = [];
+  dessert = [];
+  beverage = [];
+
   getMenu(db).then((menu) => {
     menu.map((m) => {
       switch (m.category) {

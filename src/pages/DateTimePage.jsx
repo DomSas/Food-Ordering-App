@@ -122,7 +122,7 @@ const DateTimePage = () => {
           Please tell us your
           <br /> name and email
         </h2>
-        <List inset>
+        <List inset className="user_info_list">
           <ListInput
             type="text"
             placeholder="Name"

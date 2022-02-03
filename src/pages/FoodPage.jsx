@@ -103,7 +103,7 @@ const FoodPage = () => {
             }}
             rightButton={{
               label: "Delivery",
-              href: totalAmount ? "/summary" : "",
+              href: totalAmount ? "/delivery" : "",
               id: totalAmount ? "secondaryButton" : "disabledSecondaryButton",
             }}
           />

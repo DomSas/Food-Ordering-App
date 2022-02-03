@@ -49,7 +49,6 @@ const TablePickerPage = () => {
 
   async function onSuccess(imageURI) {
     setPhoto(imageURI);
-    console.log("ab")
   }
 
   function onFail(message) {
@@ -149,7 +148,7 @@ const TablePickerPage = () => {
         <Camera
           onClick={takePhoto}
           className="center"
-          style={{ fontSize: 50 }}
+          style={{ fontSize: 50, marginBottom: "120px" }}
         />
 
         <FooterButtons
