@@ -7,6 +7,7 @@ import NavbarBack from "../components/NavbarBack";
 import { AppContext } from "../js/AppContext";
 
 const ContactInfo = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -17,9 +18,9 @@ const ContactInfo = () => {
     setTable,
     userInfo,
     setUserInfo,
-    photo,
-    setPhoto,
   ] = useContext(AppContext);
+
+  //State variables definition
   const [customerName, setCustomerName] = useState(
     userInfo ? userInfo.name : ""
   );
@@ -37,6 +38,7 @@ const ContactInfo = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
 
+  //Function for sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
@@ -46,6 +48,7 @@ const ContactInfo = () => {
     });
   };
 
+  //Function for getting the GPS position using the cordova plugin
   const getGPSPosition = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -61,6 +64,7 @@ const ContactInfo = () => {
       }
     );
 
+    //Function for getting the city name from a given GPS coordinate
     const getCityFromGPSCoord = async (latitude, longitude) => {
       // Conversion to use the correct URL
       longitude = longitude.charAt(0) === "-" ? longitude : "+" + longitude;
@@ -90,96 +94,94 @@ const ContactInfo = () => {
   };
 
   return (
-    <>
-      <Page name="contact">
-        <NavbarBack />
-        <div className="contact_container">
-          <h2 className="contact_title">
-            Where should we
-            <br /> deliver your order?
+    <Page name="contact">
+      <NavbarBack />
+      <div className="contact_container">
+        <h2 className="contact_title">
+          Where should we
+          <br /> deliver your order?
+        </h2>
+        <List inset>
+          <ListInput
+            type="text"
+            placeholder="Name"
+            required
+            validate
+            value={customerName || ""}
+            onChange={(e) => setCustomerName(e.target.value)}
+            onValidate={(isValid) => setNameValid(isValid)}
+          />
+          <ListInput
+            type="email"
+            placeholder="E-mail"
+            required
+            validate
+            value={customerEmail || ""}
+            onChange={(e) => setCustomerEmail(e.target.value)}
+            onValidate={(isValid) => setEmailValid(isValid)}
+          />
+          <ListInput
+            tyle="number"
+            placeholder="Phone Number"
+            required
+            validate
+            pattern="[0-9]*"
+            value={customerPhone || ""}
+            onChange={(e) => setCustomerPhone(e.target.value)}
+            onValidate={(isValid) => setPhoneValid(isValid)}
+          />
+        </List>
+
+        <div className="location_container">
+          <h2 className="location_title">
+            Share a location
+            <br />
           </h2>
-          <List inset>
-            <ListInput
-              type="text"
-              placeholder="Name"
-              required
-              validate
-              value={customerName || ""}
-              onChange={(e) => setCustomerName(e.target.value)}
-              onValidate={(isValid) => setNameValid(isValid)}
-            />
-            <ListInput
-              type="email"
-              placeholder="E-mail"
-              required
-              validate
-              value={customerEmail || ""}
-              onChange={(e) => setCustomerEmail(e.target.value)}
-              onValidate={(isValid) => setEmailValid(isValid)}
-            />
-            <ListInput
-              tyle="number"
-              placeholder="Phone Number"
-              required
-              validate
-              pattern="[0-9]*"
-              value={customerPhone || ""}
-              onChange={(e) => setCustomerPhone(e.target.value)}
-              onValidate={(isValid) => setPhoneValid(isValid)}
-            />
-          </List>
-
-          <div className="location_container">
-            <h2 className="location_title">
-              Share a location
-              <br />
-            </h2>
-            <div className="location_btn" onClick={getGPSPosition}>
-              <LocationFill style={{ fontSize: 38 }} />
-            </div>
-
-            <p className="location_info_paragraph">
-              Click the arrow to share your current location. This location will
-              be used as delivery address.
-            </p>
+          <div className="location_btn" onClick={getGPSPosition}>
+            <LocationFill style={{ fontSize: 38 }} />
           </div>
 
-          <FooterButtons
-            leftButton={{
-              label: "Back",
-              href: "/food/",
-              id: "secondaryButton",
-              className: "back",
-            }}
-            rightButton={{
-              label: "Next",
-              onClick: sendContactInfoToContext,
-              id:
-                customerName &&
-                customerPhone &&
-                customerEmail &&
-                customerCity &&
-                nameValid &&
-                emailValid &&
-                phoneValid
-                  ? "primaryButton"
-                  : "disabledPrimaryButton",
-
-              href:
-                customerName &&
-                customerPhone &&
-                customerEmail &&
-                customerCity &&
-                nameValid &&
-                emailValid &&
-                phoneValid
-                  ? "/payment/"
-                  : "",
-            }}
-          />
+          <p className="location_info_paragraph">
+            Click the arrow to share your current location. This location will
+            be used as delivery address.
+          </p>
         </div>
-      </Page>
-    </>
+
+        <FooterButtons
+          leftButton={{
+            label: "Back",
+            href: "/food/",
+            id: "secondaryButton",
+            className: "back",
+          }}
+          rightButton={{
+            label: "Next",
+            onClick: sendContactInfoToContext,
+            id:
+              customerName &&
+              customerPhone &&
+              customerEmail &&
+              customerCity &&
+              nameValid &&
+              emailValid &&
+              phoneValid
+                ? "primaryButton"
+                : "disabledPrimaryButton",
+
+            href:
+              customerName &&
+              customerPhone &&
+              customerEmail &&
+              customerCity &&
+              nameValid &&
+              emailValid &&
+              phoneValid
+                ? "/payment/"
+                : "",
+          }}
+        />
+      </div>
+    </Page>
   );
 };
 

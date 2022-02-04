@@ -5,6 +5,7 @@ import { AppContext } from "../js/AppContext";
 import { HouseFill } from "framework7-icons/react";
 
 const OrderSummary = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -20,6 +21,7 @@ const OrderSummary = () => {
     orderNumber,
   ] = useContext(AppContext);
 
+  //Map and filter of ordered items
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);
@@ -61,7 +63,8 @@ const OrderSummary = () => {
           className="aboutButton col button button-fill button-round"
           onClick={() => {
             // Whole app will reload - context will be cleared
-            window.location.replace("/");
+            //document.location.href="/";
+            window.location.replace("/"); //check how it works
           }}
         >
           <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />

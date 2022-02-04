@@ -1,5 +1,8 @@
-import React from "react";
+import Gear from "framework7-icons/react/cjs/Gear";
+import { Button } from "framework7-react";
+import React, { Fragment } from "react";
 import "../css/NavbarBack.css";
+import Settings from "./Settings";
 
 const NavbarBack = () => {
   return (
@@ -13,6 +16,10 @@ const NavbarBack = () => {
           </a>
         </div>
       </div>
+      <Settings></Settings>
+      <Button className="buttonSettings" sheetOpen=".settings-sheet">
+        <Gear></Gear>
+      </Button>
     </div>
   );
 };

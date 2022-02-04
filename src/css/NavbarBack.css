@@ -6,3 +6,12 @@
 .navbar_back_container span {
   color: #591303;
 }
+
+.buttonSettings {
+  width: fit-content;
+  float: right;
+  position: relative;
+  color: black;
+  font-size: xx-large;
+  top: 0;
+}

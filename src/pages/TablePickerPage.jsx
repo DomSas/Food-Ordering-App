@@ -1,16 +1,15 @@
 import "../css/TablePicker.css";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Page } from "framework7-react";
+import { Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
 import Table from "../components/table";
 import { Camera } from "framework7-icons/react";
-import { storage } from "../js/db";
-import { ref, uploadString } from "firebase/storage";
 import { getTableAvailability } from "../js/db";
 import { AppContext } from "../js/AppContext";
 import NavbarBack from "../components/NavbarBack";
 
 const TablePickerPage = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -25,21 +24,33 @@ const TablePickerPage = () => {
     setPhoto,
   ] = useContext(AppContext);
 
+  //State variables definition
   const [tablesAvailable, setTablesAvailable] = useState([]);
   const [selectedTable, setSelectedTable] = useState();
 
+  //Table set if needed
+  if (table) {
+    if (table != selectedTable) {
+      setSelectedTable(table);
+    }
+  }
+
+  //UseEffect for rendering anytime the tables available change
   useEffect(() => {}, [tablesAvailable]);
 
+  //UseEffect for selecting a table
   useEffect(() => {
     setTable(selectedTable);
   }, [selectedTable]);
 
+  //UseEffect for getting and setting the tables available
   useEffect(() => {
     getTableAvailability(date_time).then((tables) => {
       setTablesAvailable(tables);
     });
   }, []);
 
+  //Function for taking the photo
   function takePhoto() {
     navigator.camera.getPicture(onSuccess, onFail, {
       quality: 100,
@@ -47,10 +58,11 @@ const TablePickerPage = () => {
     });
   }
 
-  async function onSuccess(imageURI) {
+  //Photo took successfully
+  function onSuccess(imageURI) {
     setPhoto(imageURI);
   }
-
+  //Error while taking the photo
   function onFail(message) {
     alert("Failed because: " + message);
   }

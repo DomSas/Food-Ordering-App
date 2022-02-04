@@ -1,6 +1,6 @@
 import "../css/DateTimePage.css";
 import React, { useEffect, useState } from "react";
-import { f7, Input, List, ListInput, Page } from "framework7-react";
+import { f7, List, ListInput, Page } from "framework7-react";
 import FooterButtons from "../components/FooterButtons";
 import { AppContext } from "../js/AppContext";
 import { useContext } from "react";
@@ -8,6 +8,7 @@ import { checkDateTime } from "../js/db";
 import NavbarBack from "../components/NavbarBack";
 
 const DateTimePage = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -18,21 +19,22 @@ const DateTimePage = () => {
     setTable,
     userInfo,
     setUserInfo,
-    photo,
-    setPhoto,
   ] = useContext(AppContext);
-  const today = new Date();
 
+  //Variable definition
+  let today = new Date();
+  let minutes = today.getMinutes();
+
+  //State variables definition
   const [selectedDate, setSelectedDate] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const [validTime, setValidTime] = useState(false);
-
   const [customerName, setCustomerName] = useState();
   const [customerEmail, setCustomerEmail] = useState();
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
 
-  let minutes = today.getMinutes();
+  //Round the time to o'clock function
   if (minutes < 30) {
     today.setMinutes = 30;
   } else if (minutes >= 30) {
@@ -40,13 +42,40 @@ const DateTimePage = () => {
     today.setHours = today.getHours + 1;
   }
 
+  //Set the userInfo from context if necessary
+  if (userInfo) {
+    if (userInfo.name != customerName) {
+      setCustomerName(userInfo.name);
+      setCustomerEmail(userInfo.email);
+    }
+  }
+
+  //Set the date_time from context if necessary
+  if (!(Object.keys(date_time).length === 0)) {
+    if (
+      new Date(date_time.date).toLocaleDateString("es-ES", {
+        month: "2-digit",
+        year: "numeric",
+        day: "2-digit",
+      }) != selectedDate
+    ) {
+      setSelectedDate(
+        new Date(date_time.date).toLocaleDateString("es-ES", {
+          month: "2-digit",
+          year: "numeric",
+          day: "2-digit",
+        })
+      );
+    }
+    if (date_time.time != selectedTime) {
+      setSelectedTime(date_time.time);
+    }
+  }
+
+  //UseEffect for checking if the date and time are valid
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
-      const dateSplit = selectedDate.split("/");
-      const date = new Date(
-        dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
-      ).toDateString();
-      setSelectedDate(date);
+      const date = new Date(split(selectedDate)).toDateString();
       checkDateTime(date, selectedTime).then((result) => {
         if (result) {
           setDateTime({ date: date, time: selectedTime });
@@ -62,18 +91,21 @@ const DateTimePage = () => {
     }
   }, [validTime]);
 
+  //UseEffect for sending the contact info to the context when the email changes
   useEffect(() => {
     if (nameValid && emailValid) {
       sendContactInfoToContext();
     }
   }, [emailValid]);
 
+  //UseEffect for sending the contact info to the context when the name changes
   useEffect(() => {
     if (nameValid && emailValid) {
       sendContactInfoToContext();
     }
   }, [nameValid]);
 
+  //Function for sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
@@ -81,6 +113,11 @@ const DateTimePage = () => {
       phone: "",
       location: "",
     });
+  };
+
+  const split = (date) => {
+    let dateSplit = date.split("/");
+    return dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2];
   };
 
   return (
@@ -100,8 +137,16 @@ const DateTimePage = () => {
             id="dateInput"
             validate
             required
+            value={selectedDate ? [new Date(split(selectedDate))] : []}
             calendarParams={{ minDate: today }}
-            onInputNotEmpty={(e) => setSelectedDate(e.target.value)}
+            onInputNotEmpty={(e) => {
+              if (
+                selectedDate === undefined ||
+                (selectedDate != undefined && e.target.value != selectedDate)
+              ) {
+                setSelectedDate(e.target.value);
+              }
+            }}
           />
           <ListInput
             className="input_datetime"
@@ -112,9 +157,10 @@ const DateTimePage = () => {
             required
             min="11:00"
             max="22:30"
+            value={selectedTime ? selectedTime : "11:00"}
             placeholder="Select your time"
             validate
-            onInputNotEmpty={(e) => setSelectedTime(e.target.value)}
+            onInput={(e) => setSelectedTime(e.target.value)}
             onValidate={(isValid) => setValidTime(isValid)}
           />
         </List>
@@ -128,7 +174,7 @@ const DateTimePage = () => {
             placeholder="Name"
             required
             validate
-            value={customerName || ""}
+            value={customerName ? customerName : ""}
             onChange={(e) => setCustomerName(e.target.value)}
             onValidate={(isValid) => setNameValid(isValid)}
           />
@@ -137,7 +183,7 @@ const DateTimePage = () => {
             placeholder="E-mail"
             required
             validate
-            value={customerEmail || ""}
+            value={customerEmail ? customerEmail : ""}
             onChange={(e) => setCustomerEmail(e.target.value)}
             onValidate={(isValid) => setEmailValid(isValid)}
           />
