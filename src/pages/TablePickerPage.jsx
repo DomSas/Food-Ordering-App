@@ -28,6 +28,13 @@ const TablePickerPage = () => {
   const [tablesAvailable, setTablesAvailable] = useState([]);
   const [selectedTable, setSelectedTable] = useState();
 
+  //Table set if needed
+  if (table) {
+    if (table != selectedTable) {
+      setSelectedTable(table);
+    }
+  }
+
   //UseEffect for rendering anytime the tables available change
   useEffect(() => {}, [tablesAvailable]);
 

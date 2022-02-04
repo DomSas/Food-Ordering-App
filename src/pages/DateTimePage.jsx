@@ -50,27 +50,38 @@ const DateTimePage = () => {
     }
   }
 
+  //Set the date_time from context if necessary
+  if (!Object.keys(date_time).length === 0) {
+    console.log("date_time")
+    console.log(date_time)
+    console.log("selectedDate")
+    console.log(selectedDate)
+    if (date_time.date != selectedDate) {
+      setSelectedDate(date_time.date);
+    }
+    if (date_time.time != selectedTime) {
+      setSelectedTime(date_time.time);
+    }
+  }
+
   //UseEffect for checking if the date and time are valid
   useEffect(() => {
-    if (selectedDate && selectedTime && validTime) {
-      const dateSplit = selectedDate.split("/");
-      const date = new Date(
-        dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
-      ).toDateString();
-      setSelectedDate(date);
-      checkDateTime(date, selectedTime).then((result) => {
-        if (result) {
-          setDateTime({ date: date, time: selectedTime });
-        } else {
-          let toastCenter = f7.toast.create({
-            text: "Sorry! There are not empty tables in selected date and time. Please choose another one.",
-            closeTimeout: 3000,
+      if (selectedDate && selectedTime && validTime) {
+        
+          setSelectedDate(date);
+          checkDateTime(date, selectedTime).then((result) => {
+            if (result) {
+              setDateTime({ date: date, time: selectedTime });
+            } else {
+              let toastCenter = f7.toast.create({
+                text: "Sorry! There are not empty tables in selected date and time. Please choose another one.",
+                closeTimeout: 3000,
+              });
+              toastCenter.open();
+              setValidTime(false);
+            }
           });
-          toastCenter.open();
-          setValidTime(false);
         }
-      });
-    }
   }, [validTime]);
 
   //UseEffect for sending the contact info to the context when the email changes
@@ -114,8 +125,7 @@ const DateTimePage = () => {
             id="dateInput"
             validate
             required
-            //value={ date_time ? new Date(date_time.date) : new Date() }
-            //SET THE VALID IF DEFINED - NEEDS TO BE DONE
+            value={ selectedDate ? [selectedDate] : [today] }
             calendarParams={{ minDate: today }}
             onInputNotEmpty={(e) => setSelectedDate(e.target.value)}
           />
@@ -128,7 +138,7 @@ const DateTimePage = () => {
             required
             min="11:00"
             max="22:30"
-            value={date_time ? date_time.time : "11:00"}
+            value={selectedTime ? selectedTime : "11:00"}
             placeholder="Select your time"
             validate
             onInputNotEmpty={(e) => setSelectedTime(e.target.value)}
