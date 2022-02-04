@@ -67,7 +67,10 @@ const DateTimePage = () => {
   //UseEffect for checking if the date and time are valid
   useEffect(() => {
       if (selectedDate && selectedTime && validTime) {
-        
+        const dateSplit = selectedDate.split("/");
+        const date = new Date(
+          dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2]
+          ).toDateString();
           setSelectedDate(date);
           checkDateTime(date, selectedTime).then((result) => {
             if (result) {
