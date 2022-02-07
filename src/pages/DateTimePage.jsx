@@ -29,8 +29,12 @@ const DateTimePage = () => {
   const [selectedDate, setSelectedDate] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const [validTime, setValidTime] = useState(false);
-  const [customerName, setCustomerName] = useState();
-  const [customerEmail, setCustomerEmail] = useState();
+  const [customerName, setCustomerName] = useState(
+    userInfo ? userInfo.name : ""
+  );
+  const [customerEmail, setCustomerEmail] = useState(
+    userInfo ? userInfo.email : ""
+  );
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
 
@@ -174,7 +178,7 @@ const DateTimePage = () => {
             placeholder="Name"
             required
             validate
-            value={customerName ? customerName : ""}
+            value={customerName || ""}
             onChange={(e) => setCustomerName(e.target.value)}
             onValidate={(isValid) => setNameValid(isValid)}
           />
@@ -183,7 +187,7 @@ const DateTimePage = () => {
             placeholder="E-mail"
             required
             validate
-            value={customerEmail ? customerEmail : ""}
+            value={customerEmail || ""}
             onChange={(e) => setCustomerEmail(e.target.value)}
             onValidate={(isValid) => setEmailValid(isValid)}
           />
