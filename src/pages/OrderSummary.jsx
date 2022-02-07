@@ -30,7 +30,7 @@ const OrderSummary = () => {
   const clearContext = () => {
     setUserInfo({});
     setCartItems(createMenuDict());
-    setDateTime({})
+    setDateTime({});
 
     f7.views.current.router.navigate("/", {
       reloadAll: true,
