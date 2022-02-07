@@ -6,9 +6,9 @@ import { HouseFill } from 'framework7-icons/react';
 
 const AboutUsPage = () => {
   return (
-    <Page name="about-us">
+    <Page name='about-us'>
       <NavbarBack />
-      <p className="about">
+      <p className='about'>
         <span>
           <strong>About:</strong>
         </span>
@@ -22,7 +22,7 @@ const AboutUsPage = () => {
           customers.
         </span>
 
-        <span className="second">
+        <span className='second'>
           <strong>Contact - Main Branch:</strong>
         </span>
         <span>
@@ -32,20 +32,20 @@ const AboutUsPage = () => {
           <br />
           75009 Paris, France
         </span>
-        <span className="second">
+        <span className='second'>
           <strong>Opening hours:</strong>
         </span>
         <span>11:00 - 23:00 - Every day</span>
 
-        <span className="bottom">
+        <span className='bottom'>
           Created by Asial Corporation
           <br />
           App Version: 1.0.0
         </span>
       </p>
       <a
-        href="/"
-        className="about_button col button button-fill button-round back"
+        href='/'
+        className='about_button col button button-fill button-round back'
       >
         <HouseFill style={{ margin: '0 10px 2px 0', fontSize: '17px' }} />
         Back to Home

@@ -125,20 +125,20 @@ const DateTimePage = () => {
   };
 
   return (
-    <Page name="date-time">
+    <Page name='date-time'>
       <NavbarBack />
-      <div className="date_time_container">
-        <h2 className="date_time_title">
+      <div className='date_time_container'>
+        <h2 className='date_time_title'>
           When would you like
           <br /> to come?
         </h2>
         <List inset>
           <ListInput
-            className="input_datetime"
-            label="Select your date"
-            type="datepicker"
-            placeholder="Select your date"
-            id="dateInput"
+            className='input_datetime'
+            label='Select your date'
+            type='datepicker'
+            placeholder='Select your date'
+            id='dateInput'
             validate
             required
             //  value={selectedDate ? [new Date(split(selectedDate))] : []}
@@ -153,29 +153,29 @@ const DateTimePage = () => {
             }}
           />
           <ListInput
-            className="input_datetime"
-            label="Select your time"
-            type="time"
-            step="3600"
-            id="timeInput"
+            className='input_datetime'
+            label='Select your time'
+            type='time'
+            step='3600'
+            id='timeInput'
             required
-            min="11:00"
-            max="22:30"
+            min='11:00'
+            max='22:30'
             value={selectedTime || ''}
-            placeholder="Select your time"
+            placeholder='Select your time'
             validate
             onInput={(e) => setSelectedTime(e.target.value)}
             onValidate={(isValid) => setValidTime(isValid)}
           />
         </List>
-        <h2 className="contact_title">
+        <h2 className='contact_title'>
           Please tell us your
           <br /> name and email
         </h2>
-        <List inset className="user_info_list">
+        <List inset className='user_info_list'>
           <ListInput
-            type="text"
-            placeholder="Name"
+            type='text'
+            placeholder='Name'
             required
             validate
             value={customerName || ''}
@@ -183,8 +183,8 @@ const DateTimePage = () => {
             onValidate={(isValid) => setNameValid(isValid)}
           />
           <ListInput
-            type="email"
-            placeholder="E-mail"
+            type='email'
+            placeholder='E-mail'
             required
             validate
             value={customerEmail || ''}

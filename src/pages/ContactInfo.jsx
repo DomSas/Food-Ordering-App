@@ -94,17 +94,17 @@ const ContactInfo = () => {
   };
 
   return (
-    <Page name="contact">
+    <Page name='contact'>
       <NavbarBack />
-      <div className="contact_container">
-        <h2 className="contact_title">
+      <div className='contact_container'>
+        <h2 className='contact_title'>
           Where should we
           <br /> deliver your order?
         </h2>
         <List inset>
           <ListInput
-            type="text"
-            placeholder="Name"
+            type='text'
+            placeholder='Name'
             required
             validate
             value={customerName || ''}
@@ -112,8 +112,8 @@ const ContactInfo = () => {
             onValidate={(isValid) => setNameValid(isValid)}
           />
           <ListInput
-            type="email"
-            placeholder="E-mail"
+            type='email'
+            placeholder='E-mail'
             required
             validate
             value={customerEmail || ''}
@@ -121,27 +121,27 @@ const ContactInfo = () => {
             onValidate={(isValid) => setEmailValid(isValid)}
           />
           <ListInput
-            tyle="number"
-            placeholder="Phone Number"
+            tyle='number'
+            placeholder='Phone Number'
             required
             validate
-            pattern="[0-9]*"
+            pattern='[0-9]*'
             value={customerPhone || ''}
             onChange={(e) => setCustomerPhone(e.target.value)}
             onValidate={(isValid) => setPhoneValid(isValid)}
           />
         </List>
 
-        <div className="location_container">
-          <h2 className="location_title">
+        <div className='location_container'>
+          <h2 className='location_title'>
             Share a location
             <br />
           </h2>
-          <div className="location_btn" onClick={getGPSPosition}>
+          <div className='location_btn' onClick={getGPSPosition}>
             <LocationFill style={{ fontSize: 38 }} />
           </div>
 
-          <p className="location_info_paragraph">
+          <p className='location_info_paragraph'>
             Click the arrow to share your current location. This location will
             be used as delivery address.
           </p>

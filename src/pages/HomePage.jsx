@@ -7,18 +7,18 @@ import { Gear } from 'framework7-icons/react';
 
 const HomePage = () => {
   return (
-    <Page name="home">
-      <div className="home_container">
-        <div className="ramen-img">
-          <img src="static/icons/ramen.jpg" alt="ramen" />
+    <Page name='home'>
+      <div className='home_container'>
+        <div className='ramen-img'>
+          <img src='static/icons/ramen.jpg' alt='ramen' />
         </div>
-        <div className="header">
+        <div className='header'>
           <h1>
             Welcome to <br />
             Pab-Dom
           </h1>
-          <div className="logo-img">
-            <img src="static/icons/logo_ramen.png" alt="logo_ramen" />
+          <div className='logo-img'>
+            <img src='static/icons/logo_ramen.png' alt='logo_ramen' />
           </div>
           <p>Explore the taste of Japan with us</p>
         </div>
