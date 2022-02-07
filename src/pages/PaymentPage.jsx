@@ -77,27 +77,27 @@ const PaymentPage = () => {
   };
 
   return (
-    <Page name="payment">
+    <Page name='payment'>
       <NavbarBack />
-      <div className="payment_container">
-        <h2 className="payment_title">Ordered items</h2>
-        <div className="order_table">
-          <div className="data-table card">
+      <div className='payment_container'>
+        <h2 className='payment_title'>Ordered items</h2>
+        <div className='order_table'>
+          <div className='data-table card'>
             <table>
               <thead>
                 <tr>
-                  <th className="label-cell">Ordered Items</th>
-                  <th className="numeric-cell">Amount</th>
-                  <th className="numeric-cell">Price</th>
+                  <th className='label-cell'>Ordered Items</th>
+                  <th className='numeric-cell'>Amount</th>
+                  <th className='numeric-cell'>Price</th>
                 </tr>
               </thead>
               <tbody>
                 {showOrderedItems.map((item) => {
                   return (
                     <tr key={item.name}>
-                      <td className="label-cell">{item.name}</td>
-                      <td className="numeric-cell">{item.amount}</td>
-                      <td className="numeric-cell">{item.price} ¥</td>
+                      <td className='label-cell'>{item.name}</td>
+                      <td className='numeric-cell'>{item.amount}</td>
+                      <td className='numeric-cell'>{item.price} ¥</td>
                     </tr>
                   );
                 })}
@@ -106,13 +106,13 @@ const PaymentPage = () => {
           </div>
         </div>
 
-        <div className="price">
-          <h2 className="total_text">Total: </h2>
-          <h2 className="total_amount"> {totalAmount} ¥</h2>
+        <div className='price'>
+          <h2 className='total_text'>Total: </h2>
+          <h2 className='total_amount'> {totalAmount} ¥</h2>
         </div>
 
-        <div className="payment_option_container">
-          <p className="payment_info_paragraph">
+        <div className='payment_option_container'>
+          <p className='payment_info_paragraph'>
             Please choose your preffered way of payment.
           </p>
           <div
@@ -139,12 +139,12 @@ const PaymentPage = () => {
           </div>
         </div>
 
-        <div className="bottom_buttons">
+        <div className='bottom_buttons'>
           {selectedPayment === 'cash' ? (
             <a
-              href="/summary"
-              className="col button button-raised button-round button-outline"
-              id="pay_button"
+              href='/summary'
+              className='col button button-raised button-round button-outline'
+              id='pay_button'
               onClick={submitOrderToDB}
             >
               Pay {totalAmount} ¥
@@ -157,14 +157,14 @@ const PaymentPage = () => {
               token={handleTokenWithBackend}
               amount={totalAmount}
               name={'PabDom Order n. ' + orderNumber}
-              currency="JPY"
-              triggerEvent="onClick"
+              currency='JPY'
+              triggerEvent='onClick'
             />
           )}
           <a
-            href="/food"
-            className="col button button-raised button-round button-outline"
-            id="menu_button"
+            href='/food'
+            className='col button button-raised button-round button-outline'
+            id='menu_button'
           >
             Back to Menu
           </a>

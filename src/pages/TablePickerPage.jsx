@@ -67,15 +67,15 @@ const TablePickerPage = () => {
   }
 
   return (
-    <Page name="table-picker">
+    <Page name='table-picker'>
       <NavbarBack />
-      <div className="table_picker_container">
-        <h2 className="table_picker_title">
+      <div className='table_picker_container'>
+        <h2 className='table_picker_title'>
           Where would you
           <br /> like to sit?
         </h2>
-        <div id="tables">
-          <div className="row">
+        <div id='tables'>
+          <div className='row'>
             <a
               onClick={() => setSelectedTable(1)}
               className={
@@ -86,7 +86,7 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number="1"></Table>
+              <Table number='1'></Table>
             </a>
             <a
               onClick={() => setSelectedTable(2)}
@@ -98,7 +98,7 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number="2"></Table>
+              <Table number='2'></Table>
             </a>
             <a
               onClick={() => setSelectedTable(3)}
@@ -110,10 +110,10 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number="3"></Table>
+              <Table number='3'></Table>
             </a>
           </div>
-          <div className="row">
+          <div className='row'>
             <a
               onClick={() => setSelectedTable(4)}
               className={
@@ -124,7 +124,7 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number="4"></Table>
+              <Table number='4'></Table>
             </a>
             <a
               onClick={() => setSelectedTable(5)}
@@ -136,7 +136,7 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number="5"></Table>
+              <Table number='5'></Table>
             </a>
             <a
               onClick={() => setSelectedTable(6)}
@@ -148,17 +148,17 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number="6"></Table>
+              <Table number='6'></Table>
             </a>
           </div>
         </div>
-        <h2 className="table_picker_title">Take a picture</h2>
-        <div id="viewport" className="viewport">
-          <img id="test_img" src="" />
+        <h2 className='table_picker_title'>Take a picture</h2>
+        <div id='viewport' className='viewport'>
+          <img id='test_img' src='' />
         </div>
         <Camera
           onClick={takePhoto}
-          className="center"
+          className='center'
           style={{ fontSize: 50, marginBottom: '120px' }}
         />
 

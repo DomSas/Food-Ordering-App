@@ -8,20 +8,20 @@ const FooterButtons = (props) => {
 
   return (
     <Fragment>
-      <div className="buttons_container">
+      <div className='buttons_container'>
         <a
           {...props.leftButton}
           className={
             props.leftButton.className + getClassName(props.leftButton.id)
           }
-          data-transition="f7-cover"
+          data-transition='f7-cover'
         >
           {props.leftButton.label}
         </a>
         <a
           {...props.rightButton}
           className={getClassName(props.rightButton.id)}
-          data-transition="f7-cover"
+          data-transition='f7-cover'
         >
           {props.rightButton.label}
         </a>
