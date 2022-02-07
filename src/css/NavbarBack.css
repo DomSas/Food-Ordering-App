@@ -7,11 +7,10 @@
   color: #591303;
 }
 
-.buttonSettings {
+.button_settings {
   width: fit-content;
   float: right;
   position: relative;
-  color: black;
   font-size: xx-large;
   top: 0;
 }
