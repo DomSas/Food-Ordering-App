@@ -137,7 +137,7 @@ const DateTimePage = () => {
             id="dateInput"
             validate
             required
-            value={selectedDate ? [new Date(split(selectedDate))] : []}
+            // value={selectedDate ? [new Date(split(selectedDate))] : []}
             calendarParams={{ minDate: today }}
             onInputNotEmpty={(e) => {
               if (
@@ -157,7 +157,7 @@ const DateTimePage = () => {
             required
             min="11:00"
             max="22:30"
-            value={selectedTime ? selectedTime : "11:00"}
+            value={selectedTime || ""}
             placeholder="Select your time"
             validate
             onInput={(e) => setSelectedTime(e.target.value)}
