@@ -25,11 +25,11 @@ window.monaca = window.monaca || {};
     if (params) {
       window.cordova.exec(
         function (r) {
-          if (typeof params[0] === "function") params[0](r);
+          if (typeof params[0] === 'function') params[0](r);
           monaca.apiQueue.next();
         },
         function (r) {
-          if (typeof params[1] === "function") params[1](r);
+          if (typeof params[1] === 'function') params[1](r);
           monaca.apiQueue.next();
         },
         params[2],
@@ -41,7 +41,7 @@ window.monaca = window.monaca || {};
 
   monaca.isDeviceReady = monaca.isDeviceReady || false;
   document.addEventListener(
-    "deviceready",
+    'deviceready',
     function () {
       window.monaca.isDeviceReady = true;
       monaca.apiQueue.next();
@@ -71,8 +71,8 @@ window.monaca = window.monaca || {};
     monaca.apiQueue.exec(
       arguments[arguments.length - 1],
       null,
-      "mobi.monaca.nativecomponent",
-      "retrieve",
+      'mobi.monaca.nativecomponent',
+      'retrieve',
       argsArray
     );
   };
@@ -81,13 +81,13 @@ window.monaca = window.monaca || {};
    * Update style property
    */
   monaca.updateUIStyle = function (id, name, value) {
-    if (typeof id == "string") {
+    if (typeof id == 'string') {
       var argsArray = [].slice.apply(arguments);
       monaca.apiQueue.exec(
         null,
         null,
-        "mobi.monaca.nativecomponent",
-        "update",
+        'mobi.monaca.nativecomponent',
+        'update',
         argsArray
       );
     } else {
@@ -95,8 +95,8 @@ window.monaca = window.monaca || {};
         monaca.apiQueue.exec(
           null,
           null,
-          "mobi.monaca.nativecomponent",
-          "update",
+          'mobi.monaca.nativecomponent',
+          'update',
           [id[i], name, value]
         );
       }
@@ -110,8 +110,8 @@ window.monaca = window.monaca || {};
           success(style[name]);
         } || function () {},
         failure || function () {},
-        "mobi.monaca.nativecomponent",
-        "retrieve",
+        'mobi.monaca.nativecomponent',
+        'retrieve',
         [id]
       );
     };
@@ -123,8 +123,8 @@ window.monaca = window.monaca || {};
       monaca.apiQueue.exec(
         success || function () {},
         failure || function () {},
-        "mobi.monaca.nativecomponent",
-        "update",
+        'mobi.monaca.nativecomponent',
+        'update',
         [id, style]
       );
     };
@@ -150,8 +150,8 @@ window.monaca = window.monaca || {};
     monaca.apiQueue.exec(
       null,
       null,
-      "mobi.monaca.nativecomponent",
-      "showSpinner",
+      'mobi.monaca.nativecomponent',
+      'showSpinner',
       [
         src,
         frames,
@@ -170,24 +170,24 @@ window.monaca = window.monaca || {};
     monaca.apiQueue.exec(
       null,
       null,
-      "mobi.monaca.nativecomponent",
-      "hideSpinner",
+      'mobi.monaca.nativecomponent',
+      'hideSpinner',
       []
     );
   };
 
   monaca.updateSpinnerTitle = function (newTitle) {
-    if (!newTitle) newTitle = "";
+    if (!newTitle) newTitle = '';
     monaca.apiQueue.exec(
       null,
       null,
-      "mobi.monaca.nativecomponent",
-      "updateSpinnerTitle",
+      'mobi.monaca.nativecomponent',
+      'updateSpinnerTitle',
       [newTitle]
     );
   };
 
-  var transitionPluginName = "Transit";
+  var transitionPluginName = 'Transit';
 
   /**
    * Open new page.
@@ -196,18 +196,18 @@ window.monaca = window.monaca || {};
     options = options || {};
     var animation = null;
     switch (options.animation) {
-      case "lift":
-        animation = "modal";
+      case 'lift':
+        animation = 'modal';
         break;
-      case "slide":
-      case "slideLeft":
-        animation = "push";
+      case 'slide':
+      case 'slideLeft':
+        animation = 'push';
         break;
-      case "slideRight":
-        animation = "slideRight";
+      case 'slideRight':
+        animation = 'slideRight';
         break;
       default:
-        animation = "push";
+        animation = 'push';
     }
     monaca.apiQueue.exec(null, null, transitionPluginName, animation, [
       path,
@@ -220,7 +220,7 @@ window.monaca = window.monaca || {};
    */
   monaca.popPage = function (options) {
     options = options || {};
-    var name = options.animation == "lift" ? "dismiss" : "pop";
+    var name = options.animation == 'lift' ? 'dismiss' : 'pop';
     monaca.apiQueue.exec(null, null, transitionPluginName, name, [options]);
   };
 
@@ -228,14 +228,14 @@ window.monaca = window.monaca || {};
    * Open in browser.
    */
   monaca.invokeBrowser = function (url) {
-    monaca.apiQueue.exec(null, null, transitionPluginName, "browse", [url]);
+    monaca.apiQueue.exec(null, null, transitionPluginName, 'browse', [url]);
   };
 
   /**
    * Load in current page.
    */
   monaca.load = function (path, options, param) {
-    monaca.apiQueue.exec(null, null, transitionPluginName, "link", [
+    monaca.apiQueue.exec(null, null, transitionPluginName, 'link', [
       path,
       options,
       param,
@@ -247,7 +247,7 @@ window.monaca = window.monaca || {};
    */
   monaca.home = function (options) {
     options = options || {};
-    monaca.apiQueue.exec(null, null, transitionPluginName, "home", [options]);
+    monaca.apiQueue.exec(null, null, transitionPluginName, 'home', [options]);
   };
 
   /**
@@ -255,31 +255,31 @@ window.monaca = window.monaca || {};
    */
   monaca.clearPageStack = function (clearAll) {
     clearAll = clearAll || false;
-    monaca.apiQueue.exec(null, null, transitionPluginName, "clearPageStack", [
+    monaca.apiQueue.exec(null, null, transitionPluginName, 'clearPageStack', [
       clearAll,
     ]);
   };
 
   window.monaca.splashScreen = window.monaca.splashScreen || {};
-  var splashScreenPluginName = "MonacaSplashScreen";
+  var splashScreenPluginName = 'MonacaSplashScreen';
 
   /**
    * hide SplashScreen.
    */
   monaca.splashScreen.hide = function () {
     if (isAndroid) {
-      monaca.apiQueue.exec(null, null, splashScreenPluginName, "hide", []);
+      monaca.apiQueue.exec(null, null, splashScreenPluginName, 'hide', []);
     } else {
       navigator.splashscreen.hide();
     }
   };
 
   // Set monaca.baseUrl
-  if (typeof location.href !== "string") {
-    console.warn("Cannot find base url");
+  if (typeof location.href !== 'string') {
+    console.warn('Cannot find base url');
     monaca.baseUrl = null;
   } else {
-    monaca.baseUrl = location.href.split("/www/")[0] + "/www/";
+    monaca.baseUrl = location.href.split('/www/')[0] + '/www/';
   }
 
   /**
@@ -291,8 +291,8 @@ window.monaca = window.monaca || {};
         callback(result.deviceId);
       },
       null,
-      "Monaca",
-      "getRuntimeConfiguration",
+      'Monaca',
+      'getRuntimeConfiguration',
       []
     );
   };
@@ -301,8 +301,8 @@ window.monaca = window.monaca || {};
     monaca.apiQueue.exec(
       success,
       failure,
-      "Monaca",
-      "getRuntimeConfiguration",
+      'Monaca',
+      'getRuntimeConfiguration',
       []
     );
   };

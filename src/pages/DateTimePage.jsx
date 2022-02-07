@@ -1,11 +1,11 @@
-import "../css/DateTimePage.css";
-import React, { useEffect, useState } from "react";
-import { f7, List, ListInput, Page } from "framework7-react";
-import FooterButtons from "../components/FooterButtons";
-import { AppContext } from "../js/AppContext";
-import { useContext } from "react";
-import { checkDateTime } from "../js/db";
-import NavbarBack from "../components/NavbarBack";
+import '../css/DateTimePage.css';
+import React, { useEffect, useState } from 'react';
+import { f7, List, ListInput, Page } from 'framework7-react';
+import FooterButtons from '../components/FooterButtons';
+import { AppContext } from '../js/AppContext';
+import { useContext } from 'react';
+import { checkDateTime } from '../js/db';
+import NavbarBack from '../components/NavbarBack';
 
 const DateTimePage = () => {
   //Context variables definition
@@ -30,10 +30,10 @@ const DateTimePage = () => {
   const [selectedTime, setSelectedTime] = useState();
   const [validTime, setValidTime] = useState(false);
   const [customerName, setCustomerName] = useState(
-    userInfo ? userInfo.name : ""
+    userInfo ? userInfo.name : ''
   );
   const [customerEmail, setCustomerEmail] = useState(
-    userInfo ? userInfo.email : ""
+    userInfo ? userInfo.email : ''
   );
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
@@ -57,17 +57,17 @@ const DateTimePage = () => {
   //Set the date_time from context if necessary
   if (!(Object.keys(date_time).length === 0)) {
     if (
-      new Date(date_time.date).toLocaleDateString("es-ES", {
-        month: "2-digit",
-        year: "numeric",
-        day: "2-digit",
+      new Date(date_time.date).toLocaleDateString('es-ES', {
+        month: '2-digit',
+        year: 'numeric',
+        day: '2-digit',
       }) != selectedDate
     ) {
       setSelectedDate(
-        new Date(date_time.date).toLocaleDateString("es-ES", {
-          month: "2-digit",
-          year: "numeric",
-          day: "2-digit",
+        new Date(date_time.date).toLocaleDateString('es-ES', {
+          month: '2-digit',
+          year: 'numeric',
+          day: '2-digit',
         })
       );
     }
@@ -85,7 +85,7 @@ const DateTimePage = () => {
           setDateTime({ date: date, time: selectedTime });
         } else {
           let toastCenter = f7.toast.create({
-            text: "Sorry! There are not empty tables in selected date and time. Please choose another one.",
+            text: 'Sorry! There are not empty tables in selected date and time. Please choose another one.',
             closeTimeout: 3000,
           });
           toastCenter.open();
@@ -114,31 +114,31 @@ const DateTimePage = () => {
     setUserInfo({
       name: customerName,
       email: customerEmail,
-      phone: "",
-      location: "",
+      phone: '',
+      location: '',
     });
   };
 
   const split = (date) => {
-    let dateSplit = date.split("/");
-    return dateSplit[1] + "/" + dateSplit[0] + "/" + dateSplit[2];
+    let dateSplit = date.split('/');
+    return dateSplit[1] + '/' + dateSplit[0] + '/' + dateSplit[2];
   };
 
   return (
-    <Page name="date-time">
+    <Page name='date-time'>
       <NavbarBack />
-      <div className="date_time_container">
-        <h2 className="date_time_title">
+      <div className='date_time_container'>
+        <h2 className='date_time_title'>
           When would you like
           <br /> to come?
         </h2>
         <List inset>
           <ListInput
-            className="input_datetime"
-            label="Select your date"
-            type="datepicker"
-            placeholder="Select your date"
-            id="dateInput"
+            className='input_datetime'
+            label='Select your date'
+            type='datepicker'
+            placeholder='Select your date'
+            id='dateInput'
             validate
             required
             // value={selectedDate ? [new Date(split(selectedDate))] : []}
@@ -153,41 +153,41 @@ const DateTimePage = () => {
             }}
           />
           <ListInput
-            className="input_datetime"
-            label="Select your time"
-            type="time"
-            step="3600"
-            id="timeInput"
+            className='input_datetime'
+            label='Select your time'
+            type='time'
+            step='3600'
+            id='timeInput'
             required
-            min="11:00"
-            max="22:30"
-            value={selectedTime || ""}
-            placeholder="Select your time"
+            min='11:00'
+            max='22:30'
+            value={selectedTime || ''}
+            placeholder='Select your time'
             validate
             onInput={(e) => setSelectedTime(e.target.value)}
             onValidate={(isValid) => setValidTime(isValid)}
           />
         </List>
-        <h2 className="contact_title">
+        <h2 className='contact_title'>
           Please tell us your
           <br /> name and email
         </h2>
-        <List inset className="user_info_list">
+        <List inset className='user_info_list'>
           <ListInput
-            type="text"
-            placeholder="Name"
+            type='text'
+            placeholder='Name'
             required
             validate
-            value={customerName || ""}
+            value={customerName || ''}
             onChange={(e) => setCustomerName(e.target.value)}
             onValidate={(isValid) => setNameValid(isValid)}
           />
           <ListInput
-            type="email"
-            placeholder="E-mail"
+            type='email'
+            placeholder='E-mail'
             required
             validate
-            value={customerEmail || ""}
+            value={customerEmail || ''}
             onChange={(e) => setCustomerEmail(e.target.value)}
             onValidate={(isValid) => setEmailValid(isValid)}
           />
@@ -195,29 +195,29 @@ const DateTimePage = () => {
 
         <FooterButtons
           leftButton={{
-            label: "Back",
-            href: "/food/",
-            id: "secondaryButton",
-            className: "back",
+            label: 'Back',
+            href: '/food/',
+            id: 'secondaryButton',
+            className: 'back',
           }}
           rightButton={{
-            label: "Next",
+            label: 'Next',
             id:
               selectedDate &&
               selectedTime &&
               validTime &&
               nameValid &&
               emailValid
-                ? "primaryButton"
-                : "disabledPrimaryButton",
+                ? 'primaryButton'
+                : 'disabledPrimaryButton',
             href:
               selectedDate &&
               selectedTime &&
               validTime &&
               nameValid &&
               emailValid
-                ? "/table/"
-                : "",
+                ? '/table/'
+                : '',
           }}
         />
       </div>

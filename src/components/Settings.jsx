@@ -1,6 +1,6 @@
-import { BlockTitle, List, ListItem, Sheet, Toggle } from "framework7-react";
-import React from "react";
-import "../css/Settings.css";
+import { BlockTitle, List, ListItem, Sheet, Toggle } from 'framework7-react';
+import React from 'react';
+import '../css/Settings.css';
 
 const Settings = () => {
   const checkCameraAccess = () => {
@@ -20,7 +20,7 @@ const Settings = () => {
 
   const cameraChange = () => {
     if (checkCameraAccess()) {
-      navigator.permissions.revoke({ name: "camera" });
+      navigator.permissions.revoke({ name: 'camera' });
     } else {
       cordova.plugins.diagnostic.requestCameraAuthorization();
     }
@@ -28,14 +28,14 @@ const Settings = () => {
 
   const locationChange = () => {
     if (checkLocationAccess()) {
-      navigator.permissions.revoke({ name: "location" });
+      navigator.permissions.revoke({ name: 'location' });
     } else {
       cordova.plugins.diagnostic.requestLocationAuthorization();
     }
   };
 
   return (
-    <Sheet className="settings-sheet">
+    <Sheet className='settings-sheet'>
       <BlockTitle>Settings</BlockTitle>
       <List simpleList>
         <ListItem>
@@ -43,7 +43,7 @@ const Settings = () => {
           <Toggle
             onChange={cameraChange}
             checked={{ checkCameraAccess }}
-            color="gray"
+            color='gray'
           ></Toggle>
         </ListItem>
         <ListItem>
@@ -51,7 +51,7 @@ const Settings = () => {
           <Toggle
             onChange={locationChange}
             checked={{ checkLocationAccess }}
-            color="gray"
+            color='gray'
           ></Toggle>
         </ListItem>
       </List>

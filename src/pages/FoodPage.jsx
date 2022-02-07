@@ -1,5 +1,5 @@
-import "../css/FoodPage.css";
-import React, { useContext } from "react";
+import '../css/FoodPage.css';
+import React, { useContext } from 'react';
 import {
   Page,
   BlockTitle,
@@ -8,12 +8,12 @@ import {
   ListItem,
   Stepper,
   Button,
-} from "framework7-react";
-import { AppContext } from "../js/AppContext";
-import FooterButtons from "../components/FooterButtons";
-import NavbarBack from "../components/NavbarBack";
-import Settings from "../components/Settings";
-import Gear from "framework7-icons/react/cjs/Gear";
+} from 'framework7-react';
+import { AppContext } from '../js/AppContext';
+import FooterButtons from '../components/FooterButtons';
+import NavbarBack from '../components/NavbarBack';
+import Settings from '../components/Settings';
+import Gear from 'framework7-icons/react/cjs/Gear';
 
 const FoodPage = () => {
   //Context variables definition
@@ -42,15 +42,15 @@ const FoodPage = () => {
   };
 
   return (
-    <Page name="food">
+    <Page name='food'>
       <NavbarBack />
 
-      <div className="food_container">
-        <h2 className="food_title">
+      <div className='food_container'>
+        <h2 className='food_title'>
           What would you like
           <br /> to eat?
         </h2>
-        <BlockTitle style={{ textAlign: "center" }}>TODAY'S MENU</BlockTitle>
+        <BlockTitle style={{ textAlign: 'center' }}>TODAY'S MENU</BlockTitle>
         {Object.entries(cartItems).map(([key, value]) => {
           return (
             <List key={key} accordionList inset>
@@ -61,7 +61,7 @@ const FoodPage = () => {
                       <ListItem key={foodItem.name} title={foodItem.name}>
                         <Stepper
                           style={{
-                            position: "absolute",
+                            position: 'absolute',
                             right: 100,
                           }}
                           raised
@@ -75,7 +75,7 @@ const FoodPage = () => {
                             addItemToCart(foodItem, key)
                           }
                         />
-                        {!foodItem.amount ? "" : foodItem.amount + "x "}
+                        {!foodItem.amount ? '' : foodItem.amount + 'x '}
                         {foodItem.price} ¥
                       </ListItem>
                     ))}
@@ -85,20 +85,20 @@ const FoodPage = () => {
             </List>
           );
         })}
-        <div className="price">
-          <h2 className="total_text">Total: </h2>
-          <h2 className="total_amount"> {totalAmount} ¥</h2>
+        <div className='price'>
+          <h2 className='total_text'>Total: </h2>
+          <h2 className='total_amount'> {totalAmount} ¥</h2>
         </div>
         <FooterButtons
           leftButton={{
-            label: "Eat-In",
-            href: totalAmount ? "/date-time" : "",
-            id: totalAmount ? "primaryButton" : "disabledPrimaryButton",
+            label: 'Eat-In',
+            href: totalAmount ? '/date-time' : '',
+            id: totalAmount ? 'primaryButton' : 'disabledPrimaryButton',
           }}
           rightButton={{
-            label: "Delivery",
-            href: totalAmount ? "/delivery" : "",
-            id: totalAmount ? "secondaryButton" : "disabledSecondaryButton",
+            label: 'Delivery',
+            href: totalAmount ? '/delivery' : '',
+            id: totalAmount ? 'secondaryButton' : 'disabledSecondaryButton',
           }}
         />
       </div>
