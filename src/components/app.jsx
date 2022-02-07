@@ -1,25 +1,6 @@
 import React from "react";
 
-import Framework7React, {
-  App,
-  Panel,
-  Views,
-  View,
-  Popup,
-  Page,
-  Navbar,
-  Toolbar,
-  NavRight,
-  Block,
-  BlockTitle,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListItem,
-  ListInput,
-  ListButton,
-  BlockFooter,
-} from "framework7-react";
+import { App, View } from "framework7-react";
 
 import routes from "../js/routes";
 import { AppProvider } from "../js/AppContext";

@@ -5,10 +5,8 @@
   color: #000000 !important;
   margin: 0;
   text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   align-items: center;
+  justify-content: center;
 }
 
 .about span::after {
@@ -30,4 +28,11 @@
   background-color: #264d32 !important;
   width: 200px !important;
   height: 40px !important;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -100px;
+  z-index: 1;
 }
