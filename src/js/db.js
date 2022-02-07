@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
   collection,
@@ -7,17 +7,17 @@ import {
   setDoc,
   getDoc,
   updateDoc,
-} from "firebase/firestore/lite";
+} from 'firebase/firestore/lite';
 
-import { getStorage, ref, uploadString } from "firebase/storage";
+import { getStorage, ref, uploadString } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
-  authDomain: "restaurant-management-pab-dom.firebaseapp.com",
-  projectId: "restaurant-management-pab-dom",
-  storageBucket: "restaurant-management-pab-dom.appspot.com",
-  messagingSenderId: "856415585329",
-  appId: "1:856415585329:web:acbb351dd5ec116b980110",
+  apiKey: ***REMOVED***,
+  authDomain: ***REMOVED***,
+  projectId: ***REMOVED***,
+  storageBucket: ***REMOVED***,
+  messagingSenderId: ***REMOVED***,
+  appId: ***REMOVED***,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -29,7 +29,7 @@ let dessert = [];
 let beverage = [];
 
 async function getMenu(db) {
-  const menuCol = collection(db, "menu");
+  const menuCol = collection(db, 'menu');
   const menuSnapshot = await getDocs(menuCol);
   const menu = menuSnapshot.docs.map((doc) => doc.data());
   return menu;
@@ -44,16 +44,16 @@ const getDatabase = () => {
   getMenu(db).then((menu) => {
     menu.map((m) => {
       switch (m.category) {
-        case "starter":
+        case 'starter':
           starter.push(m);
           break;
-        case "main":
+        case 'main':
           main.push(m);
           break;
-        case "dessert":
+        case 'dessert':
           dessert.push(m);
           break;
-        case "beverage":
+        case 'beverage':
           beverage.push(m);
           break;
       }
@@ -73,7 +73,7 @@ const createMenuDict = () => {
 };
 
 const createDate = (date) => {
-  setDoc(doc(db, "reservations", date), {
+  setDoc(doc(db, 'reservations', date), {
     times_available: {
       11: [1, 2, 3, 4, 5, 6],
       12: [1, 2, 3, 4, 5, 6],
@@ -106,7 +106,7 @@ const createDate = (date) => {
 };
 
 const checkTimeValidForDate = (docSnap, time) => {
-  const timeShort = time.split(":")[0];
+  const timeShort = time.split(':')[0];
   if (docSnap.data().times_available[timeShort].length != 0) {
     return true;
   } else {
@@ -115,9 +115,9 @@ const checkTimeValidForDate = (docSnap, time) => {
 };
 
 const getTableAvailability = async (date_time) => {
-  const docRef = doc(db, "reservations", date_time.date);
+  const docRef = doc(db, 'reservations', date_time.date);
   let tables = await getDoc(docRef).then(async (docSnap) => {
-    const timeShort = date_time.time.split(":")[0];
+    const timeShort = date_time.time.split(':')[0];
     let availableTables = await docSnap.data().times_available[timeShort];
     return availableTables;
   });
@@ -125,7 +125,7 @@ const getTableAvailability = async (date_time) => {
 };
 
 const checkDateTime = async (date, time) => {
-  const docRef = doc(db, "reservations", date);
+  const docRef = doc(db, 'reservations', date);
   let check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return checkTimeValidForDate(docSnap, time);
@@ -145,8 +145,8 @@ const addReservation = async (
   orderNumber,
   photo
 ) => {
-  if (userInfo.location === "") {
-    const getDate = doc(db, "reservations", date_time.date);
+  if (userInfo.location === '') {
+    const getDate = doc(db, 'reservations', date_time.date);
 
     //get the available times and change the time
     let info = await getDoc(getDate).then((docSnap) => {
@@ -155,7 +155,7 @@ const addReservation = async (
     let times_available = await info.data().times_available;
     let times_booked = await info.data().times_booked;
 
-    const timeShort = date_time.time.split(":")[0];
+    const timeShort = date_time.time.split(':')[0];
 
     times_booked[timeShort] = times_available[timeShort].splice(
       times_available[timeShort].indexOf(table),
@@ -174,26 +174,26 @@ const addReservation = async (
 
   addCustomerInfo(userInfo);
 
-  const currentDate = new Date().toString().split(" ").splice(1, 3).join(" ");
+  const currentDate = new Date().toString().split(' ').splice(1, 3).join(' ');
   let photoBD;
 
   const metadata = {
-    contentType: "image/jpeg",
+    contentType: 'image/jpeg',
   };
 
   if (photo != undefined) {
     photoBD = true;
     uploadString(
-      ref(storage, "photos/" + orderNumber + ".jpg"),
+      ref(storage, 'photos/' + orderNumber + '.jpg'),
       photo,
-      "base64",
+      'base64',
       metadata
     ).then(() => {});
   } else {
     photoBD = false;
   }
 
-  setDoc(doc(db, "orders", currentDate + " " + orderNumber.toString()), {
+  setDoc(doc(db, 'orders', currentDate + ' ' + orderNumber.toString()), {
     food: food,
     user: userInfo.email,
     photo: photoBD,
@@ -201,7 +201,7 @@ const addReservation = async (
 };
 
 const addCustomerInfo = (userInfo) => {
-  setDoc(doc(db, "customer_info", userInfo.email), {
+  setDoc(doc(db, 'customer_info', userInfo.email), {
     name: userInfo.name,
     email: userInfo.email,
     phone: userInfo.phone,
@@ -218,7 +218,7 @@ const getOrderNumber = async () => {
 };
 
 const checkOrderNumber = async (orderNumber) => {
-  const docRef = doc(db, "orders", orderNumber.toString());
+  const docRef = doc(db, 'orders', orderNumber.toString());
   let check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return true;

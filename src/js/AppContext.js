@@ -1,5 +1,5 @@
-import React, { useState, createContext, useEffect } from "react";
-import createMenuDict from "./db";
+import React, { useState, createContext, useEffect } from 'react';
+import createMenuDict from './db';
 export const AppContext = createContext();
 
 export const AppProvider = (props) => {

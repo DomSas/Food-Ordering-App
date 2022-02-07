@@ -1,14 +1,14 @@
-const webpack = require("webpack");
-const ora = require("ora");
-const chalk = require("chalk");
-const config = require("./webpack.config.js");
+const webpack = require('webpack');
+const ora = require('ora');
+const chalk = require('chalk');
+const config = require('./webpack.config.js');
 
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || 'development';
 
 const spinner = ora(
-  env === "production"
-    ? "building for production..."
-    : "building development version..."
+  env === 'production'
+    ? 'building for production...'
+    : 'building development version...'
 );
 spinner.start();
 
@@ -27,9 +27,9 @@ webpack(config, (err, stats) => {
   );
 
   if (stats.hasErrors()) {
-    console.log(chalk.red("Build failed with errors.\n"));
+    console.log(chalk.red('Build failed with errors.\n'));
     process.exit(1);
   }
 
-  console.log(chalk.cyan("Build complete.\n"));
+  console.log(chalk.cyan('Build complete.\n'));
 });
