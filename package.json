@@ -25,8 +25,7 @@
       "monaca-plugin-monaca-core": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-camera": {},
-      "cordova.plugins.diagnostic": {},
-      "cordova-plugin-file-transfer": {}
+      "cordova.plugins.diagnostic": {}
     }
   },
   "browserslist": [
