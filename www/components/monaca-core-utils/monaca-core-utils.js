@@ -58,7 +58,7 @@ window.monaca = window.monaca || {};
       navigator.userAgent.match(/iPhone|iPad|iPod/i) ||
       (navigator.userAgent.match(/Macintosh; Intel Mac OS X/i) &&
         location.protocol.match(/^https?:/) === null)
-    ) // iOS 13.0 iPad 9.7 inch
+    ) //  iOS 13.0 iPad 9.7 inch
   );
   monaca.isAndroid = isAndroid;
   monaca.isIOS = isIOS;
@@ -274,7 +274,7 @@ window.monaca = window.monaca || {};
     }
   };
 
-  // Set monaca.baseUrl
+  //  Set monaca.baseUrl
   if (typeof location.href !== 'string') {
     console.warn('Cannot find base url');
     monaca.baseUrl = null;

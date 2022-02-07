@@ -8,7 +8,7 @@ import { checkDateTime } from '../js/db';
 import NavbarBack from '../components/NavbarBack';
 
 const DateTimePage = () => {
-  //Context variables definition
+  // Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -21,11 +21,11 @@ const DateTimePage = () => {
     setUserInfo,
   ] = useContext(AppContext);
 
-  //Variable definition
+  // Variable definition
   let today = new Date();
   let minutes = today.getMinutes();
 
-  //State variables definition
+  // State variables definition
   const [selectedDate, setSelectedDate] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const [validTime, setValidTime] = useState(false);
@@ -38,7 +38,7 @@ const DateTimePage = () => {
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
 
-  //Round the time to o'clock function
+  // Round the time to o'clock function
   if (minutes < 30) {
     today.setMinutes = 30;
   } else if (minutes >= 30) {
@@ -46,7 +46,7 @@ const DateTimePage = () => {
     today.setHours = today.getHours + 1;
   }
 
-  //Set the userInfo from context if necessary
+  // Set the userInfo from context if necessary
   if (userInfo) {
     if (userInfo.name != customerName) {
       setCustomerName(userInfo.name);
@@ -54,7 +54,7 @@ const DateTimePage = () => {
     }
   }
 
-  //Set the date_time from context if necessary
+  // Set the date_time from context if necessary
   if (!(Object.keys(date_time).length === 0)) {
     if (
       new Date(date_time.date).toLocaleDateString('es-ES', {
@@ -76,7 +76,7 @@ const DateTimePage = () => {
     }
   }
 
-  //UseEffect for checking if the date and time are valid
+  // UseEffect for checking if the date and time are valid
   useEffect(() => {
     if (selectedDate && selectedTime && validTime) {
       const date = new Date(split(selectedDate)).toDateString();
@@ -95,21 +95,21 @@ const DateTimePage = () => {
     }
   }, [validTime]);
 
-  //UseEffect for sending the contact info to the context when the email changes
+  // UseEffect for sending the contact info to the context when the email changes
   useEffect(() => {
     if (nameValid && emailValid) {
       sendContactInfoToContext();
     }
   }, [emailValid]);
 
-  //UseEffect for sending the contact info to the context when the name changes
+  // UseEffect for sending the contact info to the context when the name changes
   useEffect(() => {
     if (nameValid && emailValid) {
       sendContactInfoToContext();
     }
   }, [nameValid]);
 
-  //Function for sending the contact info to the context
+  // Function for sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
@@ -125,23 +125,23 @@ const DateTimePage = () => {
   };
 
   return (
-    <Page name='date-time'>
+    <Page name="date-time">
       <NavbarBack />
-      <div className='date_time_container'>
-        <h2 className='date_time_title'>
+      <div className="date_time_container">
+        <h2 className="date_time_title">
           When would you like
           <br /> to come?
         </h2>
         <List inset>
           <ListInput
-            className='input_datetime'
-            label='Select your date'
-            type='datepicker'
-            placeholder='Select your date'
-            id='dateInput'
+            className="input_datetime"
+            label="Select your date"
+            type="datepicker"
+            placeholder="Select your date"
+            id="dateInput"
             validate
             required
-            // value={selectedDate ? [new Date(split(selectedDate))] : []}
+            //  value={selectedDate ? [new Date(split(selectedDate))] : []}
             calendarParams={{ minDate: today }}
             onInputNotEmpty={(e) => {
               if (
@@ -153,29 +153,29 @@ const DateTimePage = () => {
             }}
           />
           <ListInput
-            className='input_datetime'
-            label='Select your time'
-            type='time'
-            step='3600'
-            id='timeInput'
+            className="input_datetime"
+            label="Select your time"
+            type="time"
+            step="3600"
+            id="timeInput"
             required
-            min='11:00'
-            max='22:30'
+            min="11:00"
+            max="22:30"
             value={selectedTime || ''}
-            placeholder='Select your time'
+            placeholder="Select your time"
             validate
             onInput={(e) => setSelectedTime(e.target.value)}
             onValidate={(isValid) => setValidTime(isValid)}
           />
         </List>
-        <h2 className='contact_title'>
+        <h2 className="contact_title">
           Please tell us your
           <br /> name and email
         </h2>
-        <List inset className='user_info_list'>
+        <List inset className="user_info_list">
           <ListInput
-            type='text'
-            placeholder='Name'
+            type="text"
+            placeholder="Name"
             required
             validate
             value={customerName || ''}
@@ -183,8 +183,8 @@ const DateTimePage = () => {
             onValidate={(isValid) => setNameValid(isValid)}
           />
           <ListInput
-            type='email'
-            placeholder='E-mail'
+            type="email"
+            placeholder="E-mail"
             required
             validate
             value={customerEmail || ''}

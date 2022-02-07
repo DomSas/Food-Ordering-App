@@ -30,7 +30,7 @@
       location.protocol.match(/^https?:/) === null)
   ) {
     if (typeof location.href === 'string') {
-      var cordovaJsUrl = location.protocol + '//' + location.hostname + '/';
+      var cordovaJsUrl = location.protocol + '// ' + location.hostname + '/';
       var relativePath = '';
       if (location.href.indexOf('/www') !== -1) {
         relativePath = location.href.split('/www')[1];

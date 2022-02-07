@@ -13,9 +13,9 @@ export default () => {
   };
   return (
     <>
-      <App {...f7params} pushState='true'>
+      <App {...f7params} pushState="true">
         <AppProvider>
-          <View main url='/' />
+          <View main url="/" />
         </AppProvider>
       </App>
     </>

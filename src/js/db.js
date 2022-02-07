@@ -148,7 +148,7 @@ const addReservation = async (
   if (userInfo.location === '') {
     const getDate = doc(db, 'reservations', date_time.date);
 
-    //get the available times and change the time
+    // get the available times and change the time
     let info = await getDoc(getDate).then((docSnap) => {
       return docSnap;
     });
@@ -162,9 +162,9 @@ const addReservation = async (
       1
     );
 
-    //date and time done
+    // date and time done
 
-    //set everywhere
+    // set everywhere
 
     updateDoc(getDate, {
       times_available: times_available,

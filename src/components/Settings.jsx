@@ -35,7 +35,7 @@ const Settings = () => {
   };
 
   return (
-    <Sheet className='settings-sheet'>
+    <Sheet className="settings-sheet">
       <BlockTitle>Settings</BlockTitle>
       <List simpleList>
         <ListItem>
@@ -43,7 +43,7 @@ const Settings = () => {
           <Toggle
             onChange={cameraChange}
             checked={{ checkCameraAccess }}
-            color='gray'
+            color="gray"
           ></Toggle>
         </ListItem>
         <ListItem>
@@ -51,7 +51,7 @@ const Settings = () => {
           <Toggle
             onChange={locationChange}
             checked={{ checkLocationAccess }}
-            color='gray'
+            color="gray"
           ></Toggle>
         </ListItem>
       </List>

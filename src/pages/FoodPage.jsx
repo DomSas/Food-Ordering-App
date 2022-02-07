@@ -16,10 +16,10 @@ import Settings from '../components/Settings';
 import Gear from 'framework7-icons/react/cjs/Gear';
 
 const FoodPage = () => {
-  //Context variables definition
+  // Context variables definition
   const [cartItems, setCartItems, totalAmount] = useContext(AppContext);
 
-  //Function for adding items to the cart
+  // Function for adding items to the cart
   const addItemToCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {
       if (item.name == foodItem.name) {
@@ -30,7 +30,7 @@ const FoodPage = () => {
     setCartItems({ ...cartItems, ...{ [key]: newCartItems } });
   };
 
-  //Function for removing items to the cart
+  // Function for removing items to the cart
   const removeItemFromCart = (foodItem, key) => {
     const newCartItems = cartItems[key].map((item) => {
       if (item.name == foodItem.name) {
@@ -42,11 +42,11 @@ const FoodPage = () => {
   };
 
   return (
-    <Page name='food'>
+    <Page name="food">
       <NavbarBack />
 
-      <div className='food_container'>
-        <h2 className='food_title'>
+      <div className="food_container">
+        <h2 className="food_title">
           What would you like
           <br /> to eat?
         </h2>
@@ -85,9 +85,9 @@ const FoodPage = () => {
             </List>
           );
         })}
-        <div className='price'>
-          <h2 className='total_text'>Total: </h2>
-          <h2 className='total_amount'> {totalAmount} ¥</h2>
+        <div className="price">
+          <h2 className="total_text">Total: </h2>
+          <h2 className="total_amount"> {totalAmount} ¥</h2>
         </div>
         <FooterButtons
           leftButton={{
