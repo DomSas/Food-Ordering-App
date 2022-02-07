@@ -1,9 +1,10 @@
 .about {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 100px;
   color: #000000 !important;
-  margin: 0;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -24,7 +25,7 @@
   color: #808080;
 }
 
-.aboutButton {
+.about_button {
   background-color: #264d32 !important;
   width: 200px !important;
   height: 40px !important;

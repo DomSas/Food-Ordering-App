@@ -45,7 +45,7 @@ const AboutUsPage = () => {
       </p>
       <a
         href="/"
-        className="aboutButton col button button-fill button-round back"
+        className="about_button col button button-fill button-round back"
       >
         <HouseFill style={{ margin: "0 10px 2px 0", fontSize: "17px" }} />
         Back to Home
