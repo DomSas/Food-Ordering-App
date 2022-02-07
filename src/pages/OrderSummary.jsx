@@ -6,6 +6,7 @@ import { HouseFill } from "framework7-icons/react";
 import createMenuDict from "../js/db";
 
 const OrderSummary = () => {
+  //Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -21,6 +22,7 @@ const OrderSummary = () => {
     orderNumber,
   ] = useContext(AppContext);
 
+  //Map and filter of ordered items
   const showOrderedItems = Object.values(cartItems)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);

@@ -210,8 +210,9 @@ const addCustomerInfo = (userInfo) => {
 };
 
 const getOrderNumber = async () => {
+  let orderNumber;
   do {
-    var orderNumber = Math.floor(Math.random() * 10001);
+    orderNumber = Math.floor(Math.random() * 10001);
   } while (await checkOrderNumber(orderNumber));
   return orderNumber;
 };
