@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from "firebase/firestore/lite";
 
-import { getStorage, uploadString } from "firebase/storage";
+import { getStorage, ref, uploadString } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXYwwL0C88rwejI2JcDq9B1QrJjkRI-g",
@@ -23,10 +23,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
-const starter = [];
-const main = [];
-const dessert = [];
-const beverage = [];
+let starter = [];
+let main = [];
+let dessert = [];
+let beverage = [];
 
 async function getMenu(db) {
   const menuCol = collection(db, "menu");
@@ -36,6 +36,11 @@ async function getMenu(db) {
 }
 
 const getDatabase = () => {
+  starter = [];
+  main = [];
+  dessert = [];
+  beverage = [];
+
   getMenu(db).then((menu) => {
     menu.map((m) => {
       switch (m.category) {
@@ -169,6 +174,7 @@ const addReservation = async (
 
   addCustomerInfo(userInfo);
 
+  const currentDate = new Date().toString().split(" ").splice(1, 3).join(" ");
   let photoBD;
 
   const metadata = {
@@ -187,7 +193,7 @@ const addReservation = async (
     photoBD = false;
   }
 
-  setDoc(doc(db, "orders", orderNumber.toString()), {
+  setDoc(doc(db, "orders", currentDate + " " + orderNumber.toString()), {
     food: food,
     user: userInfo.email,
     photo: photoBD,
