@@ -7,7 +7,7 @@ import NavbarBack from '../components/NavbarBack';
 import { AppContext } from '../js/AppContext';
 
 const ContactInfo = () => {
-  //Context variables definition
+  // Context variables definition
   const [
     cartItems,
     setCartItems,
@@ -20,7 +20,7 @@ const ContactInfo = () => {
     setUserInfo,
   ] = useContext(AppContext);
 
-  //State variables definition
+  // State variables definition
   const [customerName, setCustomerName] = useState(
     userInfo ? userInfo.name : ''
   );
@@ -33,12 +33,12 @@ const ContactInfo = () => {
   const [customerCity, setCustomerCity] = useState(
     userInfo ? userInfo.location : ''
   );
-  // Need all three separately to not overwrite validity
+  //  Need all three separately to not overwrite validity
   const [nameValid, setNameValid] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
 
-  //Function for sending the contact info to the context
+  // Function for sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
@@ -48,7 +48,7 @@ const ContactInfo = () => {
     });
   };
 
-  //Function for getting the GPS position using the cordova plugin
+  // Function for getting the GPS position using the cordova plugin
   const getGPSPosition = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -64,12 +64,12 @@ const ContactInfo = () => {
       }
     );
 
-    //Function for getting the city name from a given GPS coordinate
+    // Function for getting the city name from a given GPS coordinate
     const getCityFromGPSCoord = async (latitude, longitude) => {
-      // Conversion to use the correct URL
+      //  Conversion to use the correct URL
       longitude = longitude.charAt(0) === '-' ? longitude : '+' + longitude;
       await fetch(
-        'http://geodb-free-service.wirefreethought.com/v1/geo/locations/' +
+        'http:// geodb-free-service.wirefreethought.com/v1/geo/locations/' +
           latitude +
           longitude +
           '/nearbyCities?radius=100&minPopulation=40000&limit=1'
@@ -77,7 +77,7 @@ const ContactInfo = () => {
         .then((res) => res.json())
         .then(
           (result) => {
-            // Reset of customerCity in case the user clicks it second time
+            //  Reset of customerCity in case the user clicks it second time
             setCustomerCity();
             f7.dialog.close();
             setCustomerCity(result.data[0].city);
@@ -94,17 +94,17 @@ const ContactInfo = () => {
   };
 
   return (
-    <Page name='contact'>
+    <Page name="contact">
       <NavbarBack />
-      <div className='contact_container'>
-        <h2 className='contact_title'>
+      <div className="contact_container">
+        <h2 className="contact_title">
           Where should we
           <br /> deliver your order?
         </h2>
         <List inset>
           <ListInput
-            type='text'
-            placeholder='Name'
+            type="text"
+            placeholder="Name"
             required
             validate
             value={customerName || ''}
@@ -112,8 +112,8 @@ const ContactInfo = () => {
             onValidate={(isValid) => setNameValid(isValid)}
           />
           <ListInput
-            type='email'
-            placeholder='E-mail'
+            type="email"
+            placeholder="E-mail"
             required
             validate
             value={customerEmail || ''}
@@ -121,27 +121,27 @@ const ContactInfo = () => {
             onValidate={(isValid) => setEmailValid(isValid)}
           />
           <ListInput
-            tyle='number'
-            placeholder='Phone Number'
+            tyle="number"
+            placeholder="Phone Number"
             required
             validate
-            pattern='[0-9]*'
+            pattern="[0-9]*"
             value={customerPhone || ''}
             onChange={(e) => setCustomerPhone(e.target.value)}
             onValidate={(isValid) => setPhoneValid(isValid)}
           />
         </List>
 
-        <div className='location_container'>
-          <h2 className='location_title'>
+        <div className="location_container">
+          <h2 className="location_title">
             Share a location
             <br />
           </h2>
-          <div className='location_btn' onClick={getGPSPosition}>
+          <div className="location_btn" onClick={getGPSPosition}>
             <LocationFill style={{ fontSize: 38 }} />
           </div>
 
-          <p className='location_info_paragraph'>
+          <p className="location_info_paragraph">
             Click the arrow to share your current location. This location will
             be used as delivery address.
           </p>

@@ -44,11 +44,11 @@ module.exports = {
     open: true,
     compress: true,
     port: port,
-    //sockPort: port, //V5 COMMENT
-    //contentBase: '/www/', //V5 COMMENT
-    //disableHostCheck: true, //V5 COMMENT
+    // sockPort: port, // V5 COMMENT
+    // contentBase: '/www/', // V5 COMMENT
+    // disableHostCheck: true, // V5 COMMENT
     historyApiFallback: true,
-    /*watchOptions: { //V5 COMMENT
+    /*watchOptions: { // V5 COMMENT
       poll: 1000,
     },*/
   },
@@ -57,11 +57,11 @@ module.exports = {
     noEmitOnErrors: true,
     minimizer: [
       new TerserPlugin(),
-      //   {
-      //   cache: true,
-      //   sourceMap: true,
-      //   parallel: true,
-      // }
+      //    {
+      //    cache: true,
+      //    sourceMap: true,
+      //    parallel: true,
+      //  }
     ],
   },
   module: {
@@ -179,19 +179,19 @@ module.exports = {
     ...(env === 'production'
       ? [
           new CssMinimizerPlugin(),
-          // Commented out due to change from optimize-css-assets-webpack-plugin
-          //   {
-          //   cssProcessorOptions: {
-          //     safe: true,
-          //     map: { inline: false },
-          //   },
-          // }
+          //  Commented out due to change from optimize-css-assets-webpack-plugin
+          //    {
+          //    cssProcessorOptions: {
+          //      safe: true,
+          //      map: { inline: false },
+          //    },
+          //  }
           new webpack.optimize.ModuleConcatenationPlugin(),
         ]
       : [
-          // Development only plugins
+          //  Development only plugins
           new webpack.HotModuleReplacementPlugin(),
-          //new webpack.NamedModulesPlugin(), //V5 COMMENT
+          // new webpack.NamedModulesPlugin(), // V5 COMMENT
         ]),
     new HtmlWebpackPlugin({
       filename: './index.html',
