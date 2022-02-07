@@ -1,19 +1,20 @@
+import Gear from "framework7-icons/react/cjs/Gear";
+import { Button, Navbar, NavLeft, NavRight } from "framework7-react";
 import React from "react";
 import "../css/NavbarBack.css";
+import Settings from "./Settings";
 
 const NavbarBack = () => {
   return (
-    <div className="navbar_back_container">
-      <div className="navbar navbar-transparent">
-        <div className="navbar-bg"></div>
-        <div className="left">
-          <a className="link back">
-            <i className="icon icon-back"></i>
-            <span className="if-not-md">Back</span>
-          </a>
-        </div>
-      </div>
-    </div>
+    <Navbar transparent="true">
+      <NavLeft backLink="Back"></NavLeft>
+      <NavRight>
+        <Settings></Settings>
+        <Button sheetOpen=".settings-sheet" className="buttonSettings">
+          <Gear style={{ fontSize: "25px", color: "#591303" }} />
+        </Button>
+      </NavRight>
+    </Navbar>
   );
 };
 

@@ -31,17 +31,14 @@ const PaymentPage = () => {
   const publicKey =
     "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv";
 
-<<<<<<< HEAD
   console.log(checkOrder)
 
   // const stripePromise = loadStripe(
   //   "pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv"
   // );
-=======
   useEffect(async () => {
     setOrderNumber(await getOrderNumber());
   }, []);
->>>>>>> 05dc843fb26b8204d324b4425b322cf9c05e669d
 
   const submitOrderToDB = () => {
     addReservation(
