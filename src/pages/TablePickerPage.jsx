@@ -1,11 +1,11 @@
 import '../css/TablePicker.css';
 import React, { useContext, useEffect, useState } from 'react';
-import { Page } from 'framework7-react';
+import { Page, f7 } from 'framework7-react';
+import { Camera } from 'framework7-icons/react';
 import FooterButtons from '../components/FooterButtons';
 import Table from '../components/table';
-import { Camera } from 'framework7-icons/react';
 import { getTableAvailability } from '../js/db';
-import { AppContext } from '../js/AppContext';
+import { AppContext } from '../components/AppContext';
 import NavbarBack from '../components/NavbarBack';
 
 const TablePickerPage = () => {
@@ -14,7 +14,7 @@ const TablePickerPage = () => {
     cartItems,
     setCartItems,
     totalAmount,
-    date_time,
+    dateTime,
     setDateTime,
     table,
     setTable,
@@ -29,54 +29,61 @@ const TablePickerPage = () => {
   const [selectedTable, setSelectedTable] = useState();
 
   // Table set if needed
-  if (table) {
-    if (table != selectedTable) {
-      setSelectedTable(table);
+  const disableReservedTables = async () => {
+    if (table) {
+      if (table !== selectedTable) {
+        await setSelectedTable(table);
+        setTable(null);
+      }
     }
-  }
+  };
 
   // UseEffect for rendering anytime the tables available change
   useEffect(() => {}, [tablesAvailable]);
 
   // UseEffect for selecting a table
   useEffect(() => {
-    setTable(selectedTable);
-  }, [selectedTable]);
+    disableReservedTables();
+  }, []);
 
   // UseEffect for getting and setting the tables available
   useEffect(() => {
-    getTableAvailability(date_time).then((tables) => {
+    getTableAvailability(dateTime).then((tables) => {
       setTablesAvailable(tables);
     });
   }, []);
 
   // Function for taking the photo
   function takePhoto() {
-    navigator.camera.getPicture(onSuccess, onFail, {
-      destinationType: 0,
-    });
-  }
-
-  // Photo took successfully
-  function onSuccess(imageURI) {
-    setPhoto(imageURI);
-  }
-  // Error while taking the photo
-  function onFail(message) {
-    alert('Failed because: ' + message);
+    navigator.camera.getPicture(
+      (imageURI) => {
+        // Photo took successfully
+        setPhoto(imageURI);
+      },
+      (error) => {
+        // Error while taking the photo
+        f7.dialog.alert('Try again please!', 'Taking of picture failed');
+        console.error(error);
+      },
+      {
+        destinationType: 0,
+      },
+    );
   }
 
   return (
-    <Page name='table-picker'>
+    <Page name="table-picker">
       <NavbarBack />
-      <div className='table_picker_container'>
-        <h2 className='table_picker_title'>
+      <div className="table_picker_container">
+        <h2 className="table_picker_title">
           Where would you
-          <br /> like to sit?
+          <br />
+          like to sit?
         </h2>
-        <div id='tables'>
-          <div className='row'>
-            <a
+        <div id="tables">
+          <div className="row">
+            <button
+              type="button"
               onClick={() => setSelectedTable(1)}
               className={
                 tablesAvailable.includes(1)
@@ -86,9 +93,10 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number='1'></Table>
-            </a>
-            <a
+              <Table number="1" />
+            </button>
+            <button
+              type="button"
               onClick={() => setSelectedTable(2)}
               className={
                 tablesAvailable.includes(2)
@@ -98,9 +106,10 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number='2'></Table>
-            </a>
-            <a
+              <Table number="2" />
+            </button>
+            <button
+              type="button"
               onClick={() => setSelectedTable(3)}
               className={
                 tablesAvailable.includes(3)
@@ -110,11 +119,12 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number='3'></Table>
-            </a>
+              <Table number="3" />
+            </button>
           </div>
-          <div className='row'>
-            <a
+          <div className="row">
+            <button
+              type="button"
               onClick={() => setSelectedTable(4)}
               className={
                 tablesAvailable.includes(4)
@@ -124,9 +134,10 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number='4'></Table>
-            </a>
-            <a
+              <Table number="4" />
+            </button>
+            <button
+              type="button"
               onClick={() => setSelectedTable(5)}
               className={
                 tablesAvailable.includes(5)
@@ -136,9 +147,10 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number='5'></Table>
-            </a>
-            <a
+              <Table number="5" />
+            </button>
+            <button
+              type="button"
               onClick={() => setSelectedTable(6)}
               className={
                 tablesAvailable.includes(6)
@@ -148,19 +160,16 @@ const TablePickerPage = () => {
                   : 'col-33 table_disabled'
               }
             >
-              <Table number='6'></Table>
-            </a>
+              <Table number="6" />
+            </button>
           </div>
         </div>
-        <h2 className='table_picker_title'>Take a picture</h2>
-        <div id='viewport' className='viewport'>
-          <img id='test_img' src='' />
+        <div className="camera_container">
+          <h2 className="table_picker_title">Take a picture</h2>
+
+          <Camera onClick={takePhoto} style={{ fontSize: 50 }} />
+          <p>This picture will be used to recognize you on your arrival.</p>
         </div>
-        <Camera
-          onClick={takePhoto}
-          className='center'
-          style={{ fontSize: 50, marginBottom: '120px' }}
-        />
 
         <FooterButtons
           leftButton={{
@@ -171,6 +180,7 @@ const TablePickerPage = () => {
           }}
           rightButton={{
             label: 'Next',
+            onClick: () => setTable(selectedTable),
             id: selectedTable ? 'primaryButton' : 'disabledPrimaryButton',
             href: selectedTable ? '/payment/' : '',
           }}

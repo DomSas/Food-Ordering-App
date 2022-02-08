@@ -10,8 +10,8 @@
   "authors": ["Monaca"],
   "repository": {
     "type": "git",
-    "url": "git:// github.com:monaca/monaca-component-cordova-loader.git"
+    "url": "git://github.com:monaca/monaca-component-cordova-loader.git"
   },
-  "homepage": "http:// monaca.mobi/",
+  "homepage": "http://monaca.mobi/",
   "ignore": ["**/.*", "node_modules", "test", "README.md"]
 }
