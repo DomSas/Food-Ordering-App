@@ -4,23 +4,18 @@ import {
   f7, List, ListInput, Page,
 } from 'framework7-react';
 import FooterButtons from '../components/FooterButtons';
-import { AppContext } from '../components/AppContext';
+import { AppContextProvider } from '../components/AppContext';
 import { checkDateTime } from '../js/db';
 import NavbarBack from '../components/NavbarBack';
 
 const DateTimePage = () => {
   // Context variables definition
-  const [
-    cartItems,
-    setCartItems,
-    totalAmount,
+  const {
     dateTime,
     setDateTime,
-    table,
-    setTable,
     userInfo,
     setUserInfo,
-  ] = useContext(AppContext);
+  } = useContext(AppContextProvider);
 
   // Variable definition
   const today = new Date();
