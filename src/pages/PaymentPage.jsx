@@ -3,26 +3,21 @@ import { f7, Page } from 'framework7-react';
 import StripeCheckout from 'react-stripe-checkout';
 import '../css/PaymentPage.css';
 import { CreditcardFill, WalletFill } from 'framework7-icons/react';
-import { AppContext } from '../components/AppContext';
+import { AppContextProvider } from '../components/AppContext';
 import NavbarBack from '../components/NavbarBack';
 import { addReservation, getOrderNumber } from '../js/db';
 
 const PaymentPage = () => {
-  const [
+  const {
     cartItems,
-    setCartItems,
     totalAmount,
     dateTime,
-    setDateTime,
     table,
-    setTable,
     userInfo,
-    setUserInfo,
     photo,
-    setPhoto,
     orderNumber,
     setOrderNumber,
-  ] = useContext(AppContext);
+  } = useContext(AppContextProvider);
   const [selectedPayment, setSelectedPayment] = useState('');
 
   const showOrderedItems = Object.values(cartItems)
@@ -123,6 +118,7 @@ const PaymentPage = () => {
           </p>
           <div
             role="button"
+            tabIndex={0}
             className={
               `payment_option${selectedPayment === 'card' ? ' selected' : ''}`
             }
@@ -135,6 +131,7 @@ const PaymentPage = () => {
           </div>
           <div
             role="button"
+            tabIndex={0}
             className={
               `payment_option${selectedPayment === 'cash' ? ' selected' : ''}`
             }
