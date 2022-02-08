@@ -28,10 +28,10 @@ let main = [];
 let dessert = [];
 let beverage = [];
 
-async function getMenu(db) {
-  const menuCol = collection(db, 'menu');
+async function getMenu(database) {
+  const menuCol = collection(database, 'menu');
   const menuSnapshot = await getDocs(menuCol);
-  const menu = menuSnapshot.docs.map((doc) => doc.data());
+  const menu = menuSnapshot.docs.map((document) => document.data());
   return menu;
 }
 
@@ -55,6 +55,8 @@ const getDatabase = () => {
           break;
         case 'beverage':
           beverage.push(m);
+          break;
+        default:
           break;
       }
     });
@@ -107,18 +109,17 @@ const createDate = (date) => {
 
 const checkTimeValidForDate = (docSnap, time) => {
   const timeShort = time.split(':')[0];
-  if (docSnap.data().times_available[timeShort].length != 0) {
+  if (docSnap.data().times_available[timeShort].length !== 0) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 };
 
-const getTableAvailability = async (date_time) => {
-  const docRef = doc(db, 'reservations', date_time.date);
-  let tables = await getDoc(docRef).then(async (docSnap) => {
-    const timeShort = date_time.time.split(':')[0];
-    let availableTables = await docSnap.data().times_available[timeShort];
+const getTableAvailability = async (dateTime) => {
+  const docRef = doc(db, 'reservations', dateTime.date);
+  const tables = await getDoc(docRef).then(async (docSnap) => {
+    const timeShort = dateTime.time.split(':')[0];
+    const availableTables = await docSnap.data().times_available[timeShort];
     return availableTables;
   });
   return tables;
@@ -126,78 +127,14 @@ const getTableAvailability = async (date_time) => {
 
 const checkDateTime = async (date, time) => {
   const docRef = doc(db, 'reservations', date);
-  let check = await getDoc(docRef).then((docSnap) => {
+  const check = await getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       return checkTimeValidForDate(docSnap, time);
-    } else {
-      createDate(date);
-      return true;
     }
+    createDate(date);
+    return true;
   });
   return check;
-};
-
-const addReservation = async (
-  date_time,
-  table,
-  food,
-  userInfo,
-  orderNumber,
-  photo
-) => {
-  if (userInfo.location === '') {
-    const getDate = doc(db, 'reservations', date_time.date);
-
-    // get the available times and change the time
-    let info = await getDoc(getDate).then((docSnap) => {
-      return docSnap;
-    });
-    let times_available = await info.data().times_available;
-    let times_booked = await info.data().times_booked;
-
-    const timeShort = date_time.time.split(':')[0];
-
-    times_booked[timeShort] = times_available[timeShort].splice(
-      times_available[timeShort].indexOf(table),
-      1
-    );
-
-    // date and time done
-
-    // set everywhere
-
-    updateDoc(getDate, {
-      times_available: times_available,
-      times_booked: times_booked,
-    });
-  }
-
-  addCustomerInfo(userInfo);
-
-  const currentDate = new Date().toString().split(' ').splice(1, 3).join(' ');
-  let photoBD;
-
-  const metadata = {
-    contentType: 'image/jpeg',
-  };
-
-  if (photo != undefined) {
-    photoBD = true;
-    uploadString(
-      ref(storage, 'photos/' + orderNumber + '.jpg'),
-      photo,
-      'base64',
-      metadata
-    ).then(() => {});
-  } else {
-    photoBD = false;
-  }
-
-  setDoc(doc(db, 'orders', currentDate + ' ' + orderNumber.toString()), {
-    food: food,
-    user: userInfo.email,
-    photo: photoBD,
-  });
 };
 
 const addCustomerInfo = (userInfo) => {
@@ -209,6 +146,80 @@ const addCustomerInfo = (userInfo) => {
   });
 };
 
+const addReservation = async (
+  dateTime,
+  table,
+  food,
+  userInfo,
+  orderNumber,
+  photo,
+) => {
+  if (userInfo.location === '') {
+    const getDate = doc(db, 'reservations', dateTime.date);
+
+    // get the available times and change the time
+    const info = await getDoc(getDate).then((docSnap) => docSnap);
+    const timesAvailable = await info.data().times_available;
+    const timesBooked = await info.data().times_booked;
+
+    const timeShort = dateTime.time.split(':')[0];
+
+    timesBooked[timeShort] = timesAvailable[timeShort].splice(
+      timesAvailable[timeShort].indexOf(table),
+      1,
+    );
+
+    // date and time done
+
+    // set everywhere
+
+    updateDoc(getDate, {
+      times_available: timesAvailable,
+      times_booked: timesBooked,
+    });
+  }
+
+  addCustomerInfo(userInfo);
+
+  const currentDate = new Date().toString().split(' ').splice(1, 3)
+    .join(' ');
+  let photoBD;
+
+  const metadata = {
+    contentType: 'image/jpeg',
+  };
+
+  if (photo !== undefined) {
+    photoBD = true;
+    uploadString(
+      ref(storage, `photos/${orderNumber}.jpg`),
+      photo,
+      'base64',
+      metadata,
+    ).then(() => {});
+  } else {
+    photoBD = false;
+  }
+
+  setDoc(doc(db, 'orders', `${currentDate} ${orderNumber.toString()}`), {
+    food,
+    user: userInfo.email,
+    photo: photoBD,
+  });
+};
+
+const checkOrderNumber = async (orderNumber) => {
+  const docRef = doc(db, 'orders', orderNumber.toString());
+  const check = await getDoc(docRef).then((docSnap) => {
+    if (docSnap.exists()) {
+      return true;
+    }
+    return false;
+  });
+  return check;
+};
+
+// Returns new order number that is not already in database
 const getOrderNumber = async () => {
   let orderNumber;
   do {
@@ -217,26 +228,11 @@ const getOrderNumber = async () => {
   return orderNumber;
 };
 
-const checkOrderNumber = async (orderNumber) => {
-  const docRef = doc(db, 'orders', orderNumber.toString());
-  let check = await getDoc(docRef).then((docSnap) => {
-    if (docSnap.exists()) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-  return check;
-};
-
-export default createMenuDict;
-
 export {
+  createMenuDict,
   checkDateTime,
   addCustomerInfo,
   getTableAvailability,
   addReservation,
   getOrderNumber,
 };
-
-export { storage };

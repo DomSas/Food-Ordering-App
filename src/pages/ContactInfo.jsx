@@ -1,18 +1,20 @@
 import '../css/ContactInfo.css';
 import React, { useState, useContext } from 'react';
-import { f7, List, ListInput, Page } from 'framework7-react';
+import {
+  f7, List, ListInput, Page,
+} from 'framework7-react';
 import { LocationFill } from 'framework7-icons/react';
 import FooterButtons from '../components/FooterButtons';
 import NavbarBack from '../components/NavbarBack';
-import { AppContext } from '../js/AppContext';
+import { AppContext } from '../components/AppContext';
 
-const ContactInfo = () => {
+function ContactInfo() {
   // Context variables definition
   const [
     cartItems,
     setCartItems,
     totalAmount,
-    date_time,
+    dateTime,
     setDateTime,
     table,
     setTable,
@@ -22,16 +24,16 @@ const ContactInfo = () => {
 
   // State variables definition
   const [customerName, setCustomerName] = useState(
-    userInfo ? userInfo.name : ''
+    userInfo ? userInfo.name : '',
   );
   const [customerEmail, setCustomerEmail] = useState(
-    userInfo ? userInfo.email : ''
+    userInfo ? userInfo.email : '',
   );
   const [customerPhone, setCustomerPhone] = useState(
-    userInfo ? userInfo.phone : ''
+    userInfo ? userInfo.phone : '',
   );
   const [customerCity, setCustomerCity] = useState(
-    userInfo ? userInfo.location : ''
+    userInfo ? userInfo.location : '',
   );
   //  Need all three separately to not overwrite validity
   const [nameValid, setNameValid] = useState(true);
@@ -50,29 +52,15 @@ const ContactInfo = () => {
 
   // Function for getting the GPS position using the cordova plugin
   const getGPSPosition = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        f7.dialog.preloader('Acquiring GPS Location');
-
-        getCityFromGPSCoord(
-          String(position.coords.latitude),
-          String(position.coords.longitude)
-        );
-      },
-      (error) => {
-        f7.dialog.alert('Try again please!', 'Acquiring Location Failed');
-      }
-    );
-
     // Function for getting the city name from a given GPS coordinate
     const getCityFromGPSCoord = async (latitude, longitude) => {
       //  Conversion to use the correct URL
-      longitude = longitude.charAt(0) === '-' ? longitude : '+' + longitude;
+      const formattedLongitude = longitude.charAt(0) === '-' ? longitude : `+${longitude}`;
       await fetch(
-        'http:// geodb-free-service.wirefreethought.com/v1/geo/locations/' +
-          latitude +
-          longitude +
-          '/nearbyCities?radius=100&minPopulation=40000&limit=1'
+        `http://geodb-free-service.wirefreethought.com/v1/geo/locations/${
+          latitude
+        }${formattedLongitude
+        }/nearbyCities?radius=100&minPopulation=40000&limit=1`,
       )
         .then((res) => res.json())
         .then(
@@ -82,29 +70,47 @@ const ContactInfo = () => {
             f7.dialog.close();
             setCustomerCity(result.data[0].city);
             f7.dialog.alert(
-              'Nearby city: ' + result.data[0].city,
-              'GPS Location Acquired'
+              `Nearby city: ${result.data[0].city}`,
+              'GPS Location Acquired',
             );
           },
           (error) => {
             f7.dialog.alert('Try again please!', 'Acquiring Location Failed');
-          }
+            console.error(error);
+          },
         );
     };
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        f7.dialog.preloader('Acquiring GPS Location');
+
+        getCityFromGPSCoord(
+          String(position.coords.latitude),
+          String(position.coords.longitude),
+        );
+      },
+      (error) => {
+        f7.dialog.alert('Try again please!', 'Acquiring Location Failed');
+        console.log(error);
+      },
+    );
   };
 
   return (
-    <Page name='contact'>
+    <Page name="contact">
       <NavbarBack />
-      <div className='contact_container'>
-        <h2 className='contact_title'>
+      <div className="contact_container">
+        <h2 className="contact_title">
           Where should we
-          <br /> deliver your order?
+          <br />
+
+          deliver your order?
         </h2>
         <List inset>
           <ListInput
-            type='text'
-            placeholder='Name'
+            type="text"
+            placeholder="Name"
             required
             validate
             value={customerName || ''}
@@ -112,8 +118,8 @@ const ContactInfo = () => {
             onValidate={(isValid) => setNameValid(isValid)}
           />
           <ListInput
-            type='email'
-            placeholder='E-mail'
+            type="email"
+            placeholder="E-mail"
             required
             validate
             value={customerEmail || ''}
@@ -121,27 +127,26 @@ const ContactInfo = () => {
             onValidate={(isValid) => setEmailValid(isValid)}
           />
           <ListInput
-            tyle='number'
-            placeholder='Phone Number'
+            tyle="number"
+            placeholder="Phone Number"
             required
             validate
-            pattern='[0-9]*'
+            pattern="[0-9]*"
             value={customerPhone || ''}
             onChange={(e) => setCustomerPhone(e.target.value)}
             onValidate={(isValid) => setPhoneValid(isValid)}
           />
         </List>
 
-        <div className='location_container'>
-          <h2 className='location_title'>
+        <div className="location_container">
+          <h2 className="location_title">
             Share a location
             <br />
           </h2>
-          <div className='location_btn' onClick={getGPSPosition}>
-            <LocationFill style={{ fontSize: 38 }} />
-          </div>
 
-          <p className='location_info_paragraph'>
+          <LocationFill onClick={getGPSPosition} style={{ fontSize: 38 }} />
+
+          <p className="location_info_paragraph">
             Click the arrow to share your current location. This location will
             be used as delivery address.
           </p>
@@ -158,24 +163,24 @@ const ContactInfo = () => {
             label: 'Next',
             onClick: sendContactInfoToContext,
             id:
-              customerName &&
-              customerPhone &&
-              customerEmail &&
-              customerCity &&
-              nameValid &&
-              emailValid &&
-              phoneValid
+              customerName
+              && customerPhone
+              && customerEmail
+              && customerCity
+              && nameValid
+              && emailValid
+              && phoneValid
                 ? 'primaryButton'
                 : 'disabledPrimaryButton',
 
             href:
-              customerName &&
-              customerPhone &&
-              customerEmail &&
-              customerCity &&
-              nameValid &&
-              emailValid &&
-              phoneValid
+              customerName
+              && customerPhone
+              && customerEmail
+              && customerCity
+              && nameValid
+              && emailValid
+              && phoneValid
                 ? '/payment/'
                 : '',
           }}
@@ -183,6 +188,6 @@ const ContactInfo = () => {
       </div>
     </Page>
   );
-};
+}
 
 export default ContactInfo;
