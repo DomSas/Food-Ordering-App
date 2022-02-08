@@ -20,13 +20,10 @@
   margin-bottom: 10px;
 }
 
-.location_container .location_btn {
-  cursor: pointer;
-}
-
 .location_container .location_info_paragraph {
   max-width: 80%;
   margin: auto;
+  margin-top: 5px;
   text-align: center;
   color: #808080;
 }

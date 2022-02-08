@@ -1,4 +1,7 @@
-import { BlockTitle, List, ListItem, Sheet, Toggle } from 'framework7-react';
+/* eslint-disable no-undef */
+import {
+  BlockTitle, List, ListItem, Sheet, Toggle,
+} from 'framework7-react';
 import React from 'react';
 import '../css/Settings.css';
 
@@ -6,16 +9,14 @@ const Settings = () => {
   const checkCameraAccess = () => {
     if (cordova.plugins.diagnostic.isCameraAuthorized()) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
   const checkLocationAccess = () => {
     if (cordova.plugins.diagnostic.isLocationAuthorized()) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   const cameraChange = () => {
@@ -35,7 +36,7 @@ const Settings = () => {
   };
 
   return (
-    <Sheet className='settings-sheet'>
+    <Sheet className="settings-sheet">
       <BlockTitle>Settings</BlockTitle>
       <List simpleList>
         <ListItem>
@@ -43,16 +44,16 @@ const Settings = () => {
           <Toggle
             onChange={cameraChange}
             checked={{ checkCameraAccess }}
-            color='gray'
-          ></Toggle>
+            color="gray"
+          />
         </ListItem>
         <ListItem>
           <span>Allow location access</span>
           <Toggle
             onChange={locationChange}
             checked={{ checkLocationAccess }}
-            color='gray'
-          ></Toggle>
+            color="gray"
+          />
         </ListItem>
       </List>
     </Sheet>
