@@ -1,22 +1,19 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { createMenuDict } from '../js/db';
 
-export const AppContext = createContext();
+const AppContext = createContext();
+
+export { AppContext as AppContextProvider };
 
 export const AppProvider = (props) => {
   // State variable definition
-  const [cartItems, setCartItems] = useState({}); // Cart items
+  const [cartItems, setCartItems] = useState(() => createMenuDict()); // Initialize cart items
   const [totalAmount, setTotalAmount] = useState(0); // Total amount
   const [dateTime, setDateTime] = useState({}); // Date and time selected
   const [table, setTable] = useState(); // Table selected
   const [photo, setPhoto] = useState(); // Photo
   const [userInfo, setUserInfo] = useState(); // User info
   const [orderNumber, setOrderNumber] = useState(); // Order number
-
-  // UseEffect for setting the menu
-  useEffect(() => {
-    setCartItems(createMenuDict());
-  }, []);
 
   // UseEffect for updating the cart
   useEffect(() => {
@@ -33,7 +30,7 @@ export const AppProvider = (props) => {
 
   return (
     <AppContext.Provider
-      value={[
+      value={{
         cartItems,
         setCartItems,
         totalAmount,
@@ -47,7 +44,7 @@ export const AppProvider = (props) => {
         setPhoto,
         orderNumber,
         setOrderNumber,
-      ]}
+      }}
     >
       {props.children}
     </AppContext.Provider>

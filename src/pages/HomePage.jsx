@@ -12,7 +12,6 @@ const HomePage = () => (
       <div className="header">
         <h1>
           Welcome to
-
           <br />
           Pab-Dom
         </h1>
