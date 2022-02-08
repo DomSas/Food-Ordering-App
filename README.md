@@ -1,7 +1,7 @@
 # Restaurant Management App
 
 This app is based on a template found here:
-[framework7-react-single-view](https:// github.com/monaca-templates/framework7-react-single-view)
+[framework7-react-single-view](https://github.com/monaca-templates/framework7-react-single-view)
 
 ## NPM Scripts
 
@@ -14,7 +14,7 @@ This app is based on a template found here:
 
 There is a webpack bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Webpack config located in `build/webpack.config.js`.
 
-Webpack has specific way of handling static assets (CSS files, images, audios). You can learn more about correct way of doing things on [official webpack documentation](https:// webpack.js.org/guides/asset-management/).
+Webpack has specific way of handling static assets (CSS files, images, audios). You can learn more about correct way of doing things on [official webpack documentation](https://webpack.js.org/guides/asset-management/).
 
 ## Assets
 
@@ -32,14 +32,14 @@ framework7 assets --ui
 
 ## Documentation & Resources
 
-- [Framework7 Core Documentation](https:// framework7.io/docs/)
+- [Framework7 Core Documentation](https://framework7.io/docs/)
 
-- [Framework7 React Documentation](https:// framework7.io/react/)
+- [Framework7 React Documentation](https://framework7.io/react/)
 
-- [Framework7 Icons Reference](https:// framework7.io/icons/)
-- [Community Forum](https:// forum.framework7.io)
+- [Framework7 Icons Reference](https://framework7.io/icons/)
+- [Community Forum](https://forum.framework7.io)
 
 ## Support Framework7
 
 Love Framework7? Support project by donating or pledging on patreon:
-https:// patreon.com/vladimirkharlampidi
+https://patreon.com/vladimirkharlampidi

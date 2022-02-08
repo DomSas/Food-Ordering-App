@@ -1,14 +1,14 @@
-.date_time_container h2 {
+.dateTime_container h2 {
   color: #264d32;
   font-size: 26px;
   text-align: center;
 }
 
-.date_time_container .user_info_list {
+.dateTime_container .user_info_list {
   margin-bottom: 120px;
 }
 
-.date_time_title {
+.dateTime_title {
   margin: 30px 0 15px 0;
 }
 
