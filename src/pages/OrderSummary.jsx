@@ -9,7 +9,7 @@ const OrderSummary = () => {
   // Context variables definition
   const {
     cart,
-    setCartItems,
+    setCart,
     setDateTime,
     setTable,
     setUserInfo,
@@ -23,7 +23,7 @@ const OrderSummary = () => {
 
   const clearContext = () => {
     setUserInfo({});
-    setCartItems(createMenuDict());
+    setCart(createMenuDict());
     setDateTime({});
     setTable(null);
 

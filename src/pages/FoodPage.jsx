@@ -16,7 +16,7 @@ const FoodPage = () => {
   // Context variables definition
   const {
     cart,
-    setCartItems,
+    setCart,
     totalAmount,
   } = useContext(AppContext);
 
@@ -28,7 +28,7 @@ const FoodPage = () => {
       }
       return item;
     });
-    setCartItems({ ...cart, ...{ [category]: newCartItems } });
+    setCart({ ...cart, ...{ [category]: newCartItems } });
   };
 
   // Function for removing items to the cart
@@ -39,7 +39,7 @@ const FoodPage = () => {
       }
       return item;
     });
-    setCartItems({ ...cart, ...{ [category]: newCartItems } });
+    setCart({ ...cart, ...{ [category]: newCartItems } });
   };
 
   return (
