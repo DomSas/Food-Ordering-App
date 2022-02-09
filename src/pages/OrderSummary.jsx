@@ -2,25 +2,19 @@ import React, { useContext } from 'react';
 import '../css/OrderSummary.css';
 import { f7, Page } from 'framework7-react';
 import { HouseFill } from 'framework7-icons/react';
-import { AppContext } from '../components/AppContext';
+import { AppContextProvider } from '../components/AppContext';
 import { createMenuDict } from '../js/db';
 
 const OrderSummary = () => {
   // Context variables definition
-  const [
+  const {
     cartItems,
     setCartItems,
-    totalAmount,
-    dateTime,
     setDateTime,
-    table,
     setTable,
-    userInfo,
     setUserInfo,
-    photo,
-    setPhoto,
     orderNumber,
-  ] = useContext(AppContext);
+  } = useContext(AppContextProvider);
 
   // Map and filter of ordered items
   const showOrderedItems = Object.values(cartItems)

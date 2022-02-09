@@ -6,21 +6,14 @@ import {
 import { LocationFill } from 'framework7-icons/react';
 import FooterButtons from '../components/FooterButtons';
 import NavbarBack from '../components/NavbarBack';
-import { AppContext } from '../components/AppContext';
+import { AppContextProvider } from '../components/AppContext';
 
 function ContactInfo() {
   // Context variables definition
-  const [
-    cartItems,
-    setCartItems,
-    totalAmount,
-    dateTime,
-    setDateTime,
-    table,
-    setTable,
+  const {
     userInfo,
     setUserInfo,
-  ] = useContext(AppContext);
+  } = useContext(AppContextProvider);
 
   // State variables definition
   const [customerName, setCustomerName] = useState(
@@ -92,7 +85,7 @@ function ContactInfo() {
       },
       (error) => {
         f7.dialog.alert('Try again please!', 'Acquiring Location Failed');
-        console.log(error);
+        console.error(error);
       },
     );
   };
