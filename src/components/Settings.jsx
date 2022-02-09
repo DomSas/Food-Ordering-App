@@ -7,7 +7,6 @@ import '../css/Settings.css';
 
 const Settings = () => {
   const checkCameraAccess = () => {
-    console.log(cordova.plugins.diagnostic.isCameraAvailable());
     if (cordova.plugins.diagnostic.isCameraAuthorized()) {
       return true;
     }
@@ -22,27 +21,23 @@ const Settings = () => {
   };
 
   const cameraChange = () => {
-    console.log('camera access: ' + checkCameraAccess());
     if (checkCameraAccess()) {
       navigator.permissions.revoke({ name: 'camera' });
     } else {
-      console.log('request camera auth');
       cordova.plugins.diagnostic.requestCameraAuthorization();
     }
   };
 
   const locationChange = () => {
-    console.log('location access: ' + checkLocationAccess());
     if (checkLocationAccess()) {
       navigator.permissions.revoke({ name: 'location' });
     } else {
-      console.log('request location auth');
       cordova.plugins.diagnostic.requestLocationAuthorization();
     }
   };
 
   return (
-    <Sheet swipeToClose closeByOutsideClick className='settings-sheet'>
+    <Sheet swipeToClose closeByOutsideClick className="settings-sheet">
       <BlockTitle>Settings</BlockTitle>
       <List simpleList>
         <ListItem>

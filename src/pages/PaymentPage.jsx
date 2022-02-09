@@ -3,13 +3,13 @@ import { f7, Page } from 'framework7-react';
 import StripeCheckout from 'react-stripe-checkout';
 import '../css/PaymentPage.css';
 import { CreditcardFill, WalletFill } from 'framework7-icons/react';
-import { AppContextProvider } from '../components/AppContext';
+import { AppContext } from '../components/AppContext';
 import NavbarBack from '../components/NavbarBack';
 import { addReservation, getOrderNumber } from '../js/db';
 
 const PaymentPage = () => {
   const {
-    cartItems,
+    cart,
     totalAmount,
     dateTime,
     table,
@@ -17,10 +17,10 @@ const PaymentPage = () => {
     photo,
     orderNumber,
     setOrderNumber,
-  } = useContext(AppContextProvider);
+  } = useContext(AppContext);
   const [selectedPayment, setSelectedPayment] = useState('');
 
-  const showOrderedItems = Object.values(cartItems)
+  const showOrderedItems = Object.values(cart)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);
 
