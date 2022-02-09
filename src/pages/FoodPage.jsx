@@ -8,13 +8,17 @@ import {
   ListItem,
   Stepper,
 } from 'framework7-react';
-import { AppContext } from '../components/AppContext';
+import { AppContextProvider } from '../components/AppContext';
 import FooterButtons from '../components/FooterButtons';
 import NavbarBack from '../components/NavbarBack';
 
 const FoodPage = () => {
   // Context variables definition
-  const [cartItems, setCartItems, totalAmount] = useContext(AppContext);
+  const {
+    cartItems,
+    setCartItems,
+    totalAmount,
+  } = useContext(AppContextProvider);
 
   // Function for adding items to the cart
   const addItemToCart = (foodItem, key) => {
