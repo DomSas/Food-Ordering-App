@@ -12,6 +12,7 @@ const Settings = () => {
     }
     return false;
   };
+
   const checkLocationAccess = () => {
     if (cordova.plugins.diagnostic.isLocationAuthorized()) {
       return true;
@@ -36,7 +37,7 @@ const Settings = () => {
   };
 
   return (
-    <Sheet className="settings-sheet">
+    <Sheet swipeToClose closeByOutsideClick className="settings-sheet">
       <BlockTitle>Settings</BlockTitle>
       <List simpleList>
         <ListItem>

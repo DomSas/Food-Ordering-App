@@ -6,14 +6,14 @@ import {
 import { LocationFill } from 'framework7-icons/react';
 import FooterButtons from '../components/FooterButtons';
 import NavbarBack from '../components/NavbarBack';
-import { AppContextProvider } from '../components/AppContext';
+import { AppContext } from '../components/AppContext';
 
 function ContactInfo() {
   // Context variables definition
   const {
     userInfo,
     setUserInfo,
-  } = useContext(AppContextProvider);
+  } = useContext(AppContext);
 
   // State variables definition
   const [customerName, setCustomerName] = useState(

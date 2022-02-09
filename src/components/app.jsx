@@ -3,7 +3,7 @@ import React from 'react';
 import { App, View } from 'framework7-react';
 
 import routes from '../js/routes';
-import { AppProvider } from './AppContext';
+import { AppContextProvider } from './AppContext';
 
 export default () => {
   const f7params = {
@@ -14,9 +14,9 @@ export default () => {
   return (
     <>
       <App {...f7params} pushState="true">
-        <AppProvider>
+        <AppContextProvider>
           <View main url="/" />
-        </AppProvider>
+        </AppContextProvider>
       </App>
     </>
   );
