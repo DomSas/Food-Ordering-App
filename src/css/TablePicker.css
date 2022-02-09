@@ -5,6 +5,10 @@
   margin: 30px 0 10px 0;
 }
 
+.table_picker_container {
+  margin: 0 15px;
+}
+
 .table_picker_container button {
   border: none;
 }
