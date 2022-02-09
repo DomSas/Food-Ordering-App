@@ -5,7 +5,7 @@ import { Camera } from 'framework7-icons/react';
 import FooterButtons from '../components/FooterButtons';
 import Table from '../components/table';
 import { getTableAvailability } from '../js/db';
-import { AppContext } from '../components/AppContext';
+import { AppContextProvider } from '../components/AppContext';
 import NavbarBack from '../components/NavbarBack';
 
 const TablePickerPage = () => {
@@ -15,7 +15,7 @@ const TablePickerPage = () => {
     table,
     setTable,
     setPhoto,
-  } = useContext(AppContext);
+  } = useContext(AppContextProvider);
 
   // State variables definition
   const [tablesAvailable, setTablesAvailable] = useState([]);
