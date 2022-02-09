@@ -53,7 +53,6 @@
     "react-dom": "^17.0.2",
     "react-stripe-checkout": "^2.6.3",
     "template7": "^1.4.2",
-    "cordova": "^10.0.0",
     "cordova-plugin-camera": "^6.0.0",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova.plugins.diagnostic": "^6.1.1",
@@ -90,6 +89,7 @@
     "url-loader": "^4.1.0",
     "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.3"
-  }
+    "webpack-dev-server": "^4.7.3",
+    "cordova": "^10.0.0"
+    }
 }
