@@ -4,7 +4,7 @@ import {
   f7, List, ListInput, Page,
 } from 'framework7-react';
 import FooterButtons from '../components/FooterButtons';
-import { AppContextProvider } from '../components/AppContext';
+import { AppContext } from '../components/AppContext';
 import { checkDateTime } from '../js/db';
 import NavbarBack from '../components/NavbarBack';
 
@@ -15,7 +15,7 @@ const DateTimePage = () => {
     setDateTime,
     userInfo,
     setUserInfo,
-  } = useContext(AppContextProvider);
+  } = useContext(AppContext);
 
   // Variable definition
   const today = new Date();
