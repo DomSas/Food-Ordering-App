@@ -5,7 +5,7 @@ import { Camera } from 'framework7-icons/react';
 import FooterButtons from '../components/FooterButtons';
 import Table from '../components/table';
 import { getTableAvailability } from '../js/db';
-import { AppContextProvider } from '../components/AppContext';
+import { AppContext } from '../components/AppContext';
 import NavbarBack from '../components/NavbarBack';
 
 const TablePickerPage = () => {
@@ -15,7 +15,7 @@ const TablePickerPage = () => {
     table,
     setTable,
     setPhoto,
-  } = useContext(AppContextProvider);
+  } = useContext(AppContext);
 
   // State variables definition
   const [tablesAvailable, setTablesAvailable] = useState([]);
@@ -75,8 +75,9 @@ const TablePickerPage = () => {
         </h2>
         <div id="tables">
           <div className="row">
-            <button
-              type="button"
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedTable(1)}
               className={
                 tablesAvailable.includes(1)
@@ -87,9 +88,10 @@ const TablePickerPage = () => {
               }
             >
               <Table number="1" />
-            </button>
-            <button
-              type="button"
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedTable(2)}
               className={
                 tablesAvailable.includes(2)
@@ -100,9 +102,10 @@ const TablePickerPage = () => {
               }
             >
               <Table number="2" />
-            </button>
-            <button
-              type="button"
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedTable(3)}
               className={
                 tablesAvailable.includes(3)
@@ -113,11 +116,12 @@ const TablePickerPage = () => {
               }
             >
               <Table number="3" />
-            </button>
+            </div>
           </div>
           <div className="row">
-            <button
-              type="button"
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedTable(4)}
               className={
                 tablesAvailable.includes(4)
@@ -128,9 +132,10 @@ const TablePickerPage = () => {
               }
             >
               <Table number="4" />
-            </button>
-            <button
-              type="button"
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedTable(5)}
               className={
                 tablesAvailable.includes(5)
@@ -141,9 +146,10 @@ const TablePickerPage = () => {
               }
             >
               <Table number="5" />
-            </button>
-            <button
-              type="button"
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => setSelectedTable(6)}
               className={
                 tablesAvailable.includes(6)
@@ -154,7 +160,7 @@ const TablePickerPage = () => {
               }
             >
               <Table number="6" />
-            </button>
+            </div>
           </div>
         </div>
         <div className="camera_container">
