@@ -44,6 +44,7 @@ module.exports = {
     open: true,
     compress: true,
     port: port,
+    allowedHosts: 'all',
     // sockPort: port, // V5 COMMENT
     // contentBase: '/www/', // V5 COMMENT
     // disableHostCheck: true, // V5 COMMENT
@@ -172,8 +173,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env),
-      'process.env.TARGET': JSON.stringify(target),
+        'process.env.NODE_ENV' : JSON.stringify('production')
     }),
 
     ...(env === 'production'

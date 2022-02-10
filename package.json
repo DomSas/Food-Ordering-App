@@ -25,7 +25,10 @@
       "monaca-plugin-monaca-core": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-camera": {},
-      "cordova.plugins.diagnostic": {}
+      "cordova.plugins.diagnostic": {
+        "ANDROIDX_VERSION": "1.0.0"
+      },
+      "cordova-plugin-androidx-adapter": {}
     }
   },
   "browserslist": [
@@ -56,7 +59,8 @@
     "cordova-plugin-camera": "^6.0.0",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova.plugins.diagnostic": "^6.1.1",
-    "cordova-plugin-androidx-adapter": "1.1.3"
+    "cordova-plugin-androidx-adapter": "1.1.3",
+    "webpack-dev-server": "^4.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.11.5",
@@ -89,7 +93,6 @@
     "terser-webpack-plugin": "^5.1.2",
     "url-loader": "^4.1.0",
     "webpack": "^5.66.0",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-cli": "^4.9.1"
   }
 }
