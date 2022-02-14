@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="test.example.helloworld" version="1.0.0">
-	<name>
-		framework7-react-single-view
-	</name>
+	<name>Restaurant Management System</name>
 	<description />
 	<author />
 	<content src="index.html" />
