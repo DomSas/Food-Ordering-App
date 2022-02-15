@@ -5,7 +5,7 @@ import { HouseFill } from 'framework7-icons/react';
 import { AppContext } from '../components/AppContext';
 import { createMenuDict } from '../js/db';
 
-const OrderSummary = () => {
+const OrderSummaryPage = () => {
   // Context variables definition
   const {
     cart,
@@ -89,4 +89,4 @@ const OrderSummary = () => {
   );
 };
 
-export default OrderSummary;
+export default OrderSummaryPage;

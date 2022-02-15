@@ -5,7 +5,7 @@ export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
   // State variable definition
-  const [cart, setCart] = useState(() => createMenuDict()); // Initialize cart
+  const [cart, setCart] = useState(() => createMenuDict()); // Initialise cart
   const [totalAmount, setTotalAmount] = useState(0); // Total amount
   const [dateTime, setDateTime] = useState({}); // Date and time selected
   const [table, setTable] = useState(); // Table selected
