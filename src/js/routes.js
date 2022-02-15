@@ -5,7 +5,7 @@ import PaymentPage from '../pages/PaymentPage';
 import ContactInfo from '../pages/ContactInfo';
 import DateTimePage from '../pages/DateTimePage';
 import TablePickerPage from '../pages/TablePickerPage';
-import OrderSummary from '../pages/OrderSummary';
+import OrderSummaryPage from '../pages/OrderSummaryPage';
 
 const routes = [
   {
@@ -38,7 +38,7 @@ const routes = [
   },
   {
     path: '/summary',
-    component: OrderSummary,
+    component: OrderSummaryPage,
     options: {
       clearPreviousHistory: true,
     },
