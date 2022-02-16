@@ -12,12 +12,12 @@ import {
 import { getStorage, ref, uploadString } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: ***REMOVED***,
-  authDomain: ***REMOVED***,
-  projectId: ***REMOVED***,
-  storageBucket: ***REMOVED***,
-  messagingSenderId: ***REMOVED***,
-  appId: ***REMOVED***,
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
 };
 
 const app = initializeApp(firebaseConfig);
