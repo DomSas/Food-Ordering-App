@@ -1,45 +1,21 @@
-# Restaurant Management App
+# Food Ordering App
+
+Food ordering application using Monaca, React and Framework 7, as well as the Firebase database.
 
 This app is based on a template found here:
 [framework7-react-single-view](https://github.com/monaca-templates/framework7-react-single-view)
 
-## NPM Scripts
+### Tutorial
 
-- 🔥 `start` - run development server
-- 🔧 `dev` - run development server
-- 🔧 `build-dev` - build web app using development mode (faster build without minification and optimization)
-- 🔧 `build-prod` - build web app for production
+There is a tutorial available in Medium, divided into two parts:
 
-## WebPack
+Part 1: [Create a food ordering application with Monaca, React and Framework 7 with Firebase database](https://medium.com/p/ed675ee74c0a/)
 
-There is a webpack bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Webpack config located in `build/webpack.config.js`.
+Part 2: [Online Payments with Monaca, React and Framework7 with Express backend](https://medium.com/p/2e0801f55053)
 
-Webpack has specific way of handling static assets (CSS files, images, audios). You can learn more about correct way of doing things on [official webpack documentation](https://webpack.js.org/guides/asset-management/).
+### How to use
 
-## Assets
-
-Assets (icons, splash screens) source images located in `assets-src` folder. To generate your own icons and splash screen images, you will need to replace all assets in this directory with your own images (pay attention to image size and format), and run the following command in the project directory:
-
-```
-framework7 assets
-```
-
-Or launch UI where you will be able to change icons and splash screens:
-
-```
-framework7 assets --ui
-```
-
-## Documentation & Resources
-
-- [Framework7 Core Documentation](https://framework7.io/docs/)
-
-- [Framework7 React Documentation](https://framework7.io/react/)
-
-- [Framework7 Icons Reference](https://framework7.io/icons/)
-- [Community Forum](https://forum.framework7.io)
-
-## Support Framework7
-
-Love Framework7? Support project by donating or pledging on patreon:
-https://patreon.com/vladimirkharlampidi
+1. Fork or download the repository.
+2. Insert Firebase configuration obtained from your Firebase project on the db.js file, from line 14: 
+https://github.com/DomSas/Restaurant-Management-App/blob/5de0cc810851abfcbe217acba23f065aa6829d33/src/js/db.js#L13-L22
+3. Start the server locally with `npm run start`, or using Monaca.
