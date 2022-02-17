@@ -17,5 +17,5 @@ Part 2: [Online Payments with Monaca, React and Framework7 with Express backend]
 
 1. Fork or download the repository.
 2. Insert Firebase configuration obtained from your Firebase project on the db.js file, from line 14: 
-https://github.com/DomSas/Restaurant-Management-App/blob/5de0cc810851abfcbe217acba23f065aa6829d33/src/js/db.js#L13-L22
+https://github.com/DomSas/Food-Ordering-App/blob/b794dbcccc382893daefc5e1d7da79d0964250c5/src/js/db.js#L14-L21
 3. Start the server locally with `npm run start`, or using Monaca.
