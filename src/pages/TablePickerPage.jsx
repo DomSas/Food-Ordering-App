@@ -52,10 +52,11 @@ const TablePickerPage = () => {
       (imageURI) => {
         // Photo took successfully
         setPhoto(imageURI);
+        f7.dialog.alert('The picture will be saved after finishing your order.', 'Picture Taken Successfully');
       },
       (error) => {
         // Error while taking the photo
-        f7.dialog.alert('Try again please!', 'Taking of picture failed');
+        f7.dialog.alert('Try again please.', 'Taking of picture failed');
         console.error(error);
       },
       {
