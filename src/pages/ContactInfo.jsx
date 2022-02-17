@@ -45,42 +45,16 @@ function ContactInfo() {
 
   // Function for getting the GPS position using the cordova plugin
   const getGPSPosition = () => {
-    // Function for getting the city name from a given GPS coordinate
-    const getCityFromGPSCoord = async (latitude, longitude) => {
-      //  Conversion to use the correct URL
-      const formattedLongitude = longitude.charAt(0) === '-' ? longitude : `+${longitude}`;
-      await fetch(
-        `http://geodb-free-service.wirefreethought.com/v1/geo/locations/${
-          latitude
-        }${formattedLongitude
-        }/nearbyCities?radius=100&minPopulation=40000&limit=1`,
-      )
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            //  Reset of customerCity in case the user clicks it second time
-            setCustomerCity();
-            f7.dialog.close();
-            setCustomerCity(result.data[0].city);
-            f7.dialog.alert(
-              `Nearby city: ${result.data[0].city}`,
-              'GPS Location Acquired',
-            );
-          },
-          (error) => {
-            f7.dialog.alert('Try again please!', 'Acquiring Location Failed');
-            console.error(error);
-          },
-        );
-    };
-
     navigator.geolocation.getCurrentPosition(
       (position) => {
         f7.dialog.preloader('Acquiring GPS Location');
-
-        getCityFromGPSCoord(
-          String(position.coords.latitude),
-          String(position.coords.longitude),
+        //  Reset of customerCity in case the user clicks it second time
+        setCustomerCity();
+        f7.dialog.close();
+        setCustomerCity(position.coords.latitude + ', ' + position.coords.longitude);
+        f7.dialog.alert(
+          `Your location: ${position.coords.latitude + ', ' + position.coords.longitude}`,
+          'GPS Location Acquired',
         );
       },
       (error) => {
