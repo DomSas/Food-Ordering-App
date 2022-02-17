@@ -9,13 +9,12 @@ import NavbarBack from '../components/NavbarBack';
 import { AppContext } from '../components/AppContext';
 
 function ContactInfo() {
-  // Context variables definition
   const {
     userInfo,
     setUserInfo,
   } = useContext(AppContext);
 
-  // State variables definition
+  // If userInfo already exists in context, it will be initialized
   const [customerName, setCustomerName] = useState(
     userInfo ? userInfo.name : '',
   );
@@ -33,7 +32,7 @@ function ContactInfo() {
   const [emailValid, setEmailValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
 
-  // Function for sending the contact info to the context
+  // Sending the contact info to the context
   const sendContactInfoToContext = () => {
     setUserInfo({
       name: customerName,
@@ -43,7 +42,7 @@ function ContactInfo() {
     });
   };
 
-  // Function for getting the GPS position using the cordova plugin
+  // Getting the GPS position using the cordova plugin
   const getGPSPosition = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -58,7 +57,7 @@ function ContactInfo() {
         );
       },
       (error) => {
-        f7.dialog.alert('Try again please!', 'Acquiring Location Failed');
+        f7.dialog.alert('Try again please.', 'Acquiring Location Failed');
         console.error(error);
       },
     );

@@ -19,17 +19,20 @@ const PaymentPage = () => {
     setOrderNumber,
   } = useContext(AppContext);
   const [selectedPayment, setSelectedPayment] = useState('');
-
+  
+  useEffect(async () => {
+    setOrderNumber(await getOrderNumber());
+  }, []);
+  
+  // Public key to communicate with Stripe backend
+  const publicKey = 'pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv';
+  
+  // Filtering only ordered items from cart
   const showOrderedItems = Object.values(cart)
     .flatMap((item) => item)
     .filter((item) => !!item.amount);
 
-  const publicKey = 'pk_test_51KKp2ELu2ivq6gwie31icN77AAYhId9s1eC3DtwxJHYQ0LObDPGHNmD62SqYyl7VY7uCYdkFWiT2Y83jJGpvmkMk00Nnz5rDXv';
-
-  useEffect(async () => {
-    setOrderNumber(await getOrderNumber());
-  }, []);
-
+  // Creating reservation in database after clicking on Pay
   const submitOrderToDB = () => {
     addReservation(
       dateTime,
@@ -62,11 +65,11 @@ const PaymentPage = () => {
 
     if (response.status === 'success') {
       submitOrderToDB();
-      f7.dialog.alert('Click OK to continue!', 'Payment sucessfull', () => {
+      f7.dialog.alert('Click OK to continue.', 'Payment successfull', () => {
         f7.views.current.router.navigate('/summary');
       });
     } else {
-      f7.dialog.alert('Try it again!', 'Payment unsucessfull');
+      f7.dialog.alert('Try it again.', 'Payment unsuccessfull');
     }
   };
 
