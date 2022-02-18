@@ -9,7 +9,7 @@ This app is based on a template found here:
 
 There is a tutorial available in Medium, divided into two parts:
 
-Part 1: [Create a food ordering application with Monaca, React and Framework 7 with Firebase database](https://medium.com/p/ed675ee74c0a/)
+Part 1: [Create a food ordering application with Monaca, React, Framework 7 and Firebase database](https://medium.com/p/ed675ee74c0a/)
 
 Part 2: [Online Payments with Monaca, React and Framework7 with Express backend](https://medium.com/p/2e0801f55053)
 
