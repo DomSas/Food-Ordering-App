@@ -4,10 +4,12 @@ Food ordering application using Monaca, React and Framework 7, as well as the Fi
 
 The customer can select meals and beverages and choose delivery or dine-in option. If delivery is chosen, the user fills name and email, and geolocation is acquired. In case of dine-in, user chooses date and table. Next is payment (cash or card), where payment by card is done through Stripe.  
 
+
 https://user-images.githubusercontent.com/62658199/171423946-6aea1784-c827-4264-9c27-24d91f8f4eff.mp4
 
 This app is based on a template found here:
 [framework7-react-single-view](https://github.com/monaca-templates/framework7-react-single-view).  
+[Figma wireframe](https://www.figma.com/file/TQ7nVyleaVjkEypIgfLjZg/Food-Ordering-App?node-id=45%3A137).  
 Backend repository can be found [here](https://github.com/DomSas/Food-Ordering-App-Backend).
 
 ### Tutorial
