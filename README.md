@@ -1,6 +1,10 @@
 # Food Ordering App
 
-Food ordering application using Monaca, React and Framework 7, as well as the Firebase database.
+Technologies used: 
+- Frontend: React and Framework7.
+- Backend: Express server deployed with Heroku.
+- Database: Firebase.
+- Hybrid deployment: Monaca.
 
 The customer can select meals and beverages and choose delivery or dine-in option. If delivery is chosen, the user fills name and email, and geolocation is acquired. In case of dine-in, user chooses date and table. Next is payment (cash or card), where payment by card is done through Stripe.  
 
