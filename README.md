@@ -3,7 +3,7 @@
 Hybrid application where the customer can select meals and beverages and choose delivery or dine-in option. If delivery is chosen, the user fills name and email, and geolocation is acquired. In case of dine-in, user chooses date and table. Next is payment (cash or card), where payment by card is done through Stripe.  
 
 Technologies used: 
-- Frontend: React and Framework7.
+- Frontend: React (Context API for state management) and Framework7.
 - Backend: Express server deployed with Heroku.
 - Database: Firebase.
 - Hybrid deployment: Monaca.
